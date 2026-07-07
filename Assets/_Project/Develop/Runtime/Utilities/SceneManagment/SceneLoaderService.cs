@@ -11,6 +11,8 @@ namespace Assets._Project.Develop.Runtime.Utilities.SceneManagment
             AsyncOperation wait = SceneManager.LoadSceneAsync(sceneName, loadSceneMode);
 
             yield return new WaitWhile(() => wait.isDone == false);
+
+            Debug.Log($"Scene loaded: {sceneName}");
         }
 
         public IEnumerator UnloadAsync(string sceneName)
@@ -18,6 +20,8 @@ namespace Assets._Project.Develop.Runtime.Utilities.SceneManagment
             AsyncOperation wait = SceneManager.UnloadSceneAsync(sceneName);
 
             yield return new WaitWhile(() => wait.isDone == false);
+
+            Debug.Log($"Scene unloaded: {sceneName}");
         }
     }
 }

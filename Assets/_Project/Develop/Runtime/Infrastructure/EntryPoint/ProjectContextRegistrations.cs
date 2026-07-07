@@ -1,6 +1,7 @@
 ﻿using Assets._Project.Develop.Runtime.Infrastructure.DI;
 using Assets._Project.Develop.Runtime.Utilities.AssetsManagment;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
+using Assets._Project.Develop.Runtime.Utilities.ElevatorManagment;
 using Assets._Project.Develop.Runtime.Utilities.LoadingScreen;
 using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
 using Object = UnityEngine.Object;
@@ -20,7 +21,12 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
             container.RegisterAsSingle(CreateSceneSwitcherService);
 
             container.RegisterAsSingle<ILoadingScreen>(CreateLoadingScreen);
+
+            container.RegisterAsSingle(CreateElevatorSwitchManager);
         }
+
+        private static ElevatorSwitchManager CreateElevatorSwitchManager(DIContainer c)
+            => new ElevatorSwitchManager();
 
         private static SceneSwitcherService CreateSceneSwitcherService(DIContainer c)
             => new SceneSwitcherService(
