@@ -6,6 +6,7 @@ using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
@@ -39,8 +40,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
 
         public override void Run()
         {
-            if (elevatorController == null)
-                throw new ArgumentNullException(nameof(elevatorController));
+            Assert.IsNotNull(elevatorController, "ElevatorController is null. Make sure it's assigned in the inspector or injected correctly.");
 
             _elevatorSwitchManager.AddElevator(elevatorController);
         }

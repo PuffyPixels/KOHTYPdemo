@@ -1,5 +1,5 @@
 using Assets._Project.Develop.Runtime.Gameplay.Elevator;
-using System;
+using UnityEngine.Assertions;
 
 namespace Assets._Project.Develop.Runtime.Utilities.ElevatorManagment
 {
@@ -19,8 +19,7 @@ namespace Assets._Project.Develop.Runtime.Utilities.ElevatorManagment
 
         public void SetElevator(int elevatorIndex)
         {
-            if (_elevator == null)
-                throw new ArgumentNullException(nameof(_elevator));
+            Assert.IsNotNull(_elevator, "_elevator is null. Make sure ElevatorController is added before calling SetElevator.");
 
             _elevator.SetElevator(elevatorIndex);
         }

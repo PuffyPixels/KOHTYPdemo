@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
 {
@@ -11,14 +11,13 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
 
         private void Awake()
         {
-            if (_elevatorPrefabs.Count < 1)
-                throw new ArgumentOutOfRangeException(nameof(_elevatorPrefabs));
+            Assert.IsTrue(_elevatorPrefabs.Count > 0, "_elevatorPrefabs list is empty.");
         }
 
         public void SetElevator(int elevatorIndex)
         {
-            if (elevatorIndex < 0 || elevatorIndex >= _elevatorPrefabs.Count)
-                throw new ArgumentOutOfRangeException(nameof(elevatorIndex), $"Index must be between 0 and {_elevatorPrefabs.Count - 1}");
+            Assert.IsTrue(elevatorIndex >= 0 && elevatorIndex < _elevatorPrefabs.Count,
+                $"Elevator index {elevatorIndex} is out of range. Valid range: 0 to {_elevatorPrefabs.Count - 1}");
 
             if (_currentElevatorPrefab != null && _currentElevatorPrefab.gameObject != null)
             {
