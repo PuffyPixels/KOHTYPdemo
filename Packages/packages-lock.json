@@ -227,13 +227,12 @@
       "url": "https://packages.unity.com"
     },
     "dev.dyrda.first-person-controller": {
-      "version": "https://github.com/dyrdadev/first-person-controller-for-unity.git#0.0.4",
+      "version": "file:dev.dyrda.first-person-controller",
       "depth": 0,
-      "source": "git",
+      "source": "embedded",
       "dependencies": {
         "com.unity.inputsystem": "1.0.1"
-      },
-      "hash": "f199f6066c06aee0cb1b13fc7ce753ec37182365"
+      }
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
