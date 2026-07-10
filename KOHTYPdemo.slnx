@@ -1,3 +1,6 @@
 ﻿<Solution>
   <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="UniRx.csproj" />
+  <Project Path="DyrdaDev.FirstPersonController.Runtime.csproj" />
+  <Project Path="Assembly-CSharp-firstpass.csproj" />
 </Solution>
