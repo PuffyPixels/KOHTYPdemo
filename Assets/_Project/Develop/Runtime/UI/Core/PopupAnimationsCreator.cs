@@ -5,13 +5,6 @@ using UnityEngine.UI;
 
 namespace Assets._Project.Develop.Runtime.UI.Core
 {
-    public enum PopupAnimationTypes
-    {
-        None,
-        Expand,
-        Fade,
-    }
-
     public class PopupAnimationsCreator
     {
         public static Sequence CreateShowAnimation(
