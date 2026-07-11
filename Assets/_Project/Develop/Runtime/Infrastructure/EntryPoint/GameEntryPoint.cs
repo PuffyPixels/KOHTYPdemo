@@ -35,13 +35,15 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
             ILoadingScreen loadingScreen = container.Resolve<ILoadingScreen>();
             SceneSwitcherService sceneSwitcherService = container.Resolve<SceneSwitcherService>();
 
-            loadingScreen.Show();
+            //loadingScreen.Show();
 
-            yield return _waitForSeconds1;
+            //yield return _waitForSeconds1;
 
-            loadingScreen.Hide();
+            //loadingScreen.Hide();
 
-            yield return sceneSwitcherService.ProcessSwitchTo(Scenes.MainMenu);
+
+
+            yield return sceneSwitcherService.ProcessSwitchTo(Scenes.MainMenu, isSkipFade: true);
         }
     }
 }

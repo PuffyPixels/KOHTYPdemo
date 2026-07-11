@@ -47,7 +47,7 @@ namespace Assets._Project.Develop.Runtime.UI.MainMenu
 
         private void OnStartNewGameButtonClicked()
         {
-            _coroutinesPerformer.StartPerform(_sceneSwitcherService.ProcessSwitchTo(Scenes.Entrance));
+            _coroutinesPerformer.StartPerform(_sceneSwitcherService.ProcessSwitchTo(Scenes.Entrance, fadeDuration: 2f));
         }
 
         private void OnCloseGameButtonClicked()

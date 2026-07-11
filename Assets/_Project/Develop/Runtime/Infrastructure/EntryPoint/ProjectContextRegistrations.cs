@@ -14,6 +14,8 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
     {
         public static void Process(DIContainer container)
         {
+            container.RegisterAsSingle(CreateFader).NonLazy();
+
             container.RegisterAsSingle<ICoroutinesPerformer>(CreateCoroutinesPerformer);
 
             container.RegisterAsSingle(CreateResourcesAssetsLoader);
@@ -31,6 +33,16 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
             container.RegisterAsSingle(CreateProjectPresentersFactory);
         }
 
+        private static Fader CreateFader(DIContainer c)
+        {
+            ResourcesAssetsLoader resourcesAssetsLoader = c.Resolve<ResourcesAssetsLoader>();
+
+            Fader faderPrefab = resourcesAssetsLoader
+                .Load<Fader>("UI/Fader");
+
+            return Object.Instantiate(faderPrefab);
+        }
+
         private static ElevatorSwitchManager CreateElevatorSwitchManager(DIContainer c)
             => new ElevatorSwitchManager();
 
@@ -38,6 +50,7 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
             => new SceneSwitcherService(
                 c.Resolve<SceneLoaderService>(),
                 c.Resolve<ILoadingScreen>(),
+                c.Resolve<Fader>(),
                 c);
 
         private static SceneLoaderService CreateSceneLoaderService(DIContainer c)
