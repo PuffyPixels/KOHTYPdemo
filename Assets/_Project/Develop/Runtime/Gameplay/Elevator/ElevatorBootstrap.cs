@@ -1,3 +1,4 @@
+using Assets._Project.Develop.Runtime.Gameplay.Infrastructure;
 using Assets._Project.Develop.Runtime.Infrastructure;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
@@ -26,6 +27,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
         public override void ProcessRegistrations(DIContainer container, IInputSceneArgs sceneArgs = null)
         {
             _container = container;
+
+            ElevatorContextRegistrations.Process(_container);
         }
 
         public override IEnumerator Initialize()

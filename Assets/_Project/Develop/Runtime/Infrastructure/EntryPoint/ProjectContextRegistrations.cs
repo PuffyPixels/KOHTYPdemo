@@ -1,4 +1,6 @@
 ﻿using Assets._Project.Develop.Runtime.Infrastructure.DI;
+using Assets._Project.Develop.Runtime.UI;
+using Assets._Project.Develop.Runtime.UI.Core;
 using Assets._Project.Develop.Runtime.Utilities.AssetsManagment;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
 using Assets._Project.Develop.Runtime.Utilities.ElevatorManagment;
@@ -20,9 +22,13 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
 
             container.RegisterAsSingle(CreateSceneSwitcherService);
 
+            container.RegisterAsSingle(CreateViewsFactory);
+
             container.RegisterAsSingle<ILoadingScreen>(CreateLoadingScreen);
 
             container.RegisterAsSingle(CreateElevatorSwitchManager);
+
+            container.RegisterAsSingle(CreateProjectPresentersFactory);
         }
 
         private static ElevatorSwitchManager CreateElevatorSwitchManager(DIContainer c)
@@ -60,5 +66,11 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
 
             return Object.Instantiate(standardLoadingScreenPrefab);
         }
+
+        private static ViewsFactory CreateViewsFactory(DIContainer c)
+            => new ViewsFactory(c.Resolve<ResourcesAssetsLoader>());
+
+        private static ProjectPresentersFactory CreateProjectPresentersFactory(DIContainer c)
+            => new ProjectPresentersFactory(c);
     }
 }
