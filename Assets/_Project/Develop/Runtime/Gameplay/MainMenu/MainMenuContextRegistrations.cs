@@ -32,15 +32,9 @@ namespace Assets._Project.Develop.Runtime.Meta.Infrastructure
 
         private static MainMenuScreenPresenter CreateMainMenuScreenPresenter(DIContainer c)
         {
-            UIRoot uiRoot = c.Resolve<UIRoot>();
-
-            MainMenuScreenView view = c
-                .Resolve<ViewsFactory>()
-                .Create<MainMenuScreenView>(ViewIDs.MainMenuScreen, uiRoot.HUDLayer);
-
             MainMenuScreenPresenter presenter = c
                 .Resolve<MainMenuPresentersFactory>()
-                .CreateMainMenuScreen(view);
+                .CreateMainMenuScreen();
 
             return presenter;
         }
