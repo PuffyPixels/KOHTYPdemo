@@ -4,6 +4,7 @@ using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
 using Assets._Project.Develop.Runtime.Utilities.ElevatorManagment;
 using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
 using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Assets._Project.Develop.Runtime.Gameplay.Entrance
@@ -36,7 +37,11 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Entrance
 
         private IEnumerator LoadElevator1()
         {
-            yield return _sceneSwitcherService.ProcessSwitchTo(Scenes.Elevator, loadSceneMode: LoadSceneMode.Additive);
+            bool isElevatorSceneReady = false;
+
+            yield return _sceneSwitcherService.ProcessSwitchTo(Scenes.Elevator, loadSceneMode: LoadSceneMode.Additive, callback: () => isElevatorSceneReady = true);
+
+            yield return new WaitWhile(() => isElevatorSceneReady == false);
 
             _elevatorSwitchManager.SetElevator(0);
         }
