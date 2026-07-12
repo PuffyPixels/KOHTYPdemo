@@ -5,18 +5,20 @@ using Assets._Project.Develop.Runtime.Utilities.LoadingScreen;
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 
 namespace Assets._Project.Develop.Runtime.Utilities.SceneManagment
 {
     public class SceneSwitcherService
     {
-        public const float DEFAULT_FADE_DURATION = 5f;
+        public const float DEFAULT_FADE_DURATION = 2f;
 
         private readonly SceneLoaderService _sceneLoaderService;
         private readonly ILoadingScreen _loadingScreen;
         private readonly DIContainer _projectContainer;
         private readonly Fader _fader;
+        private bool _isLoading;
 
         private DIContainer _currentSceneContainer;
 
@@ -32,47 +34,50 @@ namespace Assets._Project.Develop.Runtime.Utilities.SceneManagment
             _fader = fader;
         }
 
-        public IEnumerator ProcessSwitchTo(string sceneName, float fadeDuration = DEFAULT_FADE_DURATION, bool isSkipFade = false, IInputSceneArgs sceneArgs = null, LoadSceneMode loadSceneMode = LoadSceneMode.Single)
+        public IEnumerator ProcessSwitchTo(
+            string sceneName,
+            float fadeDuration = DEFAULT_FADE_DURATION,
+            bool isSkipFade = false,
+            IInputSceneArgs sceneArgs = null,
+            LoadSceneMode loadSceneMode = LoadSceneMode.Single,
+            Action callback = null)
         {
-            bool isNeedFading = false;
+            if (_isLoading)
+                yield break;
+
+            if (_fader.IsFadeInProcess)
+                yield break;
+
+            _isLoading = true;
 
             if (loadSceneMode == LoadSceneMode.Single && !isSkipFade)
             {
-                isNeedFading = true;
+                bool fadeCompleted = false;
+                _fader.StopFade();
+                _fader.FadeIn(fadeDuration, () => fadeCompleted = true);
 
-                if (_fader.IsFading)
-                    _fader.StopFade(() => isNeedFading = false);
-
-                _fader.FadeIn(fadeDuration, () => isNeedFading = false);
+                yield return new WaitWhile(() => fadeCompleted == false);
 
                 _currentSceneContainer?.Dispose();
             }
 
-            yield return new WaitWhile(() => isNeedFading);
-
-            yield return _sceneLoaderService.LoadAsync(sceneName, loadSceneMode);
+            yield return _sceneLoaderService.LoadAsync(sceneName, loadSceneMode, callback);
 
             SceneBootstrap sceneBootstrap = GetSceneBootstrap(sceneName);
-
-            if (sceneBootstrap == null)
-                throw new NullReferenceException(nameof(sceneBootstrap) + " not found");
+            Assert.IsNotNull(sceneBootstrap, nameof(sceneBootstrap) + " not found");
 
             _currentSceneContainer = new DIContainer(_projectContainer);
-
             sceneBootstrap.ProcessRegistrations(_currentSceneContainer, sceneArgs);
-
             _currentSceneContainer.Initialize();
 
             yield return sceneBootstrap.Initialize();
 
             if (loadSceneMode == LoadSceneMode.Single)
             {
-                isNeedFading = true;
-
-                yield return new WaitWhile(() => _fader.IsFading);
-
                 _fader.FadeOut(fadeDuration);
             }
+
+            _isLoading = false;
 
             sceneBootstrap.Run();
         }
