@@ -25,6 +25,9 @@ namespace DyrdaDev.FirstPersonController
         public IObservable<Unit> Jumped => _jumped;
         private Subject<Unit> _jumped;
 
+        public IObservable<Unit> Used => _used;
+        private Subject<Unit> _used;
+
         public IObservable<Unit> Stepped => _stepped;
         private Subject<Unit> _stepped;
 
@@ -63,6 +66,7 @@ namespace DyrdaDev.FirstPersonController
             _isRunning = new ReactiveProperty<bool>(false);
             _moved = new Subject<Vector3>().AddTo(this);
             _jumped = new Subject<Unit>().AddTo(this);
+            _used = new Subject<Unit>().AddTo(this);
             _landed = new Subject<Unit>().AddTo(this);
             _stepped = new Subject<Unit>().AddTo(this);
             _normalHeight = _characterController.height;
@@ -76,6 +80,8 @@ namespace DyrdaDev.FirstPersonController
             HandleSteppedCharacterSignal();
 
             HandleLook();
+
+            HandleUse();
         }
 
         private void HandleLocomotion()
@@ -232,6 +238,14 @@ namespace DyrdaDev.FirstPersonController
                 }).AddTo(this);
         }
 
+        private void HandleUse()
+        {
+            var useLatch = LatchObservables.Latch(this.UpdateAsObservable(), firstPersonControllerInput.Use, false);
+            useLatch.Where(use => use).Subscribe(_ =>
+            {
+                _used.OnNext(Unit.Default);
+            }).AddTo(this);
+        }
 
         public struct MoveInputData
         {

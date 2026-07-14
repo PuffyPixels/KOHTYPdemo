@@ -28,7 +28,7 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "5f89c388-a1bd-4f57-af51-f686858f7e99",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -46,6 +46,15 @@
                     "name": "Crouch",
                     "type": "Button",
                     "id": "d836569e-f00b-4b1b-88da-7396caabe4b5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Use",
+                    "type": "Button",
+                    "id": "81a8c5ac-f1d3-46dc-9659-caf823e7b368",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -248,6 +257,17 @@
                     "processors": "",
                     "groups": ";Keyboard and Mouse",
                     "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2c6a6774-fb0b-4a45-8a2a-3fe90a3b423b",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard and Mouse",
+                    "action": "Use",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

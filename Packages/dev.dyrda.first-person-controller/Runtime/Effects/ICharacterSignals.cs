@@ -32,6 +32,11 @@ namespace DyrdaDev.FirstPersonController
         IObservable<Unit> Jumped { get; }
 
         /// <summary>
+        ///     A stream with used events. Triggered when the character starts to use.
+        /// </summary>
+        IObservable<Unit> Used { get; }
+
+        /// <summary>
         ///     A stream with stepped events. Triggered when the camera has moved one stride length.
         /// </summary>
         IObservable<Unit> Stepped { get; }
