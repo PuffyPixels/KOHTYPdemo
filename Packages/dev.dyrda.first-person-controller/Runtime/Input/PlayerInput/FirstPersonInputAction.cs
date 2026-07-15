@@ -116,7 +116,7 @@ namespace DyrdaDev.FirstPersonController
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""5f89c388-a1bd-4f57-af51-f686858f7e99"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -134,6 +134,15 @@ namespace DyrdaDev.FirstPersonController
                     ""name"": ""Crouch"",
                     ""type"": ""Button"",
                     ""id"": ""d836569e-f00b-4b1b-88da-7396caabe4b5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Use"",
+                    ""type"": ""Button"",
+                    ""id"": ""81a8c5ac-f1d3-46dc-9659-caf823e7b368"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -338,6 +347,17 @@ namespace DyrdaDev.FirstPersonController
                     ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2c6a6774-fb0b-4a45-8a2a-3fe90a3b423b"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard and Mouse"",
+                    ""action"": ""Use"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -379,6 +399,7 @@ namespace DyrdaDev.FirstPersonController
             m_Character_Jump = m_Character.FindAction("Jump", throwIfNotFound: true);
             m_Character_Run = m_Character.FindAction("Run", throwIfNotFound: true);
             m_Character_Crouch = m_Character.FindAction("Crouch", throwIfNotFound: true);
+            m_Character_Use = m_Character.FindAction("Use", throwIfNotFound: true);
         }
 
         ~@FirstPersonInputAction()
@@ -464,6 +485,7 @@ namespace DyrdaDev.FirstPersonController
         private readonly InputAction m_Character_Jump;
         private readonly InputAction m_Character_Run;
         private readonly InputAction m_Character_Crouch;
+        private readonly InputAction m_Character_Use;
         /// <summary>
         /// Provides access to input actions defined in input action map "Character".
         /// </summary>
@@ -495,6 +517,10 @@ namespace DyrdaDev.FirstPersonController
             /// Provides access to the underlying input action "Character/Crouch".
             /// </summary>
             public InputAction @Crouch => m_Wrapper.m_Character_Crouch;
+            /// <summary>
+            /// Provides access to the underlying input action "Character/Use".
+            /// </summary>
+            public InputAction @Use => m_Wrapper.m_Character_Use;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -536,6 +562,9 @@ namespace DyrdaDev.FirstPersonController
                 @Crouch.started += instance.OnCrouch;
                 @Crouch.performed += instance.OnCrouch;
                 @Crouch.canceled += instance.OnCrouch;
+                @Use.started += instance.OnUse;
+                @Use.performed += instance.OnUse;
+                @Use.canceled += instance.OnUse;
             }
 
             /// <summary>
@@ -562,6 +591,9 @@ namespace DyrdaDev.FirstPersonController
                 @Crouch.started -= instance.OnCrouch;
                 @Crouch.performed -= instance.OnCrouch;
                 @Crouch.canceled -= instance.OnCrouch;
+                @Use.started -= instance.OnUse;
+                @Use.performed -= instance.OnUse;
+                @Use.canceled -= instance.OnUse;
             }
 
             /// <summary>
@@ -663,6 +695,13 @@ namespace DyrdaDev.FirstPersonController
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnCrouch(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Use" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnUse(InputAction.CallbackContext context);
         }
     }
 }

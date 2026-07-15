@@ -19,10 +19,16 @@ namespace DyrdaDev.FirstPersonController
         public abstract IObservable<Unit> Jump { get; }
 
         /// <summary>
-        ///     Jump button.
-        ///     Interaction type: Trigger.
+        ///     Crouch button.
+        ///     Interaction type: Toggle.
         /// </summary>
         public abstract IObservable<Unit> Crouch { get; }
+
+        /// <summary>
+        ///     Use button.
+        ///     Interaction type: Trigger.
+        /// </summary>
+        public abstract IObservable<Unit> Use { get; }
 
         /// <summary>
         ///     Run button.
