@@ -1,4 +1,5 @@
 using Assets._Project.Develop.Runtime.Gameplay.Infrastructure;
+using Assets._Project.Develop.Runtime.Gameplay.Player;
 using Assets._Project.Develop.Runtime.Infrastructure;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
@@ -16,19 +17,25 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
     public class ElevatorBootstrap : SceneBootstrap
     {
         [SerializeField] private ElevatorController elevatorController;
+        [SerializeField] private Hero _playerPrefab;
 
         private DIContainer _container;
         private SceneSwitcherService _sceneSwitcherService;
         private SceneLoaderService _sceneLoaderService;
         private ICoroutinesPerformer _coroutinesPerformer;
         private ElevatorSwitchManager _elevatorSwitchManager;
-
+        private ElevatorInputArgs _inputArgs;
 
         public override void ProcessRegistrations(DIContainer container, IInputSceneArgs sceneArgs = null)
         {
             _container = container;
 
-            ElevatorContextRegistrations.Process(_container);
+            if (sceneArgs is not ElevatorInputArgs gameplayInputArgs)
+                throw new ArgumentException($"{nameof(sceneArgs)} is not match with {typeof(ElevatorInputArgs)} type");
+
+            _inputArgs = gameplayInputArgs;
+
+            ElevatorContextRegistrations.Process(_container, _inputArgs);
         }
 
         public override IEnumerator Initialize()
@@ -46,6 +53,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
             Assert.IsNotNull(elevatorController, "ElevatorController is null. Make sure it's assigned in the inspector or injected correctly.");
 
             _elevatorSwitchManager.AddElevator(elevatorController);
+
+            _container.Resolve<HeroFactory>().CreateHero(_playerPrefab);
         }
 
         private IEnumerator UnloadEntranceAndLoadShop()

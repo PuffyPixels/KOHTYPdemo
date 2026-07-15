@@ -444,6 +444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Elevator.ElevatorBootstrap
   elevatorController: {fileID: 460239711}
+  _playerPrefab: {fileID: 4876432876843404634, guid: 9e2a88e57a5676e4fa9c45680d06299a, type: 3}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
