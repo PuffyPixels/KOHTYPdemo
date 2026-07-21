@@ -4,6 +4,7 @@ using Assets._Project.Develop.Runtime.Infrastructure.DI;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
 using Assets._Project.Develop.Runtime.Utilities.ElevatorManagment;
 using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
+using Assets._Project.Develop.Runtime.Utilities.Sound;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,10 +19,12 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Entrance
         private SceneSwitcherService _sceneSwitcherService;
         private ICoroutinesPerformer _coroutinesPerformer;
         private ElevatorSwitchManager _elevatorSwitchManager;
+        private SceneSoundInstaller _sceneSoundInstaller;
 
         public override void ProcessRegistrations(DIContainer container, IInputSceneArgs sceneArgs = null)
         {
             _container = container;
+            container.RegisterAsSingle(c => new SceneSoundInstaller(c.Resolve<SoundsManager>()));
         }
 
         public override IEnumerator Initialize()
@@ -29,6 +32,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Entrance
             _sceneSwitcherService = _container.Resolve<SceneSwitcherService>();
             _coroutinesPerformer = _container.Resolve<ICoroutinesPerformer>();
             _elevatorSwitchManager = _container.Resolve<ElevatorSwitchManager>();
+            _sceneSoundInstaller = _container.Resolve<SceneSoundInstaller>();
 
             yield break;
         }
@@ -36,6 +40,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Entrance
         public override void Run()
         {
             _coroutinesPerformer.StartPerform(LoadElevator());
+            _sceneSoundInstaller.Install();
         }
 
         private IEnumerator LoadElevator()

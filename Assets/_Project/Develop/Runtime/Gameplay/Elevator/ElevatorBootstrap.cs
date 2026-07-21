@@ -5,7 +5,7 @@ using Assets._Project.Develop.Runtime.Infrastructure.DI;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
 using Assets._Project.Develop.Runtime.Utilities.ElevatorManagment;
 using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
-using System;
+using Assets._Project.Develop.Runtime.Utilities.Sound;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -25,6 +25,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
         private ICoroutinesPerformer _coroutinesPerformer;
         private ElevatorSwitchManager _elevatorSwitchManager;
         private ElevatorInputArgs _inputArgs;
+        private SceneSoundInstaller _sceneSoundInstaller;
 
         public override void ProcessRegistrations(DIContainer container, IInputSceneArgs sceneArgs = null)
         {
@@ -44,12 +45,15 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
             _sceneLoaderService = _container.Resolve<SceneLoaderService>();
             _coroutinesPerformer = _container.Resolve<ICoroutinesPerformer>();
             _elevatorSwitchManager = _container.Resolve<ElevatorSwitchManager>();
+            _sceneSoundInstaller = _container.Resolve<SceneSoundInstaller>();
 
             yield break;
         }
 
         public override void Run()
         {
+            _sceneSoundInstaller.Install();
+
             Assert.IsNotNull(elevatorController, "ElevatorController is null. Make sure it's assigned in the inspector or injected correctly.");
 
             _elevatorSwitchManager.AddElevator(elevatorController);
