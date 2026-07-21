@@ -6,6 +6,7 @@ using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
 using Assets._Project.Develop.Runtime.Utilities.ElevatorManagment;
 using Assets._Project.Develop.Runtime.Utilities.LoadingScreen;
 using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
+using Assets._Project.Develop.Runtime.Utilities.Sound;
 using Object = UnityEngine.Object;
 
 namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
@@ -31,6 +32,10 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
             container.RegisterAsSingle(CreateElevatorSwitchManager);
 
             container.RegisterAsSingle(CreateProjectPresentersFactory);
+
+            container.RegisterAsSingle(CreateSoundsManager).NonLazy();
+
+            container.RegisterAsSingle(CreateMusicManager).NonLazy();
         }
 
         private static Fader CreateFader(DIContainer c)
@@ -78,6 +83,26 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
                 .Load<StandardLoadingScreen>("Utilities/StandardLoadingScreen");
 
             return Object.Instantiate(standardLoadingScreenPrefab);
+        }
+        
+        private static SoundsManager CreateSoundsManager(DIContainer c)
+        {
+            ResourcesAssetsLoader resourcesAssetsLoader = c.Resolve<ResourcesAssetsLoader>();
+
+            SoundsManager soundsManagerPrefab = resourcesAssetsLoader
+                .Load<SoundsManager>("Utilities/SoundsManager");
+
+            return Object.Instantiate(soundsManagerPrefab);
+        }
+
+        private static MusicManager CreateMusicManager(DIContainer c)
+        {
+            ResourcesAssetsLoader resourcesAssetsLoader = c.Resolve<ResourcesAssetsLoader>();
+
+            MusicManager musicManagerPrefab = resourcesAssetsLoader
+                .Load<MusicManager>("Utilities/MusicManager");
+
+            return Object.Instantiate(musicManagerPrefab);
         }
 
         private static ViewsFactory CreateViewsFactory(DIContainer c)
