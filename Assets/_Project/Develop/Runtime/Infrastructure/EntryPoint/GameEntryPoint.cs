@@ -9,8 +9,6 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
 {
     public class GameEntryPoint : MonoBehaviour
     {
-        private static WaitForSeconds _waitForSeconds1 = new WaitForSeconds(1f);
-
         private void Awake()
         {
             SetupAppSettings();

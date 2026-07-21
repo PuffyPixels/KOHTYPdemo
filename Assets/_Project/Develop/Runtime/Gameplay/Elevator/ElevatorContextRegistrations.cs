@@ -1,4 +1,6 @@
-﻿using Assets._Project.Develop.Runtime.Infrastructure.DI;
+﻿using Assets._Project.Develop.Runtime.Gameplay.Elevator;
+using Assets._Project.Develop.Runtime.Gameplay.Player;
+using Assets._Project.Develop.Runtime.Infrastructure.DI;
 using Assets._Project.Develop.Runtime.UI.Core;
 using Assets._Project.Develop.Runtime.UI.Gameplay;
 using Assets._Project.Develop.Runtime.Utilities.AssetsManagment;
@@ -9,13 +11,21 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
 {
     public class ElevatorContextRegistrations
     {
-        public static void Process(DIContainer container)
+        private static ElevatorInputArgs _inputArgs;
+
+        public static void Process(DIContainer container, ElevatorInputArgs inputArgs)
         {
+            _inputArgs = inputArgs;
+
             container.RegisterAsSingle(CreateGameplayUIRoot).NonLazy();
             container.RegisterAsSingle(CreateGameplayScreenPresenter).NonLazy();
-            container.RegisterAsSingle(CreateGameplayPresentersFactory); 
+            container.RegisterAsSingle(HeroFactory);
+            container.RegisterAsSingle(CreateGameplayPresentersFactory);
             container.RegisterAsSingle(c => new SceneSoundInstaller(c.Resolve<SoundsManager>()));
         }
+
+        private static HeroFactory HeroFactory(DIContainer c)
+            => new(c, _inputArgs);
 
         private static UIRoot CreateGameplayUIRoot(DIContainer c)
         {
