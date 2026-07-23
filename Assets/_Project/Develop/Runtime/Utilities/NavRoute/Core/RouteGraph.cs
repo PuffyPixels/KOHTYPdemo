@@ -1,9 +1,9 @@
-﻿using Assets.NavRoute.Algorithms;
+﻿using Assets._Project.Develop.Runtime.Utilities.NavRoute.Algorithms;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.NavRoute.Core
+namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Core
 {
     public class RouteGraph
     {

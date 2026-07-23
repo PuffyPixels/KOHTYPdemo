@@ -1,12 +1,12 @@
-﻿using Assets.NavRoute.Algorithms;
-using Assets.NavRoute.Core;
+﻿using Assets._Project.Develop.Runtime.Utilities.NavRoute.Algorithms;
+using Assets._Project.Develop.Runtime.Utilities.NavRoute.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Assets.NavRoute.Navigation
+namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Navigation
 {
     public class RouteService : MonoBehaviour
     {

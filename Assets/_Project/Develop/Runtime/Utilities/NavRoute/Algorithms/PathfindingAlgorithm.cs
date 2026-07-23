@@ -1,8 +1,8 @@
-﻿using Assets.NavRoute.Core;
+﻿using Assets._Project.Develop.Runtime.Utilities.NavRoute.Core;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.NavRoute.Algorithms
+namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Algorithms
 {
     public abstract class PathfindingAlgorithm
     {

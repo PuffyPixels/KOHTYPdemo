@@ -1,8 +1,8 @@
-﻿using Assets.NavRoute.Core;
-using Assets.NavRoute.Utils;
+﻿using Assets._Project.Develop.Runtime.Utilities.NavRoute.Core;
+using Assets._Project.Develop.Runtime.Utilities.NavRoute.Utils;
 using System.Collections.Generic;
 
-namespace Assets.NavRoute.Algorithms
+namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Algorithms
 {
     public class AStar : PathfindingAlgorithm
     {

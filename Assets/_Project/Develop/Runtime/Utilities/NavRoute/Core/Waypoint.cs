@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.NavRoute.Core
+namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Core
 {
     public class Waypoint : MonoBehaviour
     {

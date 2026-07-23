@@ -1,7 +1,7 @@
-﻿using Assets.NavRoute.Movement;
+﻿using Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement;
 using UnityEngine;
 
-namespace Assets.NavRoute.Core
+namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Core
 {
     public class Poi : Waypoint
     {

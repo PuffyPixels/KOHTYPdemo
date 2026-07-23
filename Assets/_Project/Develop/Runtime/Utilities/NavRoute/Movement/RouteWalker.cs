@@ -1,5 +1,5 @@
-﻿using Assets.NavRoute.Core;
-using Assets.NavRoute.Navigation;
+﻿using Assets._Project.Develop.Runtime.Utilities.NavRoute.Core;
+using Assets._Project.Develop.Runtime.Utilities.NavRoute.Navigation;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
-namespace Assets.NavRoute.Movement
+namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
 {
     public class RouteWalker : MonoBehaviour
     {

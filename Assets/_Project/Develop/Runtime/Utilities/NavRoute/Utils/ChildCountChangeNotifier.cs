@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Assets.NavRoute.Utils
+namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Utils
 {
     [ExecuteAlways]
     public class ChildCountChangeNotifier : MonoBehaviour

@@ -1,10 +1,10 @@
-﻿using Assets.NavRoute.Core;
-using Assets.NavRoute.Utils;
+﻿using Assets._Project.Develop.Runtime.Utilities.NavRoute.Core;
+using Assets._Project.Develop.Runtime.Utilities.NavRoute.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.NavRoute.Navigation
+namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Navigation
 {
     [ExecuteAlways]
     public class RouteVisualizator : MonoBehaviour

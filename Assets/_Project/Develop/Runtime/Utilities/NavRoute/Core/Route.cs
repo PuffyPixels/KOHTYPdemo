@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.NavRoute.Core
+namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Core
 {
     [Serializable]
     public class Route

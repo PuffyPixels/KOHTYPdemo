@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Assets.NavRoute.Utils
+namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Utils
 {
     public class PriorityQueue<T>
     {
