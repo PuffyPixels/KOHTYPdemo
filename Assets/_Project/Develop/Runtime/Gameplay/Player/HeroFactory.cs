@@ -1,6 +1,7 @@
 ﻿using Assets._Project.Develop.Runtime.Gameplay.Elevator;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
+using Assets._Project.Develop.Runtime.Utilities.Sound;
 using Assets._Project.Develop.Runtime.Utilities.StressSystem;
 using Assets._Project.Develop.Runtime.Utilities.Timers;
 using UnityEngine;
@@ -18,9 +19,14 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
         private Quaternion _heroRotation;
 
         private readonly DIContainer _container;
-        public HeroFactory(DIContainer container, ElevatorInputArgs inputArgs)
+        private readonly SceneSoundInstaller _sceneSoundInstaller;
+
+        public HeroFactory(
+            DIContainer container, 
+            ElevatorInputArgs inputArgs)
         {
             _container = container;
+            _sceneSoundInstaller = _container.Resolve<SceneSoundInstaller>();
             _heroPosition = inputArgs.PlayerSpawnPointPosition;
             _heroRotation = inputArgs.PlayerSpawnPointRotation;
         }
@@ -35,6 +41,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
 
             Hero hero = Object.Instantiate(heroPrefab, _heroPosition, _heroRotation);
             hero.Init(stress, pulse);
+            _sceneSoundInstaller.InitFootsteps(hero.transform);
         }
     }
 }

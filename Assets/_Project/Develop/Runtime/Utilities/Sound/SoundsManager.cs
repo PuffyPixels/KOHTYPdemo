@@ -1,12 +1,33 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Audio;
 using Random = UnityEngine.Random;
 
 namespace Assets._Project.Develop.Runtime.Utilities.Sound
 {
+    [Serializable]
+    public struct MixerMapping
+    {
+        public MixerType Type;
+        public AudioMixerGroup MixerGroup;
+    }
+
+    [Serializable]
+    public struct PooledAudioData
+    {
+        public AudioSource AudioSource;
+        public bool Is2D;
+
+        public PooledAudioData(AudioSource audioSource, bool is2D)
+        {
+            AudioSource = audioSource;
+            Is2D = is2D;
+        }
+    }
+
     public enum MixerType
     {
         Master,
@@ -18,30 +39,26 @@ namespace Assets._Project.Develop.Runtime.Utilities.Sound
     public class SoundsManager : MonoBehaviour
     {
         [SerializeField] private AudioSource _audioSource3D;
+        [SerializeField] private Transform _parent3D;
         [SerializeField] private AudioSource _audioSource2D;
-        [SerializeField] private List<MixerMapping> _mixerMappings = new List<MixerMapping>();
+        [SerializeField] private Transform _parent2D;
+        [SerializeField] private List<MixerMapping> _mixerMappings = new();
 
-        private List<AudioSource> _activeAudioSources = new List<AudioSource>();
-        private Dictionary<Transform, AudioSource> _objectAudioMap = new Dictionary<Transform, AudioSource>();
-        private Dictionary<MixerType, AudioMixerGroup> _mixerDictionary = new Dictionary<MixerType, AudioMixerGroup>();
+        private readonly List<AudioSource> _activeAudioSources = new();
+        private readonly Dictionary<Transform, PooledAudioData> _objectAudioMap = new();
+        private readonly Dictionary<MixerType, AudioMixerGroup> _mixerDictionary = new();
+        private readonly Dictionary<Transform, Coroutine> _fadeCoroutines = new();
+
+        private AudioSourcePool _pool3D;
+        private AudioSourcePool _pool2D;
 
         private void Awake()
         {
             InitializeMixerDictionary();
             DontDestroyOnLoad(gameObject);
-        }
 
-        private void InitializeMixerDictionary()
-        {
-            _mixerDictionary.Clear();
-
-            foreach (MixerMapping mapping in _mixerMappings)
-            {
-                if (mapping.MixerGroup != null)
-                {
-                    _mixerDictionary[mapping.Type] = mapping.MixerGroup;
-                }
-            }
+            _pool3D = new AudioSourcePool(_audioSource3D, _parent3D, 5);
+            _pool2D = new AudioSourcePool(_audioSource2D, _parent2D, 3);
         }
 
         public AudioMixerGroup GetMixer()
@@ -57,31 +74,45 @@ namespace Assets._Project.Develop.Runtime.Utilities.Sound
         /// <param name = "highestPitch"> Highest possible random pitch </param>
         /// </summary>
         public void PlaySound(
-            AudioClip clip, 
-            MixerType mixerType = MixerType.Master, 
-            float lowestPitch = 1f, 
-            float highestPitch = 1f, 
-            Transform spawnPosition = null, 
+            AudioClip clip,
+            MixerType mixerType = MixerType.Master,
+            float lowestPitch = 1f,
+            float highestPitch = 1f,
+            Transform spawnPosition = null,
             float volume = 1f,
             float maxDistance = 17f,
-            Transform owner = null, 
-            bool is2D = false, 
+            Transform owner = null,
+            bool is2D = false,
             bool isLooped = false)
         {
             if(clip == null)
             {
-                Debug.LogError("Sound clip is null");
+                Debug.LogError($"Sound clip {owner.name} is null");
                 return;
             }
 
             if (owner != null && _objectAudioMap.ContainsKey(owner))
             {
-                StopSound(_objectAudioMap[owner]);
+                StopSound(owner);
             }
 
             Vector3 spawnPos = spawnPosition != null ? spawnPosition.position : transform.position;
-            Transform parent = spawnPosition != null ? spawnPosition : transform;
-            AudioSource audioSource = Instantiate(is2D ? _audioSource2D : _audioSource3D, spawnPos, Quaternion.identity, parent);
+
+            Transform parent;
+
+            if (spawnPosition != null)
+            {
+                parent = spawnPosition;
+            }
+            else
+            {
+                parent = is2D ? _parent2D : _parent3D;
+            }
+
+            AudioSource audioSource = is2D ? _pool2D.Get() : _pool3D.Get();
+
+            audioSource.transform.position = spawnPos;
+            audioSource.transform.SetParent(parent);
             audioSource.clip = clip;
             audioSource.volume = volume;
             audioSource.maxDistance = maxDistance;
@@ -99,78 +130,154 @@ namespace Assets._Project.Develop.Runtime.Utilities.Sound
             }
 
             audioSource.Play();
-
             _activeAudioSources.Add(audioSource);
 
             if (owner != null)
             {
-                _objectAudioMap[owner] = audioSource;
+                _objectAudioMap[owner] = new PooledAudioData(audioSource, is2D);
             }
 
             if (!isLooped)
             {
-                StartCoroutine(DestroyAfterPlayback(audioSource, owner));
+                StartCoroutine(DestroyAfterPlayback(audioSource, owner, is2D));
             }
+        }
+
+        public void FadeVolume(Transform owner, float targetVolume, float duration)
+        {
+            if (owner == null || !_objectAudioMap.TryGetValue(owner, out PooledAudioData data) || data.AudioSource == null)
+                return;
+
+            if (_fadeCoroutines.TryGetValue(owner, out Coroutine oldCoroutine))
+            {
+                StopCoroutine(oldCoroutine);
+                _fadeCoroutines.Remove(owner);
+            }
+
+            Coroutine newCoroutine = StartCoroutine(FadeVolumeRoutine(owner, data.AudioSource, targetVolume, duration));
+            _fadeCoroutines[owner] = newCoroutine;
         }
 
         /// <summary>
         /// Stops playing sound if it's already playing
         /// </summary>
-        public void StopSound(AudioSource audioSourceToStop)
+        public void StopSound(Transform owner)
         {
-            if (audioSourceToStop != null && _activeAudioSources.Contains(audioSourceToStop))
-            {
-                audioSourceToStop.Stop();
-                _activeAudioSources.Remove(audioSourceToStop);
+            if (owner == null)
+                return;
 
-                foreach (KeyValuePair<Transform, AudioSource> audio in _objectAudioMap)
+            if (_objectAudioMap.TryGetValue(owner, out PooledAudioData data) && data.AudioSource != null)
+            {
+                if (_fadeCoroutines.TryGetValue(owner, out Coroutine coroutine))
                 {
-                    if (audio.Value == audioSourceToStop)
-                    {
-                        _objectAudioMap.Remove(audio.Key);
-                        break;
-                    }
+                    StopCoroutine(coroutine);
+                    _fadeCoroutines.Remove(owner);
                 }
 
-                Destroy(audioSourceToStop.gameObject);
+                data.AudioSource.Stop();
+                _objectAudioMap.Remove(owner);
+
+                ReturnToPool(data.AudioSource, data.Is2D);
             }
         }
 
         public void StopAllSounds()
         {
-            for (int i = _activeAudioSources.Count; i > 0; i--)
+            if (_fadeCoroutines.Count > 0)
             {
-                StopSound(_activeAudioSources[i - 1]);
+                foreach (var fadeCoroutine in _fadeCoroutines)
+                {
+                    StopCoroutine(fadeCoroutine.Value);
+                }
+
+                _fadeCoroutines.Clear();
             }
+
+            foreach (var owner in _objectAudioMap.Keys.ToList())
+            {
+                StopSound(owner);
+            }
+        }
+
+        private void ReturnToPool(AudioSource audioSource, bool is2D)
+        {
+            if (audioSource == null)
+                return;
+
+            audioSource.Stop();
+            audioSource.clip = null;
+            audioSource.gameObject.SetActive(false);
+
+            if (is2D)
+                _pool2D.Return(audioSource);
+            else
+                _pool3D.Return(audioSource);
+
+            _activeAudioSources.Remove(audioSource);
+        }
+
+        private void InitializeMixerDictionary()
+        {
+            _mixerDictionary.Clear();
+
+            foreach (var mapping in _mixerMappings)
+            {
+                if (mapping.MixerGroup != null)
+                {
+                    _mixerDictionary[mapping.Type] = mapping.MixerGroup;
+                }
+            }
+        }
+
+        private IEnumerator FadeVolumeRoutine(Transform owner, AudioSource audioSource, float targetVolume, float duration)
+        {
+            float startVolume = audioSource.volume;
+
+            if (startVolume == targetVolume)
+            {
+                _fadeCoroutines.Remove(owner);
+
+                yield break;
+            }
+
+
+            float elapsed = 0f;
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                float progress = elapsed / duration;
+                audioSource.volume = Mathf.Lerp(startVolume, targetVolume, progress);
+
+                yield return null;
+            }
+
+            audioSource.volume = targetVolume;
+            _fadeCoroutines.Remove(owner);
         }
 
         /// <summary>
         /// Destroys spawned sound object
         /// </summary>
-        private IEnumerator DestroyAfterPlayback(AudioSource audioSource, Transform owner)
+        private IEnumerator DestroyAfterPlayback(AudioSource audioSource, Transform owner, bool is2D)
         {
             yield return new WaitForSeconds(audioSource.clip.length);
 
-            if (audioSource == null || !_activeAudioSources.Contains(audioSource))
-            {
+            if (audioSource == null)
                 yield break;
-            }
 
-            _activeAudioSources.Remove(audioSource);
-
-            if (owner != null && _objectAudioMap.ContainsKey(owner) && _objectAudioMap[owner] == audioSource)
+            if (owner != null && _objectAudioMap.TryGetValue(owner, out PooledAudioData data) && data.AudioSource == audioSource)
             {
                 _objectAudioMap.Remove(owner);
             }
 
-            Destroy(audioSource.gameObject);
+            ReturnToPool(audioSource, is2D);
         }
-    }
 
-    [Serializable]
-    public struct MixerMapping
-    {
-        public MixerType Type;
-        public AudioMixerGroup MixerGroup;
+        private void OnDestroy()
+        {
+            _pool2D?.Clear();
+            _pool3D?.Clear();
+        }
     }
 }

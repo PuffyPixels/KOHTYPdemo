@@ -48,18 +48,24 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
             _elevatorSwitchManager = _container.Resolve<ElevatorSwitchManager>();
             _sceneSoundInstaller = _container.Resolve<SceneSoundInstaller>();
 
+            Scene elevatorScene = SceneManager.GetSceneByName(Scenes.Elevator);
+
+            if (elevatorScene.isLoaded)
+            {
+                SceneManager.SetActiveScene(elevatorScene);
+            }
+
             yield break;
         }
 
         public override void Run()
         {
-            _sceneSoundInstaller.Install();
-
             Assert.IsNotNull(elevatorController, "ElevatorController is null. Make sure it's assigned in the inspector or injected correctly.");
 
             _elevatorSwitchManager.AddElevator(elevatorController);
-
             _container.Resolve<HeroFactory>().CreateHero(_playerPrefab);
+
+            _sceneSoundInstaller.InitEnvironmentSound();
         }
 
         private IEnumerator UnloadEntranceAndLoadShop()

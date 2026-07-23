@@ -35,6 +35,8 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
 
             container.RegisterAsSingle(CreateSoundsManager).NonLazy();
 
+            container.RegisterAsSingle(CreateSceneSoundInstaller);
+
             container.RegisterAsSingle(CreateMusicManager).NonLazy();
         }
 
@@ -94,6 +96,9 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
 
             return Object.Instantiate(soundsManagerPrefab);
         }
+
+        private static SceneSoundInstaller CreateSceneSoundInstaller(DIContainer c)
+            => new (c.Resolve<SoundsManager>());
 
         private static MusicManager CreateMusicManager(DIContainer c)
         {
