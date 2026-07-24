@@ -1,4 +1,5 @@
-﻿using Assets._Project.Develop.Runtime.Utilities.Sound;
+﻿using Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant;
+using Assets._Project.Develop.Runtime.Utilities.Sound;
 using Assets._Project.Develop.Runtime.Utilities.StressSystem;
 using DG.Tweening;
 using UnityEngine;
@@ -16,8 +17,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
         [SerializeField] private EnvironmentSound _firstHeartBeat;
         [SerializeField] private EnvironmentSound _secondHeartBeat;
         [SerializeField] private EnvironmentSound _breath;
-        [SerializeField] private SphereCollider _aura;
 
+        [field: SerializeField] public SphereCollider Aura {  get; private set; }
+        
         private Stress _stress;
         private Pulse _pulse;
 
@@ -25,7 +27,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
         private float _vignetteBeatAlpha = 0.2f;
         private float _vignetteAlpha;
 
-        private bool _inPanic = false;
+        public bool InPanic { get; private set; } = false;
 
         private void Awake()
         {
@@ -33,7 +35,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
             Assert.IsNotNull(_firstHeartBeat);
             Assert.IsNotNull(_secondHeartBeat);
             Assert.IsNotNull(_breath);
-            Assert.IsNotNull(_aura);
+            Assert.IsNotNull(Aura);
         }
 
         public void Init(Stress stress, Pulse pulse)
@@ -73,7 +75,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
         {
             SetBreathVolume(stressState);
 
-            _inPanic = stressState == StressState.Panic;
+            InPanic = stressState == StressState.Panic;
 
             _vignetteAlpha = GetAlpha(stressState);
             _stressVignette.color = new(_stressVignette.color.r, _stressVignette.color.g, _stressVignette.color.b, _vignetteAlpha);
@@ -81,14 +83,14 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
 
         private void DetectAuraRadius(float stress)
         {
-            if (_inPanic)
+            if (InPanic)
             {
-                _aura.enabled = true;
-                _aura.radius = PANIC_DETECT_RADIUS + (stress * PANIC_DETECT_MULTIPLIER);
+                Aura.enabled = true;
+                Aura.radius = PANIC_DETECT_RADIUS + (stress * PANIC_DETECT_MULTIPLIER);
             }
             else
             {
-                _aura.enabled = false;
+                Aura.enabled = false;
             }
         }
 
