@@ -24,7 +24,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Entrance
         public override void ProcessRegistrations(DIContainer container, IInputSceneArgs sceneArgs = null)
         {
             _container = container;
-            container.RegisterAsSingle(c => new SceneSoundInstaller(c.Resolve<SoundsManager>()));
+
+            EntranceContextRegistrations.Process(_container);
         }
 
         public override IEnumerator Initialize()
@@ -40,7 +41,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Entrance
         public override void Run()
         {
             _coroutinesPerformer.StartPerform(LoadElevator());
-            _sceneSoundInstaller.Install();
+            _sceneSoundInstaller.InitEnvironmentSound();
         }
 
         private IEnumerator LoadElevator()

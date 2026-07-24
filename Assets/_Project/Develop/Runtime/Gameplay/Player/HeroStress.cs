@@ -1,4 +1,5 @@
-﻿using Assets._Project.Develop.Runtime.Utilities.StressSystem;
+﻿using Assets._Project.Develop.Runtime.Utilities.Sound;
+using Assets._Project.Develop.Runtime.Utilities.StressSystem;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -12,8 +13,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
         private const float PANIC_DETECT_MULTIPLIER = 0.4f;
 
         [SerializeField] private Image _stressVignette;
-        [SerializeField] private AudioSource _heartBeat;
-        [SerializeField] private AudioSource _breath;
+        [SerializeField] private EnvironmentSound _firstHeartBeat;
+        [SerializeField] private EnvironmentSound _secondHeartBeat;
+        [SerializeField] private EnvironmentSound _breath;
         [SerializeField] private SphereCollider _aura;
 
         private Stress _stress;
@@ -28,8 +30,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
         private void Awake()
         {
             Assert.IsNotNull(_stressVignette);
-            Assert.IsNotNull(_heartBeat.clip);
-            Assert.IsNotNull(_breath.clip);
+            Assert.IsNotNull(_firstHeartBeat);
+            Assert.IsNotNull(_secondHeartBeat);
+            Assert.IsNotNull(_breath);
             Assert.IsNotNull(_aura);
         }
 
@@ -42,8 +45,6 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
             _pulse = pulse;
             _pulse.FirstBpm += OnFirstBpm;
             _pulse.SecondBpm += OnSecondBpm;
-
-            _breath.Play();
         }
 
         private void Update()
@@ -54,13 +55,13 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
         private void OnFirstBpm()
         {
             VignetteBeat();
-            HeartBeat();
+            HeartBeat(_firstHeartBeat);
         }
 
         private void OnSecondBpm()
         {
             VignetteBeat();
-            HeartBeat();
+            HeartBeat(_secondHeartBeat);
         }
 
         private void OnStressChanged(float stress)
@@ -110,12 +111,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
                 });
         }
 
-        private void HeartBeat()
+        private void HeartBeat(EnvironmentSound heartBeat)
         {
-            if (_heartBeat.isPlaying)
-                _heartBeat.Stop();
-
-            _heartBeat.Play();
+            heartBeat.PlaySound();
         }
 
         private void SetBreathVolume(StressState stressState)
@@ -128,7 +126,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
                 _ => 0f
             };
 
-            _breath.volume = volume;
+            _breath.FadeVolume(volume);
+
         }
 
         private float GetAlpha(StressState stressState)
@@ -155,8 +154,6 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
             _pulse.SecondBpm -= OnSecondBpm;
             _pulse.Dispose();
             _pulse = null;
-
-            _breath.Stop();
         }
     }
 }

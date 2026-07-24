@@ -2,7 +2,6 @@
 using Assets._Project.Develop.Runtime.UI.Core;
 using Assets._Project.Develop.Runtime.UI.MainMenu;
 using Assets._Project.Develop.Runtime.Utilities.AssetsManagment;
-using Assets._Project.Develop.Runtime.Utilities.Sound;
 using UnityEngine;
 
 namespace Assets._Project.Develop.Runtime.Meta.Infrastructure
@@ -12,9 +11,10 @@ namespace Assets._Project.Develop.Runtime.Meta.Infrastructure
         public static void Process(DIContainer container)
         {
             container.RegisterAsSingle(CreateMainMenuUIRoot).NonLazy();
+
             container.RegisterAsSingle(CreateMainMenuScreenPresenter).NonLazy();
+
             container.RegisterAsSingle(CreateMainMenuPresentersFactory);
-            container.RegisterAsSingle(c => new SceneSoundInstaller(c.Resolve<SoundsManager>()));
         }
 
         private static UIRoot CreateMainMenuUIRoot(DIContainer c)

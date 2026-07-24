@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Assets._Project.Develop.Runtime.Utilities.Sound
 {
@@ -8,6 +9,8 @@ namespace Assets._Project.Develop.Runtime.Utilities.Sound
     public class EnvironmentSound : MonoBehaviour
     {
         [SerializeField] private bool _shouldPlayLooped;
+        [SerializeField] private bool _isOwned;
+        [SerializeField] private bool _is2D;
         [SerializeField] private AudioClip _audioClip;
         [SerializeField] private float _soundInterval = DEFAULT_SOUND_INTERVAL;
         [Range(0, 1)][SerializeField] private float _playSoundChance;
@@ -41,6 +44,12 @@ namespace Assets._Project.Develop.Runtime.Utilities.Sound
         {
             if (_shouldPlayInterval)
             {
+                if (_playSoundRoutine != null)
+                {
+                    StopCoroutine(_playSoundRoutine);
+                    _playSoundRoutine = null;
+                }
+                
                 _playSoundRoutine = StartCoroutine(PlaySoundRoutine());
             }
         }
@@ -49,7 +58,16 @@ namespace Assets._Project.Develop.Runtime.Utilities.Sound
         {
             if (_shouldPlayInterval)
             {
-                StopCoroutine(_playSoundRoutine);
+                if (_playSoundRoutine != null)
+                {
+                    StopCoroutine(_playSoundRoutine);
+                    _playSoundRoutine = null;
+                }
+            }
+
+            if (_soundsManager != null && _isOwned)
+            {
+                _soundsManager.StopSound(transform);
             }
         }
 
@@ -58,7 +76,26 @@ namespace Assets._Project.Develop.Runtime.Utilities.Sound
         /// </summary>
         public void PlaySound()
         {
-            _soundsManager.PlaySound(_audioClip, volume: _volume, maxDistance: _maxDistance, spawnPosition: transform, isLooped: _shouldPlayLooped);
+            Assert.IsNotNull(_soundsManager);
+
+            _soundsManager.PlaySound(
+                _audioClip,
+                volume: _volume,
+                maxDistance: _maxDistance,
+                spawnPosition: transform,
+                isLooped: _shouldPlayLooped,
+                owner: _isOwned ? transform : null,
+                is2D: _is2D);
+        }
+
+        public void FadeVolume(float targetVolume, float duration = 1f)
+        {
+            Assert.IsNotNull(_soundsManager);
+
+            _soundsManager.FadeVolume(
+                _isOwned ? transform : null,
+                targetVolume,
+                duration);
         }
 
         /// <summary>
@@ -70,9 +107,16 @@ namespace Assets._Project.Develop.Runtime.Utilities.Sound
             {
                 yield return _playSoundWait;
 
-                if(UnityEngine.Random.Range(0, 1) < _playSoundChance)
+                if (_soundsManager == null)
+                    yield break;
+
+                if (UnityEngine.Random.Range(0f, 1f) < _playSoundChance)
                 { 
-                    _soundsManager.PlaySound(_audioClip, volume: _volume, spawnPosition: transform);
+                    _soundsManager.PlaySound(
+                        _audioClip, 
+                        volume: _volume, 
+                        spawnPosition: transform,
+                        is2D: _is2D);
                 }
             }
         }

@@ -24,7 +24,7 @@ namespace Assets._Project.Develop.Runtime.Utilities.Timers
         {
             IsActive = false;
 
-            if (_cooldownProcess != null)
+            if (_cooldownProcess != null && _coroutinePerformer is UnityEngine.Object obj && obj != null)
             {
                 _coroutinePerformer.StopPerform(_cooldownProcess);
                 _cooldownProcess = null;
