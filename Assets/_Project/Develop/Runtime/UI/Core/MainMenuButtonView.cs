@@ -36,8 +36,13 @@ namespace Assets._Project.Develop.Runtime.UI.Core
         public void SetActive(bool isActive)
         {
             _button.enabled = isActive;
-            _text.faceColor = isActive ? _enabledColor : _disabledColor;
             enabled = isActive;
+        }
+
+        public void SetAvailable(bool isAvailabled)
+        {
+            _text.faceColor = isAvailabled ? _enabledColor : _disabledColor;
+            SetActive(isAvailabled);
         }
 
         public void OnPointerEnter(PointerEventData eventData) => OnSelected();

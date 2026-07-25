@@ -35,7 +35,7 @@ namespace Assets._Project.Develop.Runtime.UI.MainMenu
             foreach (IPresenter presenter in _childPresenters)
                 presenter.Initialize();
 
-            SetButtonsActive();
+            InitButtons();
         }
 
         public void Dispose()
@@ -51,32 +51,42 @@ namespace Assets._Project.Develop.Runtime.UI.MainMenu
             _childPresenters.Clear();
         }
 
-        private void SetButtonsActive()
+        private void InitButtons()
         {
-            _screen.SetButtonActive(MainMenuButtons.ContinueButton, false);
-            _screen.SetButtonActive(MainMenuButtons.StartNewGame, true);
-            _screen.SetButtonActive(MainMenuButtons.Options, false);
-            _screen.SetButtonActive(MainMenuButtons.CloseGame, true);
+            _screen.ContinueGameButtonView.SetAvailable(false);
+            _screen.StartNewGameButtonView.SetAvailable(true);
+            _screen.OptionsButtonView.SetAvailable(false);
+            _screen.CloseGameButtonView.SetAvailable(true);
         }
 
         private void OnContinueGameButtonClicked()
         {
-            
+            ButtonClickHandler();
         }
 
         private void OnStartNewGameButtonClicked()
         {
+            ButtonClickHandler();
             _coroutinesPerformer.StartPerform(_sceneSwitcherService.ProcessSwitchTo(Scenes.Entrance));
         }
 
         private void OnOptionsButtonClicked()
         {
-
+            ButtonClickHandler();
         }
 
         private void OnCloseGameButtonClicked()
         {
+            ButtonClickHandler();
             Application.Quit();
+        }
+
+        private void ButtonClickHandler()
+        {
+            _screen.ContinueGameButtonView.SetActive(false);
+            _screen.StartNewGameButtonView.SetActive(false);
+            _screen.OptionsButtonView.SetActive(false);
+            _screen.CloseGameButtonView.SetActive(false);
         }
     }
 }
