@@ -27,17 +27,23 @@ namespace Assets._Project.Develop.Runtime.UI.MainMenu
 
         public void Initialize()
         {
-            _screen.StartNewGameButtonClicked += OnStartNewGameButtonClicked;
-            _screen.CloseGameButtonClicked += OnCloseGameButtonClicked;
+            _screen.ContinueGameButtonView.Click += OnContinueGameButtonClicked;
+            _screen.StartNewGameButtonView.Click += OnStartNewGameButtonClicked;
+            _screen.OptionsButtonView.Click += OnOptionsButtonClicked;
+            _screen.CloseGameButtonView.Click += OnCloseGameButtonClicked;
 
             foreach (IPresenter presenter in _childPresenters)
                 presenter.Initialize();
+
+            SetButtonsActive();
         }
 
         public void Dispose()
         {
-            _screen.StartNewGameButtonClicked -= OnStartNewGameButtonClicked;
-            _screen.CloseGameButtonClicked -= OnCloseGameButtonClicked;
+            _screen.ContinueGameButtonView.Click -= OnContinueGameButtonClicked;
+            _screen.StartNewGameButtonView.Click -= OnStartNewGameButtonClicked;
+            _screen.OptionsButtonView.Click -= OnOptionsButtonClicked;
+            _screen.CloseGameButtonView.Click -= OnCloseGameButtonClicked;
 
             foreach (IPresenter presenter in _childPresenters)
                 presenter.Dispose();
@@ -45,9 +51,27 @@ namespace Assets._Project.Develop.Runtime.UI.MainMenu
             _childPresenters.Clear();
         }
 
+        private void SetButtonsActive()
+        {
+            _screen.SetButtonActive(MainMenuButtons.ContinueButton, false);
+            _screen.SetButtonActive(MainMenuButtons.StartNewGame, true);
+            _screen.SetButtonActive(MainMenuButtons.Options, false);
+            _screen.SetButtonActive(MainMenuButtons.CloseGame, true);
+        }
+
+        private void OnContinueGameButtonClicked()
+        {
+            
+        }
+
         private void OnStartNewGameButtonClicked()
         {
             _coroutinesPerformer.StartPerform(_sceneSwitcherService.ProcessSwitchTo(Scenes.Entrance));
+        }
+
+        private void OnOptionsButtonClicked()
+        {
+
         }
 
         private void OnCloseGameButtonClicked()

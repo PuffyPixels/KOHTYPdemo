@@ -1,31 +1,40 @@
 ﻿using Assets._Project.Develop.Runtime.UI.Core;
-using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Assets._Project.Develop.Runtime.UI.MainMenu
 {
+    public enum MainMenuButtons
+    {
+        ContinueButton,
+        StartNewGame,
+        Options,
+        CloseGame,
+    }
+
     public class MainMenuScreenView : MonoBehaviour, IView
     {
-        public event Action StartNewGameButtonClicked;
-        public event Action CloseGameButtonClicked;
+        [field: SerializeField] public MainMenuButtonView ContinueGameButtonView { get; private set; }
+        [field: SerializeField] public MainMenuButtonView StartNewGameButtonView { get; private set; }
+        [field: SerializeField] public MainMenuButtonView OptionsButtonView { get; private set; }
+        [field: SerializeField] public MainMenuButtonView CloseGameButtonView { get; private set; }
 
-        [SerializeField] private Button _startNewGameButton;
-        [SerializeField] private Button _closeGameButton;
-
-        private void OnEnable()
+        public void SetButtonActive(MainMenuButtons button, bool isActive)
         {
-            _startNewGameButton.onClick.AddListener(OnStartNewGameButtonClicked);
-            _closeGameButton.onClick.AddListener(OnCloseGameButtonClicked);
+            switch (button)
+            {
+                case MainMenuButtons.ContinueButton:
+                    ContinueGameButtonView.SetActive(isActive);
+                    break;
+                case MainMenuButtons.StartNewGame:
+                    StartNewGameButtonView.SetActive(isActive);
+                    break;
+                case MainMenuButtons.Options:
+                    OptionsButtonView.SetActive(isActive);
+                    break;
+                case MainMenuButtons.CloseGame:
+                    CloseGameButtonView.SetActive(isActive);
+                    break;
+            }
         }
-
-        private void OnDisable()
-        {
-            _startNewGameButton.onClick.RemoveListener(OnStartNewGameButtonClicked);
-            _closeGameButton.onClick.RemoveListener(OnCloseGameButtonClicked);
-        }
-
-        private void OnStartNewGameButtonClicked() => StartNewGameButtonClicked?.Invoke();
-        private void OnCloseGameButtonClicked() => CloseGameButtonClicked?.Invoke();
     }
 }
