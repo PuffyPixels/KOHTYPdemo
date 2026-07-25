@@ -1964,6 +1964,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 735081109}
     m_Modifications:
+    - target: {fileID: 851326616337639494, guid: 2fa3b12a28ca2a14896aa59882db2568, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1fe92e952a0eaae40add665d16b9cca1, type: 2}
     - target: {fileID: 2723232009144666384, guid: 2fa3b12a28ca2a14896aa59882db2568, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.0638
@@ -2994,6 +2998,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 4cbdbda09b6a8144583cf2d621519efb, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f23c478ba7cb5784e8c7fbca50c429a3, type: 2}
     - target: {fileID: 919132149155446097, guid: 4cbdbda09b6a8144583cf2d621519efb, type: 3}
       propertyPath: m_Name
       value: TV3
@@ -6088,6 +6096,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Magnitola2 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1588937362550623825, guid: 533a430e1b18199449d4e4b1f678fb3c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1fe92e952a0eaae40add665d16b9cca1, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7673,6 +7685,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigStand3 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4652331310679710105, guid: b89a8a1b0a1eebb4385529dad5b68d33, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c8b7a03530fe7604f91e3b75875dcc33, type: 2}
     - target: {fileID: 7180029428764115513, guid: b89a8a1b0a1eebb4385529dad5b68d33, type: 3}
       propertyPath: m_LocalPosition.x
       value: 28.780602
@@ -8410,10 +8426,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4718040791104185828, guid: 81b053e6d598d1746a4a91c2779518c6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 5bc06ce1c67ba5f46834c395fbffc605, type: 2}
+    - target: {fileID: -1439730007547781893, guid: 81b053e6d598d1746a4a91c2779518c6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 5bc06ce1c67ba5f46834c395fbffc605, type: 2}
     - target: {fileID: 919132149155446097, guid: 81b053e6d598d1746a4a91c2779518c6, type: 3}
       propertyPath: m_Name
       value: TV1_Teapot
       objectReference: {fileID: 0}
+    - target: {fileID: 2355982399387309400, guid: 81b053e6d598d1746a4a91c2779518c6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1f08fb5bbc9a9bd40a8f314eaa6d1253, type: 2}
+    - target: {fileID: 6148596154634031546, guid: 81b053e6d598d1746a4a91c2779518c6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 5bc06ce1c67ba5f46834c395fbffc605, type: 2}
+    - target: {fileID: 7202271454713460447, guid: 81b053e6d598d1746a4a91c2779518c6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 5bc06ce1c67ba5f46834c395fbffc605, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8542,6 +8578,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Magnitola2 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1588937362550623825, guid: 533a430e1b18199449d4e4b1f678fb3c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1fe92e952a0eaae40add665d16b9cca1, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11561,6 +11601,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 735081109}
     m_Modifications:
+    - target: {fileID: 851326616337639494, guid: 2fa3b12a28ca2a14896aa59882db2568, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1fe92e952a0eaae40add665d16b9cca1, type: 2}
     - target: {fileID: 2723232009144666384, guid: 2fa3b12a28ca2a14896aa59882db2568, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.0638
@@ -13925,6 +13969,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigStand3 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4652331310679710105, guid: b89a8a1b0a1eebb4385529dad5b68d33, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c8b7a03530fe7604f91e3b75875dcc33, type: 2}
     - target: {fileID: 7180029428764115513, guid: b89a8a1b0a1eebb4385529dad5b68d33, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.819401
@@ -14696,15 +14744,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 3c80376ff5e14834d949e544c9d2b013, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.13272
+      value: 30.019
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3c80376ff5e14834d949e544c9d2b013, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.774
+      value: 6.836
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3c80376ff5e14834d949e544c9d2b013, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -60.73291
+      value: -59.814
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3c80376ff5e14834d949e544c9d2b013, type: 3}
       propertyPath: m_LocalRotation.w
@@ -14734,6 +14782,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 3c80376ff5e14834d949e544c9d2b013, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f64ec5e5d4514d84294b2e0c7878c0dc, type: 2}
     - target: {fileID: 919132149155446097, guid: 3c80376ff5e14834d949e544c9d2b013, type: 3}
       propertyPath: m_Name
       value: Jar1
@@ -15663,6 +15715,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Magnitola2
       objectReference: {fileID: 0}
+    - target: {fileID: 1588937362550623825, guid: 533a430e1b18199449d4e4b1f678fb3c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1fe92e952a0eaae40add665d16b9cca1, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15743,6 +15799,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 531021669}
     m_Modifications:
+    - target: {fileID: 3813522341031433502, guid: 3f8ed9fbccb6ef746823bd176b3b45aa, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f1700e5b8773b2740a4444d66f9519f5, type: 2}
+    - target: {fileID: 5015238534449603472, guid: 3f8ed9fbccb6ef746823bd176b3b45aa, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e112de51673c95644973b9154cb698b4, type: 2}
     - target: {fileID: 5842802892755504442, guid: 3f8ed9fbccb6ef746823bd176b3b45aa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 34.28472
@@ -15787,6 +15851,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room_Kitchen
       objectReference: {fileID: 0}
+    - target: {fileID: 7091285856378479758, guid: 3f8ed9fbccb6ef746823bd176b3b45aa, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e112de51673c95644973b9154cb698b4, type: 2}
     - target: {fileID: 7794045388358060789, guid: 3f8ed9fbccb6ef746823bd176b3b45aa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.459
@@ -16013,6 +16081,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigStand3
       objectReference: {fileID: 0}
+    - target: {fileID: 4652331310679710105, guid: b89a8a1b0a1eebb4385529dad5b68d33, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c8b7a03530fe7604f91e3b75875dcc33, type: 2}
     - target: {fileID: 7180029428764115513, guid: b89a8a1b0a1eebb4385529dad5b68d33, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8
