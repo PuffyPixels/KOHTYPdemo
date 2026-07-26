@@ -185,7 +185,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 452a9a206b65e3c4aa8bffe4b5db620a, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -8044888831875711873, guid: 98fb80ec792ae044288edbacd78df246, type: 3}
+      objectReference: {fileID: 2100000, guid: f1700e5b8773b2740a4444d66f9519f5, type: 2}
     - target: {fileID: 919132149155446097, guid: 452a9a206b65e3c4aa8bffe4b5db620a, type: 3}
       propertyPath: m_Name
       value: Spanner (2)
@@ -337,7 +337,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 452a9a206b65e3c4aa8bffe4b5db620a, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -8044888831875711873, guid: 98fb80ec792ae044288edbacd78df246, type: 3}
+      objectReference: {fileID: 2100000, guid: f1700e5b8773b2740a4444d66f9519f5, type: 2}
     - target: {fileID: 919132149155446097, guid: 452a9a206b65e3c4aa8bffe4b5db620a, type: 3}
       propertyPath: m_Name
       value: Spanner (5)
@@ -637,7 +637,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 452a9a206b65e3c4aa8bffe4b5db620a, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -8044888831875711873, guid: 98fb80ec792ae044288edbacd78df246, type: 3}
+      objectReference: {fileID: 2100000, guid: f1700e5b8773b2740a4444d66f9519f5, type: 2}
     - target: {fileID: 919132149155446097, guid: 452a9a206b65e3c4aa8bffe4b5db620a, type: 3}
       propertyPath: m_Name
       value: Spanner (4)
@@ -715,7 +715,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 452a9a206b65e3c4aa8bffe4b5db620a, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -8044888831875711873, guid: 98fb80ec792ae044288edbacd78df246, type: 3}
+      objectReference: {fileID: 2100000, guid: f1700e5b8773b2740a4444d66f9519f5, type: 2}
     - target: {fileID: 919132149155446097, guid: 452a9a206b65e3c4aa8bffe4b5db620a, type: 3}
       propertyPath: m_Name
       value: Spanner (6)
@@ -938,6 +938,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 55edd20c7fdc45a418f56a372bf8bbe1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c8b7a03530fe7604f91e3b75875dcc33, type: 2}
     - target: {fileID: 919132149155446097, guid: 55edd20c7fdc45a418f56a372bf8bbe1, type: 3}
       propertyPath: m_Name
       value: Fish
@@ -1241,7 +1245,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 452a9a206b65e3c4aa8bffe4b5db620a, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -8044888831875711873, guid: 98fb80ec792ae044288edbacd78df246, type: 3}
+      objectReference: {fileID: 2100000, guid: f1700e5b8773b2740a4444d66f9519f5, type: 2}
     - target: {fileID: 919132149155446097, guid: 452a9a206b65e3c4aa8bffe4b5db620a, type: 3}
       propertyPath: m_Name
       value: Spanner (1)
@@ -1319,7 +1323,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 452a9a206b65e3c4aa8bffe4b5db620a, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -8044888831875711873, guid: 98fb80ec792ae044288edbacd78df246, type: 3}
+      objectReference: {fileID: 2100000, guid: f1700e5b8773b2740a4444d66f9519f5, type: 2}
     - target: {fileID: 919132149155446097, guid: 452a9a206b65e3c4aa8bffe4b5db620a, type: 3}
       propertyPath: m_Name
       value: Spanner (3)
