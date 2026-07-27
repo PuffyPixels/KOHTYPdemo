@@ -213,15 +213,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 452091420639163710, guid: 533a430e1b18199449d4e4b1f678fb3c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.07988999
+      value: 0.06446
       objectReference: {fileID: 0}
     - target: {fileID: 452091420639163710, guid: 533a430e1b18199449d4e4b1f678fb3c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.027000004
+      value: 0.027
       objectReference: {fileID: 0}
     - target: {fileID: 452091420639163710, guid: 533a430e1b18199449d4e4b1f678fb3c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.13139021
+      value: -0.1314
       objectReference: {fileID: 0}
     - target: {fileID: 452091420639163710, guid: 533a430e1b18199449d4e4b1f678fb3c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -328,6 +328,10 @@ PrefabInstance:
     - target: {fileID: 3219234898184533478, guid: 90ed078d49f871b42895ecc0d5aea16a, type: 3}
       propertyPath: m_Name
       value: Fishes
+      objectReference: {fileID: 0}
+    - target: {fileID: 3219234898184533478, guid: 90ed078d49f871b42895ecc0d5aea16a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

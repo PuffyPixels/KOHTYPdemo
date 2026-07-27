@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 0.3
+  m_AmbientIntensity: 0.4
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 94b1cfca5960a1d4eada19332ef7401f, type: 2}
@@ -2895,7 +2895,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2107522402910802727, guid: 21f559cbf585f2c44b6bfc256d161b6a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 28.566
+      value: 29.475
       objectReference: {fileID: 0}
     - target: {fileID: 2107522402910802727, guid: 21f559cbf585f2c44b6bfc256d161b6a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2903,7 +2903,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2107522402910802727, guid: 21f559cbf585f2c44b6bfc256d161b6a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -56.132996
+      value: -55.196995
       objectReference: {fileID: 0}
     - target: {fileID: 2107522402910802727, guid: 21f559cbf585f2c44b6bfc256d161b6a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9740,7 +9740,7 @@ Transform:
   m_GameObject: {fileID: 1366941682}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071063, y: -0, z: -0, w: 0.7071073}
-  m_LocalPosition: {x: 28.571, y: 8.546, z: -56.146}
+  m_LocalPosition: {x: 29.48, y: 8.546, z: -55.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
