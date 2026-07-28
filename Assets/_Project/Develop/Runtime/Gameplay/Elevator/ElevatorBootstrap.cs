@@ -85,17 +85,17 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
         }
 
         // FOR TEST = need to delete
-        private void Update()
-        {
-            if (Keyboard.current.aKey.wasPressedThisFrame)
-            {
-                _coroutinesPerformer.StartPerform(UnloadEntranceAndLoadShop());
-            }
+        //private void Update()
+        //{
+        //    if (Keyboard.current.aKey.wasPressedThisFrame)
+        //    {
+        //        _coroutinesPerformer.StartPerform(UnloadEntranceAndLoadShop());
+        //    }
 
-            if (Keyboard.current.sKey.wasPressedThisFrame)
-            {
-                _coroutinesPerformer.StartPerform(UnloadShopAndLoadMainMenu());
-            }
-        }
+        //    if (Keyboard.current.sKey.wasPressedThisFrame)
+        //    {
+        //        _coroutinesPerformer.StartPerform(UnloadShopAndLoadMainMenu());
+        //    }
+        //}
     }
 }
