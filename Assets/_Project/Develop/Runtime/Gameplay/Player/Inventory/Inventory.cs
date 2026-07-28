@@ -6,38 +6,52 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player.Inventory
     public class Inventory
     {
         public event System.Action<Inventory, InventoryItem> ItemAdded;
-        public event System.Action<Inventory, InventoryItem> ItemRemoved;
         public event System.Action<Inventory, InventoryItem> ItemFailed;
+        public event System.Action<Inventory, InventoryItem> ItemRemoved;
+        public event System.Action<Inventory, InventoryItem> ItemDropped;
 
         private readonly List<InventoryItem> _items = new();
-        private int _capacity;
+        public int Capacity { get; }
 
-        public Inventory(int capacity) => _capacity = capacity > 0 ? capacity : 0;
+        public Inventory(int capacity) => Capacity = capacity > 0 ? capacity : 0;
 
-        public void Add(InventoryItem item)
+        public bool TryAdd(InventoryItem item)
         {
             if (item == null)
                 throw new System.ArgumentNullException(nameof(item));
 
-            if (_items.Count >= _capacity)
+            if (_items.Count >= Capacity)
             {
                 ItemFailed?.Invoke(this, item);
-                return;
+                return false;
             }
 
             _items.Add(item);
             ItemAdded?.Invoke(this, item);
+            return true;
         }
 
-        public void Remove(InventoryItem item)
+        public void Remove(InventoryItem item) => Remove(item, ItemRemoved);
+
+        public void Drop(InventoryItem item) => Remove(item, ItemDropped);
+
+        public void DropFromSlot(int slotId)
+        {
+            if (slotId < 0 || slotId >= _items.Count)
+                throw new System.ArgumentOutOfRangeException(nameof(slotId));
+
+            Remove(_items[slotId], ItemDropped);
+        }
+
+        public IReadOnlyList<InventoryItem> Items => _items;
+
+        private void Remove(InventoryItem item, System.Action<Inventory, InventoryItem> callback)
         {
             if (item == null)
                 throw new System.ArgumentNullException(nameof(item));
 
-            _items.Remove(item);
-            ItemRemoved?.Invoke(this, item);
+            if (_items.Remove(item))
+                callback?.Invoke(this, item);
         }
-
-        public IReadOnlyList<InventoryItem> Items => _items;
     }
 }

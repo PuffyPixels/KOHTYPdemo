@@ -7,13 +7,16 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Item
     {
         [SerializeField]
         private Outline _outline;
-        private Inventory _inventory;
-        private InventoryItem _inventoryItem;
+        [SerializeField]
+        private string _name;
 
-        public void Construct(Inventory inventory, InventoryItem inventoryItem)
+        private Inventory _inventory;
+        private InventoryItemsDatabase _itemsDatabase;
+
+        public void Init(Inventory inventory, InventoryItemsDatabase itemsDatabase)
         {
             _inventory = inventory;
-            _inventoryItem = inventoryItem;
+            _itemsDatabase = itemsDatabase;
         }   
 
         public void Select()
@@ -30,9 +33,11 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Item
 
         public void Interact()
         {
-            _inventory.Add(_inventoryItem);
-            OnInteract();
-            Destroy(gameObject);
+            if (_inventory.TryAdd(_itemsDatabase.GetItem(_name)))
+            {
+                OnInteract();
+                Destroy(gameObject);
+            }
         }
 
         protected virtual void OnInteract() { }
