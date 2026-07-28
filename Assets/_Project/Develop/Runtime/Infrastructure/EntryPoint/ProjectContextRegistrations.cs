@@ -38,6 +38,8 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
             container.RegisterAsSingle(CreateSceneSoundInstaller);
 
             container.RegisterAsSingle(CreateMusicManager).NonLazy();
+
+            container.RegisterAsSingle(_ => new CursorManager()).NonLazy();
         }
 
         private static Fader CreateFader(DIContainer c)

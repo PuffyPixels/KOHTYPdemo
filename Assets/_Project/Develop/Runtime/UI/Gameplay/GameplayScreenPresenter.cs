@@ -22,6 +22,14 @@ namespace Assets._Project.Develop.Runtime.UI.Gameplay
             _projectPresentersFactory = projectPresentersFactory;
         }
 
+        public void AddChildPresenter(IPresenter presenter)
+        {
+            if (presenter == null) 
+                throw new System.ArgumentNullException(nameof(presenter));
+
+            _childPresenters.Add(presenter);
+        }
+
         public void Initialize()
         {
             foreach (IPresenter presenter in _childPresenters)

@@ -1,9 +1,15 @@
 ﻿using Assets._Project.Develop.Runtime.Gameplay.Elevator;
+using Assets._Project.Develop.Runtime.Gameplay.Input;
 using Assets._Project.Develop.Runtime.Gameplay.Player;
+using Assets._Project.Develop.Runtime.Gameplay.Player.Inventory;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
 using Assets._Project.Develop.Runtime.UI.Core;
 using Assets._Project.Develop.Runtime.UI.Gameplay;
+using Assets._Project.Develop.Runtime.UI.Gameplay.InventoryWidget;
+using Assets._Project.Develop.Runtime.UI.Gameplay.ItemCollectPopup;
 using Assets._Project.Develop.Runtime.Utilities.AssetsManagment;
+using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
+using System;
 using UnityEngine;
 
 namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
@@ -18,12 +24,18 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
 
             container.RegisterAsSingle(CreateGameplayUIRoot).NonLazy();
             container.RegisterAsSingle(CreateGameplayScreenPresenter).NonLazy();
+            container.RegisterAsSingle(CreateInventory);
+            container.RegisterAsSingle(CreateItemCollectPopupPresenter).NonLazy();
+            container.RegisterAsSingle(CreateInventoryWidgetPresenter).NonLazy();
+            container.RegisterAsSingle(_ => new AdditionalInputController()).NonLazy();
             container.RegisterAsSingle(HeroFactory);
             container.RegisterAsSingle(CreateGameplayPresentersFactory);
         }
 
         private static HeroFactory HeroFactory(DIContainer c)
             => new(c, _inputArgs);
+
+        private static Inventory CreateInventory(DIContainer _) => new(Settings.Settings.INVENTORY_CAPACITY);
 
         private static UIRoot CreateGameplayUIRoot(DIContainer c)
         {
@@ -32,22 +44,38 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
             UIRoot gameplayUIRootPrefab = resourcesAssetsLoader
                 .Load<UIRoot>("UI/UIRoot");
 
-            return Object.Instantiate(gameplayUIRootPrefab);
+            return UnityEngine.Object.Instantiate(gameplayUIRootPrefab);
         }
 
-        private static GameplayScreenPresenter CreateGameplayScreenPresenter(DIContainer c)
+        private static GameplayScreenPresenter CreateGameplayScreenPresenter(DIContainer c) =>
+            CreateHUDWidget<GameplayScreenPresenter, GameplayScreenView>(c, ViewIDs.GameplayScreen,
+                v => c.Resolve<GameplayPresentersFactory>().CreateGameplayScreenPresenter(v));
+
+        private static ItemCollectPupupPresenter CreateItemCollectPopupPresenter(DIContainer c) =>
+            CreateHUDWidget<ItemCollectPupupPresenter, ItemCollectPupupView>(c, ViewIDs.ItemCollectPopupWidget,
+                v =>
+                {
+                    var presenter = c.Resolve<GameplayPresentersFactory>().CreateItemCollectPopupPresenter(v);
+                    v.Init(presenter, c.Resolve<CursorManager>(), c.Resolve<ICoroutinesPerformer>());
+                    return presenter;
+                });
+
+        private static InventoryWidgetPresenter CreateInventoryWidgetPresenter(DIContainer c) =>
+            CreateHUDWidget<InventoryWidgetPresenter, InventoryWidgetView>(c, ViewIDs.InventoryWidget,
+                v => c.Resolve<GameplayPresentersFactory>().CreateInventoryWidgetPresenter(v));
+
+        private static TPresenter CreateHUDWidget<TPresenter, TView>(DIContainer c, string viewID, 
+            Func<TView, TPresenter> presenterCreator) 
+            where TView : MonoBehaviour, IView
+            where TPresenter : IPresenter
         {
             UIRoot uiRoot = c.Resolve<UIRoot>();
 
-            GameplayScreenView view = c
+            TView view = c
                 .Resolve<ViewsFactory>()
-                .Create<GameplayScreenView>(ViewIDs.GameplayScreen, uiRoot.HUDLayer);
+                .Create<TView>(viewID, uiRoot.HUDLayer);
 
-            GameplayScreenPresenter presenter = c
-                .Resolve<GameplayPresentersFactory>()
-                .CreateGameplayScreenPresenter(view);
-
-            return presenter;
+            return presenterCreator(view);
         }
 
         private static GameplayPresentersFactory CreateGameplayPresentersFactory(DIContainer c)
