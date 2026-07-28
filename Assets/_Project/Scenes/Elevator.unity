@@ -23,10 +23,10 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 0.4
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 94b1cfca5960a1d4eada19332ef7401f, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -264,7 +264,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &410087040
 Light:
   m_ObjectHideFlags: 0
@@ -420,8 +420,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Elevator.ElevatorController
   _elevatorPrefabs:
-  - {fileID: 1643631638156874850, guid: acacb7d3f36d79047b75549292b1eaee, type: 3}
-  - {fileID: 6138202851168530031, guid: 6a87059d622caad42b2c02bc09ad564b, type: 3}
+  - {fileID: 6054149106809998435, guid: 3259f763641372f43b0414d898cb5388, type: 3}
+  - {fileID: 322577288612272393, guid: 8a68c2b591cf33f4badca552228e9ea2, type: 3}
 --- !u!114 &460239712
 MonoBehaviour:
   m_ObjectHideFlags: 0
