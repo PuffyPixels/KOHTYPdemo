@@ -50,6 +50,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
 
             Scene elevatorScene = SceneManager.GetSceneByName(Scenes.Elevator);
 
+            _container.Resolve<HeroFactory>().CreateHero(_playerPrefab);
+
             if (elevatorScene.isLoaded)
             {
                 SceneManager.SetActiveScene(elevatorScene);
@@ -62,9 +64,10 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
         {
             Assert.IsNotNull(elevatorController, "ElevatorController is null. Make sure it's assigned in the inspector or injected correctly.");
 
-            _elevatorSwitchManager.AddElevator(elevatorController);
-            _container.Resolve<HeroFactory>().CreateHero(_playerPrefab);
+            
 
+            _elevatorSwitchManager.AddElevator(elevatorController);
+            
             _sceneSoundInstaller.InitEnvironmentSound();
         }
 
