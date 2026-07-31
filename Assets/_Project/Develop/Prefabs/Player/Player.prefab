@@ -42,7 +42,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 886113709261315353}
   - component: {fileID: -3098789609577436256}
   - component: {fileID: 2291681474256662693}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -397,7 +397,7 @@ MonoBehaviour:
   _heroStress: {fileID: 6369969952684943244}
   _enemyMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
 --- !u!114 &1322777288640513539
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -769,7 +769,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5871305339938744590, guid: cd4d9dee862c6414eb817e930902c5ca, type: 3}
       propertyPath: m_Intensity
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6132457746505978051, guid: cd4d9dee862c6414eb817e930902c5ca, type: 3}
       propertyPath: m_LocalScale.z
@@ -782,11 +782,40 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4880991175877768613, guid: cd4d9dee862c6414eb817e930902c5ca, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 4772905588799300633}
   m_SourcePrefab: {fileID: 100100000, guid: cd4d9dee862c6414eb817e930902c5ca, type: 3}
 --- !u!4 &719694125684268122 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2520872525181470110, guid: cd4d9dee862c6414eb817e930902c5ca, type: 3}
+  m_PrefabInstance: {fileID: 3100497214596929988}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7546887658977487969 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4880991175877768613, guid: cd4d9dee862c6414eb817e930902c5ca, type: 3}
+  m_PrefabInstance: {fileID: 3100497214596929988}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4772905588799300633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7546887658977487969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dd15dd276434c049b606fa631cb05ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Shop.LightBlink
+  _light: {fileID: 8825996248785121482}
+  _maxValue: 1
+  _timeToBlinkMin: 5
+  _timeToBlinkMax: 5
+--- !u!108 &8825996248785121482 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 5871305339938744590, guid: cd4d9dee862c6414eb817e930902c5ca, type: 3}
   m_PrefabInstance: {fileID: 3100497214596929988}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3253754485304895361

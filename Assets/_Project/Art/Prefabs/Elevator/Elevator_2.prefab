@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6054149106809998435, guid: 3259f763641372f43b0414d898cb5388, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 46.05
+      value: 53.001
       objectReference: {fileID: 0}
     - target: {fileID: 6054149106809998435, guid: 3259f763641372f43b0414d898cb5388, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.97
+      value: 15.02
       objectReference: {fileID: 0}
     - target: {fileID: 6054149106809998435, guid: 3259f763641372f43b0414d898cb5388, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.71
+      value: 11.088
       objectReference: {fileID: 0}
     - target: {fileID: 6054149106809998435, guid: 3259f763641372f43b0414d898cb5388, type: 3}
       propertyPath: m_LocalRotation.w
@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6054149106809998435, guid: 3259f763641372f43b0414d898cb5388, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6054149106809998435, guid: 3259f763641372f43b0414d898cb5388, type: 3}
       propertyPath: m_LocalRotation.y
@@ -34,7 +34,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6054149106809998435, guid: 3259f763641372f43b0414d898cb5388, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6054149106809998435, guid: 3259f763641372f43b0414d898cb5388, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6867840060463044313, guid: 3259f763641372f43b0414d898cb5388, type: 3}
       propertyPath: m_Name
-      value: Elevator (1) Variant
+      value: Elevator_2
       objectReference: {fileID: 0}
     - target: {fileID: 6867840060463044313, guid: 3259f763641372f43b0414d898cb5388, type: 3}
       propertyPath: m_IsActive

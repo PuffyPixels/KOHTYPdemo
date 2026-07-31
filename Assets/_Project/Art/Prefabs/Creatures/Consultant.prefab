@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8774689093399766751}
   - component: {fileID: 7373703999148941416}
   - component: {fileID: 7187061125572658317}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Consultant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,6 +92,7 @@ MonoBehaviour:
     m_Bits: 64
   _detectionSpeed: 0.2
   _detectionDecaySpeed: 0.1
+  _isGizmoVisible: 1
 --- !u!195 &7373703999148941416
 NavMeshAgent:
   m_ObjectHideFlags: 0
