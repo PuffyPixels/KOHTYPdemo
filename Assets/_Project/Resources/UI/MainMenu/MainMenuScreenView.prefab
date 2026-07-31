@@ -169,6 +169,9 @@ MonoBehaviour:
   <StartNewGameButtonView>k__BackingField: {fileID: 6605450628579119822}
   <OptionsButtonView>k__BackingField: {fileID: 6015518218776173387}
   <CloseGameButtonView>k__BackingField: {fileID: 3301075365348965998}
+  <Background>k__BackingField: {fileID: 1295409788358033970}
+  <Normal>k__BackingField: {fileID: 21300000, guid: aa8527c1cb3d9544a9a20c0172252988, type: 3}
+  <Faded>k__BackingField: {fileID: 21300000, guid: dbef4ba74423751498b3b6dfc7f5f219, type: 3}
 --- !u!1 &7074954448747225416
 GameObject:
   m_ObjectHideFlags: 0
