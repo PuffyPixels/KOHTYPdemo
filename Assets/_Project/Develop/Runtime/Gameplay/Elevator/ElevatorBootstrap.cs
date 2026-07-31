@@ -1,5 +1,6 @@
 using Assets._Project.Develop.Runtime.Gameplay.Infrastructure;
 using Assets._Project.Develop.Runtime.Gameplay.Player;
+using Assets._Project.Develop.Runtime.Gameplay.Shop;
 using Assets._Project.Develop.Runtime.Infrastructure;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
@@ -10,7 +11,6 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
@@ -77,7 +77,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
                 yield return _sceneLoaderService.UnloadAsync(Scenes.Entrance);
 
             if (!SceneManager.GetSceneByName(Scenes.Shop).isLoaded)
-                yield return _sceneSwitcherService.ProcessSwitchTo(Scenes.Shop, loadSceneMode: LoadSceneMode.Additive);
+                yield return _sceneSwitcherService.ProcessSwitchTo(Scenes.Shop, loadSceneMode: LoadSceneMode.Additive, sceneArgs: new ShopInputArgs(_container));
         }
 
         private IEnumerator UnloadShopAndLoadMainMenu()

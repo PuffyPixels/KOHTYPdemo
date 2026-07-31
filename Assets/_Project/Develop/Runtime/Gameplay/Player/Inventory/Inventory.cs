@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Assets._Project.Develop.Runtime.Gameplay.Player.Inventory
 {
@@ -9,6 +8,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player.Inventory
         public event System.Action<Inventory, InventoryItem> ItemFailed;
         public event System.Action<Inventory, InventoryItem> ItemRemoved;
         public event System.Action<Inventory, InventoryItem> ItemDropped;
+
+        public bool IsEmpty { get; private set; } = true;
 
         private readonly List<InventoryItem> _items = new();
         public int Capacity { get; }
@@ -28,10 +29,19 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player.Inventory
 
             _items.Add(item);
             ItemAdded?.Invoke(this, item);
+            IsEmpty = false;
+
             return true;
         }
 
         public void Remove(InventoryItem item) => Remove(item, ItemRemoved);
+
+        public void RemoveAll()
+        {
+            _items.Clear();
+
+            IsEmpty = true;
+        }
 
         public void Drop(InventoryItem item) => Remove(item, ItemDropped);
 
@@ -52,6 +62,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player.Inventory
 
             if (_items.Remove(item))
                 callback?.Invoke(this, item);
+
+            if (_items.Count == 0)
+                IsEmpty = true;
         }
     }
 }

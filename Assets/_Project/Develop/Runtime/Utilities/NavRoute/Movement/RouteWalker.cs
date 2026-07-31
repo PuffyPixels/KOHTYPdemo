@@ -19,7 +19,7 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
 
         [SerializeField] private RouteService _routeService;
 
-        [SerializeField] private NavMeshAgent _agent;
+        [field: SerializeField] public NavMeshAgent Agent {  get; private set; }
         [SerializeField] private NavMeshObstacle _obstacle;
         [SerializeField] private Animator _animator;
 
@@ -36,6 +36,8 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
         private readonly WaitWhile _cachedWaitWhilePause = new(() => Time.timeScale == 0);
         private WaitUntil _cachedArrivedCondition;
 
+        public float DefaultAgentSpeed { get; private set; }
+
         private bool _isInited;
 
         private void Start()
@@ -49,8 +51,16 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
             if (_isInited)
                 return;
 
-            _cachedArrivedCondition = new WaitUntil(() => !_agent.pathPending && _agent.remainingDistance <= _agent.stoppingDistance);
+            DefaultAgentSpeed = Agent.speed;
+
+            _cachedArrivedCondition = new WaitUntil(() => !Agent.pathPending && Agent.remainingDistance <= Agent.stoppingDistance);
             _isInited = true;
+        }
+
+        public void SetSpeed(float speed)
+        {
+            float newSpeed = Mathf.Clamp(speed, 0, 10);
+            Agent.speed = newSpeed;
         }
 
         public void StartWalk()
@@ -74,25 +84,24 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
             ClearCoroutine(ref _walkCoroutine);
             ClearCoroutine(ref _lookCoroutine);
 
-            if (_agent != null && _agent.isActiveAndEnabled)
-                _agent.ResetPath();
+            if (Agent != null && Agent.isActiveAndEnabled)
+                Agent.ResetPath();
         }
 
         public void GoTo(Vector3 target, Action onComplete)
         {
-            ClearCoroutine(ref _walkCoroutine);
+            if (NavMesh.SamplePosition(target, out NavMeshHit hit, MAX_DISTANCE_TO_NAVMESH, NavMesh.AllAreas))
+            {
+                target = hit.position;
 
-            _walkCoroutine = StartCoroutine(GoToRoutine(target, onComplete));
+                ClearCoroutine(ref _walkCoroutine);
+                _walkCoroutine = StartCoroutine(GoToRoutine(target, onComplete));
+            }
         }
 
         private IEnumerator GoToRoutine(Vector3 target, Action onComplete)
         {
-            if (NavMesh.SamplePosition(target, out NavMeshHit hit, MAX_DISTANCE_TO_NAVMESH, NavMesh.AllAreas))
-            {
-                target = hit.position;
-            }
-
-            _agent.SetDestination(target);
+            Agent.SetDestination(target);
             _animator.SetBool(WalkBool, true);
 
             yield return _cachedArrivedCondition;
@@ -111,7 +120,7 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
 
         private IEnumerator LookAtRoutine(Vector3 targetPoint, Action onComplete)
         {
-            Vector3 targetDirection = targetPoint - _agent.transform.position;
+            Vector3 targetDirection = targetPoint - Agent.transform.position;
             targetDirection.y = 0f;
 
             if (targetDirection == Vector3.zero)
@@ -121,25 +130,25 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
             }
 
             float targetAngle = Mathf.Atan2(targetDirection.x, targetDirection.z) * Mathf.Rad2Deg;
-            float step = Time.deltaTime * _agent.angularSpeed;
+            float step = Time.deltaTime * Agent.angularSpeed;
 
             while (true)
             {
-                if (_agent == null || !_agent.isActiveAndEnabled)
+                if (Agent == null || !Agent.isActiveAndEnabled)
                 {
                     Debug.LogWarning($"{name}: agent is not found");
                     onComplete?.Invoke();
                     yield break;
                 }
 
-                float currentAngle = _agent.transform.eulerAngles.y;
+                float currentAngle = Agent.transform.eulerAngles.y;
                 float angleDiff = Mathf.DeltaAngle(currentAngle, targetAngle);
 
                 if (Mathf.Abs(angleDiff) <= 0.01f)
                     break;
 
                 float newAngle = currentAngle + Mathf.Sign(angleDiff) * Mathf.Min(Mathf.Abs(angleDiff), step);
-                _agent.transform.rotation = Quaternion.Euler(0f, newAngle, 0f);
+                Agent.transform.rotation = Quaternion.Euler(0f, newAngle, 0f);
 
                 yield return _cachedWaitWhilePause;
             }
@@ -156,7 +165,7 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
             if (_nextPoi == null)
                 throw new NullReferenceException();
 
-            if ((_nextPoi.Position - transform.position).sqrMagnitude > _agent.stoppingDistance * _agent.stoppingDistance)
+            if ((_nextPoi.Position - transform.position).sqrMagnitude > Agent.stoppingDistance * Agent.stoppingDistance)
             {
                 _walkCoroutine = StartCoroutine(GoToNearestPoiRoutine());
             }
@@ -169,7 +178,7 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
 
         private IEnumerator GoToNearestPoiRoutine()
         {
-            _agent.SetDestination(_nextPoi.Position);
+            Agent.SetDestination(_nextPoi.Position);
             _animator.SetBool(WalkBool, true);
 
             yield return _cachedArrivedCondition;
@@ -202,7 +211,7 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
             {
                 nextPoint = _currentRoute.Dequeue();
 
-                _agent.SetDestination(nextPoint.Position);
+                Agent.SetDestination(nextPoint.Position);
                 _animator.SetBool(WalkBool, true);
 
                 yield return _cachedArrivedCondition;
@@ -257,19 +266,19 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
                     throw;
                 }
 
-                if (!NavMesh.SamplePosition(transform.position, out _, _agent.radius, NavMesh.AllAreas))
+                if (!NavMesh.SamplePosition(transform.position, out _, Agent.radius, NavMesh.AllAreas))
                     Debug.LogWarning($"{name}: too small value NAVMESH_OBSTACLE_WAIT_TIME = {NAVMESH_OBSTACLE_WAIT_TIME}");
 
-                _agent.enabled = true;
+                Agent.enabled = true;
             }
         }
 
         private void ObstacleOn()
         {
-            if (_agent.enabled)
+            if (Agent.enabled)
             {
-                _agent.ResetPath();
-                _agent.enabled = false;
+                Agent.ResetPath();
+                Agent.enabled = false;
             }
 
             _obstacle.enabled = true;

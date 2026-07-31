@@ -35,7 +35,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
         private static HeroFactory HeroFactory(DIContainer c)
             => new(c, _inputArgs);
 
-        private static Inventory CreateInventory(DIContainer _) => new(Settings.Settings.INVENTORY_CAPACITY);
+        private static Inventory CreateInventory(DIContainer _) 
+            => new(Settings.Settings.INVENTORY_CAPACITY);
 
         private static UIRoot CreateGameplayUIRoot(DIContainer c)
         {
