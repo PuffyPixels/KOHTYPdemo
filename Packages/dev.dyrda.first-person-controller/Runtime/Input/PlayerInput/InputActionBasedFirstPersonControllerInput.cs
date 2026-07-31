@@ -80,7 +80,7 @@ namespace DyrdaDev.FirstPersonController
 
             // Look:
             var smoothLookValue = new Vector2(0, 0);
-            _look = this.UpdateAsObservable()
+            _look = this.FixedUpdateAsObservable()
                 .Select(_ =>
                 {
                     var rawLookValue = _controls.Character.Look.ReadValue<Vector2>();
