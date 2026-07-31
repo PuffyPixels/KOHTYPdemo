@@ -264,7 +264,7 @@ MonoBehaviour:
   _firstHeartBeat: {fileID: 6748796532549941645}
   _secondHeartBeat: {fileID: 2630661161850440131}
   _breath: {fileID: 1500546553349140751}
-  _aura: {fileID: 1022804440164398598}
+  <Aura>k__BackingField: {fileID: 0}
 --- !u!1 &5222297483761260871
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,6 +395,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Player.Hero
   _heroStress: {fileID: 6369969952684943244}
+  _enemyMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1322777288640513539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -669,7 +672,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 60
   orthographic: 0
