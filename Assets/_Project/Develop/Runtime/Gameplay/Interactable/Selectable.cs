@@ -1,0 +1,24 @@
+using UnityEngine;
+
+namespace Assets._Project.Develop.Runtime.Gameplay.Interactable
+{
+    public abstract class Selectable : MonoBehaviour, IInteractable
+    {
+        [SerializeField]
+        private Outline _outline;
+
+        public void Select()
+        {
+            if (_outline != null)
+                _outline.enabled = true;
+        }
+
+        public void Deselect()
+        {
+            if (_outline != null)
+                _outline.enabled = false;
+        }
+
+        public abstract void Interact();
+    }
+}

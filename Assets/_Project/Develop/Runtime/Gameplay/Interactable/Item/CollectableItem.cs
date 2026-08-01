@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Item
 {
-    public class CollectableItem : MonoBehaviour, IInteractable
+    public class CollectableItem : Selectable
     {
         [SerializeField]
         private Outline _outline;
@@ -19,19 +19,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Item
             _itemsDatabase = itemsDatabase;
         }   
 
-        public void Select()
-        {
-            if (_outline != null)
-                _outline.enabled = true;
-        }
-
-        public void Deselect()
-        {
-            if (_outline != null)
-                _outline.enabled = false;
-        }
-
-        public void Interact()
+        public override void Interact()
         {
             if (_inventory.TryAdd(_itemsDatabase.GetItem(_name)))
             {

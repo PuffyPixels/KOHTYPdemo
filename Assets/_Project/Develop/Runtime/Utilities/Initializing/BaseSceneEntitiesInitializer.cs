@@ -1,5 +1,10 @@
+using Assets._Project.Develop.Runtime.Gameplay.Interactable;
+using Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator;
 using Assets._Project.Develop.Runtime.Gameplay.Interactable.Item;
 using Assets._Project.Develop.Runtime.Gameplay.Player.Inventory;
+using Assets._Project.Develop.Runtime.Infrastructure.DI;
+using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
+using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
 using System.Linq;
 using UnityEngine;
 
@@ -11,6 +16,17 @@ namespace Project.Develop.Runtime.Utilities.Initializing
         {
             GameObject.FindObjectsByType<CollectableItem>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList().
                 ForEach(x => x.Init(inventory, inventoryItemsDatabase)) ;
+        }
+
+        public static void InitElevatorPanel(SceneLoaderService sceneLoaderService, SceneSwitcherService sceneSwitcherService,
+            ICoroutinesPerformer coroutinesPerformer, DIContainer gameContainer, Transform hero)
+        {
+            ElevatorPanel panel = GameObject.FindFirstObjectByType<ElevatorPanel>();
+
+            if (panel != null)
+            {
+                panel.Init(sceneLoaderService, sceneSwitcherService, coroutinesPerformer, gameContainer, hero);
+            }
         }
     }
 }

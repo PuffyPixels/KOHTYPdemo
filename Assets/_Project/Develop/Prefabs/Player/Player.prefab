@@ -264,7 +264,7 @@ MonoBehaviour:
   _firstHeartBeat: {fileID: 6748796532549941645}
   _secondHeartBeat: {fileID: 2630661161850440131}
   _breath: {fileID: 1500546553349140751}
-  <Aura>k__BackingField: {fileID: 0}
+  <Aura>k__BackingField: {fileID: 1022804440164398598}
 --- !u!1 &5222297483761260871
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,7 +334,7 @@ GameObject:
   - component: {fileID: 2291681474256662693}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

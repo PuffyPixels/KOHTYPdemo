@@ -21,7 +21,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
 
             if (_currentElevatorPrefab != null && _currentElevatorPrefab.gameObject != null)
             {
-                Destroy(_currentElevatorPrefab.gameObject);
+                //Destroy(_currentElevatorPrefab.gameObject);
                 _currentElevatorPrefab = null;
             }
 

@@ -256,7 +256,7 @@ namespace DyrdaDev.FirstPersonController
             public MoveInputData(Vector2 move, bool jump, bool crouch)
             {
                 Move = move;
-                Jump = jump;
+                Jump = false;
                 Crouch = crouch;
             }
         }

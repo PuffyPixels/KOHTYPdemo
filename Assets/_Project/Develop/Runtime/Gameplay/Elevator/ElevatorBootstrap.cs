@@ -7,6 +7,7 @@ using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
 using Assets._Project.Develop.Runtime.Utilities.ElevatorManagment;
 using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
 using Assets._Project.Develop.Runtime.Utilities.Sound;
+using Project.Develop.Runtime.Utilities.Initializing;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -50,12 +51,12 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
 
             Scene elevatorScene = SceneManager.GetSceneByName(Scenes.Elevator);
 
-            _container.Resolve<HeroFactory>().CreateHero(_playerPrefab);
-
             if (elevatorScene.isLoaded)
             {
                 SceneManager.SetActiveScene(elevatorScene);
             }
+
+            _container.Resolve<HeroFactory>().CreateHero(_playerPrefab);
 
             yield break;
         }
@@ -69,15 +70,17 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
             _elevatorSwitchManager.AddElevator(elevatorController);
             
             _sceneSoundInstaller.InitEnvironmentSound();
+            _coroutinesPerformer.StartPerform(InitElevator());
         }
 
-        private IEnumerator UnloadEntranceAndLoadShop()
+        private IEnumerator InitElevator()
         {
-            if (SceneManager.GetSceneByName(Scenes.Entrance).isLoaded)
-                yield return _sceneLoaderService.UnloadAsync(Scenes.Entrance);
+            yield return new WaitForSeconds(0.5f);
 
-            if (!SceneManager.GetSceneByName(Scenes.Shop).isLoaded)
-                yield return _sceneSwitcherService.ProcessSwitchTo(Scenes.Shop, loadSceneMode: LoadSceneMode.Additive, sceneArgs: new ShopInputArgs(_container));
+            Hero hero = GameObject.FindFirstObjectByType<Hero>();
+            Assert.IsNotNull(hero, "Hero is null. Make sure it's was created before elevator initialization.");
+            BaseSceneEntitiesInitializer.InitElevatorPanel(_sceneLoaderService, _sceneSwitcherService,
+                _coroutinesPerformer, _container, hero.transform);
         }
 
         private IEnumerator UnloadShopAndLoadMainMenu()

@@ -8,5 +8,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Settings
         public const int INVENTORY_CAPACITY = 4;
         public const float ITEM_COLLECT_POPUP_TIME = 3f;
         public const float DROP_PRESS_DURATION = 1f;
+        public const float ELEVATOR_DOORS_OPENING_TIME = 2f;
+        public const float ELEVATOR_DOORS_CLOSING_TIME = 2f;
+        public const float ELEVATOR_MOVING_TIME = 2f;
     }
 }
