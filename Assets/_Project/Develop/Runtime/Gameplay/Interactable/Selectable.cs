@@ -9,13 +9,13 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable
 
         public virtual string InteractionDescription => Settings.Settings.SELECTABLE_INTERACTION_DESCRIPTION;
 
-        public void Select()
+        public virtual void Select()
         {
             if (_outline != null)
                 _outline.enabled = true;
         }
 
-        public void Deselect()
+        public virtual void Deselect()
         {
             if (_outline != null)
                 _outline.enabled = false;

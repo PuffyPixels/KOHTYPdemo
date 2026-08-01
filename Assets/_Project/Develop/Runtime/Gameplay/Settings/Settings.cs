@@ -14,7 +14,10 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Settings
         public const float ELEVATOR_PANEL_INTERACTION_DISTANCE = 1f;
         public const float THROW_ITEM_VECTOR_FACTOR = 0.7f;
         public const float THROW_ITEM_IMPULSE = 2f;
+        public const float DOOR_MOVING_TIME = 1f;
         public const string SELECTABLE_INTERACTION_DESCRIPTION = "Использовать";
         public const string COLLECTABLE_INTERACTION_DESCRIPTION = "Взять";
+        public const string DOOR_OPEN_INTERACTION_DESCRIPTION = "Открыть";
+        public const string DOOR_CLOSE_INTERACTION_DESCRIPTION = "Закрыть";
     }
 }
