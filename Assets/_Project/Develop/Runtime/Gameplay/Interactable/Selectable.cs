@@ -7,6 +7,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable
         [SerializeField]
         private Outline _outline;
 
+        public virtual string InteractionDescription => Settings.Settings.SELECTABLE_INTERACTION_DESCRIPTION;
+
         public void Select()
         {
             if (_outline != null)

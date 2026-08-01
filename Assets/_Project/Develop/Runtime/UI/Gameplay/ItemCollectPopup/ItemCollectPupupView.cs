@@ -1,12 +1,13 @@
+using Assets._Project.Develop.Runtime.Gameplay.Player.Inventory;
+using Assets._Project.Develop.Runtime.Gameplay.Settings;
 using Assets._Project.Develop.Runtime.UI.Core;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using Assets._Project.Develop.Runtime.Gameplay.Settings;
-using Assets._Project.Develop.Runtime.Gameplay.Player.Inventory;
-using System;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 namespace Assets._Project.Develop.Runtime.UI.Gameplay.ItemCollectPopup
 {
@@ -16,6 +17,8 @@ namespace Assets._Project.Develop.Runtime.UI.Gameplay.ItemCollectPopup
         Image _icon;
         [SerializeField]
         private TMP_Text _name;
+        [SerializeField]
+        private Sprite _failedSprite;
 
         private ItemCollectPupupPresenter _presenter;
         private CursorManager _cursorManager;
@@ -29,6 +32,7 @@ namespace Assets._Project.Develop.Runtime.UI.Gameplay.ItemCollectPopup
             _coroutinesPerformer = coroutinesPerformer;
             _presenter.ItemCollected += OnItemCollected;
             _presenter.ItemDropped += OnItemDropped;
+            _presenter.ItemFailed += OnItemFailed;
         }
 
         public void Close()
@@ -61,6 +65,12 @@ namespace Assets._Project.Develop.Runtime.UI.Gameplay.ItemCollectPopup
             _name.text = $"<color=red>бшапньемн: </color>{item.Name}";
         }
 
+        private void OnItemFailed(InventoryItem item)
+        {
+            _icon.sprite = _failedSprite;
+            _name.text = $"<color=red>хмбемрюпэ онкнм</color>";
+        }
+
         private IEnumerator ShowRoutine()
         {
             yield return _showDelay;
@@ -71,6 +81,7 @@ namespace Assets._Project.Develop.Runtime.UI.Gameplay.ItemCollectPopup
         {
             _presenter.ItemCollected -= OnItemCollected;
             _presenter.ItemDropped -= OnItemDropped;
+            _presenter.ItemFailed -= OnItemFailed;
         }
     }
 }

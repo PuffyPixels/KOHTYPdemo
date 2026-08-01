@@ -9,6 +9,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
 {
     public class InteractionHandler : MonoBehaviour
     {
+        public event Action<IInteractable> Selected;
+        public event Action Deselected;
+
         [SerializeField]
         private FirstPersonController _controller;
         [SerializeField]
@@ -41,6 +44,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
                         ResetInteractable();
                         _currentInteractable = interactable;
                         _currentInteractable.Select();
+                        Selected?.Invoke(_currentInteractable);
                     }
                 }
                 else
@@ -56,6 +60,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
             {
                 _currentInteractable.Deselect();
                 _currentInteractable = null;
+                Deselected?.Invoke();
             }
         }
 

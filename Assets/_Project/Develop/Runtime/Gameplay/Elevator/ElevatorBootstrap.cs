@@ -5,6 +5,7 @@ using Assets._Project.Develop.Runtime.Infrastructure;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
 using Assets._Project.Develop.Runtime.UI.Core;
 using Assets._Project.Develop.Runtime.UI.Gameplay;
+using Assets._Project.Develop.Runtime.UI.Gameplay.InteractClue;
 using Assets._Project.Develop.Runtime.UI.Gameplay.InventoryWidget;
 using Assets._Project.Develop.Runtime.UI.Gameplay.ItemCollectPopup;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
@@ -65,6 +66,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
             _container.Resolve<GameplayScreenPresenter>().Initialize();
             _container.Resolve<ItemCollectPupupPresenter>().Initialize();
             _container.Resolve<InventoryWidgetPresenter>().Initialize();
+            _container.Resolve<InteractCluePresenter>().Initialize();
             yield break;
         }
 

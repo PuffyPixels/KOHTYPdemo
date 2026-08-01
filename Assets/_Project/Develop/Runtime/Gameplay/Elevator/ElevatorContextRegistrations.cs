@@ -5,6 +5,7 @@ using Assets._Project.Develop.Runtime.Gameplay.Player.Inventory;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
 using Assets._Project.Develop.Runtime.UI.Core;
 using Assets._Project.Develop.Runtime.UI.Gameplay;
+using Assets._Project.Develop.Runtime.UI.Gameplay.InteractClue;
 using Assets._Project.Develop.Runtime.UI.Gameplay.InventoryWidget;
 using Assets._Project.Develop.Runtime.UI.Gameplay.ItemCollectPopup;
 using Assets._Project.Develop.Runtime.Utilities.AssetsManagment;
@@ -28,6 +29,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
             container.RegisterAsSingle(CreateInventoryItemsDatabase);
             container.RegisterAsSingle(CreateItemCollectPopupPresenter);//.NonLazy();
             container.RegisterAsSingle(CreateInventoryWidgetPresenter);//.NonLazy();
+            container.RegisterAsSingle(CreateInteractCluePresenter);
             container.RegisterAsSingle(_ => new AdditionalInputController()).NonLazy();
             container.RegisterAsSingle(HeroFactory);
             container.RegisterAsSingle(CreateGameplayPresentersFactory);
@@ -68,6 +70,10 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
         private static InventoryWidgetPresenter CreateInventoryWidgetPresenter(DIContainer c) =>
             CreateHUDWidget<InventoryWidgetPresenter, InventoryWidgetView>(c, ViewIDs.InventoryWidget,
                 v => c.Resolve<GameplayPresentersFactory>().CreateInventoryWidgetPresenter(v));
+
+        private static InteractCluePresenter CreateInteractCluePresenter(DIContainer c) =>
+            CreateHUDWidget<InteractCluePresenter, InteractClueView>(c, ViewIDs.InteractClueWidget,
+                v => c.Resolve<GameplayPresentersFactory>().CreateInteractCluePresenter(v));
 
         private static TPresenter CreateHUDWidget<TPresenter, TView>(DIContainer c, string viewID, 
             Func<TView, TPresenter> presenterCreator) 

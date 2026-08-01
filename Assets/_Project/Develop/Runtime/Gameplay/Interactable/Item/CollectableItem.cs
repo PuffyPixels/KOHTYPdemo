@@ -15,7 +15,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Item
         {
             _inventory = inventory;
             _itemsDatabase = itemsDatabase;
-        }   
+        }
+
+        public override string InteractionDescription => Settings.Settings.COLLECTABLE_INTERACTION_DESCRIPTION;
 
         public override void Interact()
         {

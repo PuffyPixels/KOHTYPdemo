@@ -12,6 +12,7 @@ namespace Assets._Project.Develop.Runtime.UI.Core
         public const string GameplayScreen = nameof(GameplayScreen);
         public const string InventoryWidget = nameof(InventoryWidget);
         public const string ItemCollectPopupWidget = nameof(ItemCollectPopupWidget);
+        public const string InteractClueWidget = nameof(InteractClueWidget);
     }
 
     public class ViewsFactory
@@ -24,6 +25,7 @@ namespace Assets._Project.Develop.Runtime.UI.Core
             {ViewIDs.GameplayScreen, "UI/Gameplay/GameplayScreenView" },
             {ViewIDs.InventoryWidget, "UI/Gameplay/InventoryWidget" },
             {ViewIDs.ItemCollectPopupWidget, "UI/Gameplay/ItemCollectPopupWidget" },
+            {ViewIDs.InteractClueWidget, "UI/Gameplay/InteractClueWidget" },
         };
 
         public ViewsFactory(ResourcesAssetsLoader resourcesAssetsLoader)
