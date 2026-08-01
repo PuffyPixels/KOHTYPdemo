@@ -6,6 +6,7 @@ using Assets._Project.Develop.Runtime.UI.Core;
 using Assets._Project.Develop.Runtime.UI.Gameplay.InteractClue;
 using Assets._Project.Develop.Runtime.UI.Gameplay.InventoryWidget;
 using Assets._Project.Develop.Runtime.UI.Gameplay.ItemCollectPopup;
+using Assets._Project.Develop.Runtime.UI.Gameplay.NotePopup;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
 using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
 using UnityEngine;
@@ -45,6 +46,11 @@ namespace Assets._Project.Develop.Runtime.UI.Gameplay
         {
             InteractionHandler interactionHandler = GameObject.FindFirstObjectByType<InteractionHandler>();
             return new InteractCluePresenter(view, interactionHandler, _container.Resolve<ICoroutinesPerformer>());
+        }
+
+        public NotePopupPresenter CreateNotePopupPresenter(NotePopupView view)
+        {
+            return new NotePopupPresenter(view, _container.Resolve<CursorManager>(), _container.Resolve<ICoroutinesPerformer>());
         }
     }
 }

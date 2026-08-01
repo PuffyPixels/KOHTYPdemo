@@ -21,8 +21,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Door
         private void Awake()
         {
             _closedAngles = transform.localEulerAngles;
-            _openFrontAngles = (transform.localRotation * Quaternion.AngleAxis(-90f, _rotateAxis)).eulerAngles;
-            _openBackAngles = (transform.localRotation * Quaternion.AngleAxis(90f, _rotateAxis)).eulerAngles;
+            _openFrontAngles = (transform.localRotation * Quaternion.AngleAxis(-_openDeltaAngle, _rotateAxis)).eulerAngles;
+            _openBackAngles = (transform.localRotation * Quaternion.AngleAxis(_openDeltaAngle, _rotateAxis)).eulerAngles;
         }
 
         public override string InteractionDescription

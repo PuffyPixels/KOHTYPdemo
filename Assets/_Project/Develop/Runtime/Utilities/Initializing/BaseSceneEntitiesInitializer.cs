@@ -1,8 +1,10 @@
 using Assets._Project.Develop.Runtime.Gameplay.Interactable;
 using Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator;
 using Assets._Project.Develop.Runtime.Gameplay.Interactable.Item;
+using Assets._Project.Develop.Runtime.Gameplay.Interactable.Note;
 using Assets._Project.Develop.Runtime.Gameplay.Player.Inventory;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
+using Assets._Project.Develop.Runtime.UI.Gameplay.NotePopup;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
 using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
 using System.Linq;
@@ -27,6 +29,12 @@ namespace Project.Develop.Runtime.Utilities.Initializing
             {
                 panel.Init(sceneLoaderService, sceneSwitcherService, coroutinesPerformer, gameContainer, hero);
             }
+        }
+
+        public static void InitNotes(NotePopupPresenter presenter)
+        {
+            GameObject.FindObjectsByType<NoteHandler>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList().
+                ForEach(x => x.Init(presenter));
         }
     }
 }
