@@ -28,6 +28,7 @@ namespace Assets._Project.Develop.Runtime.UI.Gameplay.ItemCollectPopup
             _cursorManager = cursorManager;
             _coroutinesPerformer = coroutinesPerformer;
             _presenter.ItemCollected += OnItemCollected;
+            _presenter.ItemDropped += OnItemDropped;
         }
 
         public void Close()
@@ -54,6 +55,12 @@ namespace Assets._Project.Develop.Runtime.UI.Gameplay.ItemCollectPopup
             _name.text = item.Name;
         }
 
+        private void OnItemDropped(InventoryItem item)
+        {
+            _icon.sprite = item.Icon;
+            _name.text = $"<color=red>бшапньемн: </color>{item.Name}";
+        }
+
         private IEnumerator ShowRoutine()
         {
             yield return _showDelay;
@@ -63,6 +70,7 @@ namespace Assets._Project.Develop.Runtime.UI.Gameplay.ItemCollectPopup
         public void Dispose()
         {
             _presenter.ItemCollected -= OnItemCollected;
+            _presenter.ItemDropped -= OnItemDropped;
         }
     }
 }

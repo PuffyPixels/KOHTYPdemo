@@ -9,6 +9,7 @@ namespace Assets._Project.Develop.Runtime.UI.Gameplay.ItemCollectPopup
     public class ItemCollectPupupPresenter : PopupPresenterBase
     {
         public event Action<InventoryItem> ItemCollected;
+        public event Action<InventoryItem> ItemDropped;
 
         private ItemCollectPupupView _view;
         private Inventory _inventory;
@@ -19,6 +20,7 @@ namespace Assets._Project.Develop.Runtime.UI.Gameplay.ItemCollectPopup
             _view = view;
             _inventory = inventory;
             _inventory.ItemAdded += OnItemAdded;
+            _inventory.ItemDropped += OnItemDropped;
             CloseRequest += HideOnCancel;
         }
 
@@ -27,6 +29,7 @@ namespace Assets._Project.Develop.Runtime.UI.Gameplay.ItemCollectPopup
         public override void Dispose()
         {
             _inventory.ItemAdded -= OnItemAdded;
+            _inventory.ItemDropped -= OnItemDropped;
             CloseRequest -= HideOnCancel;
             base.Dispose();
         }
@@ -36,6 +39,12 @@ namespace Assets._Project.Develop.Runtime.UI.Gameplay.ItemCollectPopup
         private void OnItemAdded(Inventory _, InventoryItem item)
         {
             ItemCollected?.Invoke(item);
+            Show();
+        }
+
+        private void OnItemDropped(Inventory _, InventoryItem item)
+        {
+            ItemDropped?.Invoke(item);
             Show();
         }
     }
