@@ -3,6 +3,10 @@ using Assets._Project.Develop.Runtime.Gameplay.Player;
 using Assets._Project.Develop.Runtime.Gameplay.Shop;
 using Assets._Project.Develop.Runtime.Infrastructure;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
+using Assets._Project.Develop.Runtime.UI.Core;
+using Assets._Project.Develop.Runtime.UI.Gameplay;
+using Assets._Project.Develop.Runtime.UI.Gameplay.InventoryWidget;
+using Assets._Project.Develop.Runtime.UI.Gameplay.ItemCollectPopup;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
 using Assets._Project.Develop.Runtime.Utilities.ElevatorManagment;
 using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
@@ -57,7 +61,10 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
             }
 
             _container.Resolve<HeroFactory>().CreateHero(_playerPrefab);
-
+            _container.Resolve<UIRoot>();
+            _container.Resolve<GameplayScreenPresenter>().Initialize();
+            _container.Resolve<ItemCollectPupupPresenter>().Initialize();
+            _container.Resolve<InventoryWidgetPresenter>().Initialize();
             yield break;
         }
 

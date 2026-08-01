@@ -22,11 +22,11 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
         {
             _inputArgs = inputArgs;
 
-            container.RegisterAsSingle(CreateGameplayUIRoot).NonLazy();
-            container.RegisterAsSingle(CreateGameplayScreenPresenter).NonLazy();
+            container.RegisterAsSingle(CreateGameplayUIRoot);//.NonLazy();
+            container.RegisterAsSingle(CreateGameplayScreenPresenter);//.NonLazy();
             container.RegisterAsSingle(CreateInventory);
-            container.RegisterAsSingle(CreateItemCollectPopupPresenter).NonLazy();
-            container.RegisterAsSingle(CreateInventoryWidgetPresenter).NonLazy();
+            container.RegisterAsSingle(CreateItemCollectPopupPresenter);//.NonLazy();
+            container.RegisterAsSingle(CreateInventoryWidgetPresenter);//.NonLazy();
             container.RegisterAsSingle(_ => new AdditionalInputController()).NonLazy();
             container.RegisterAsSingle(HeroFactory);
             container.RegisterAsSingle(CreateGameplayPresentersFactory);
