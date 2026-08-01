@@ -56,8 +56,110 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanOpener
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 81a7ac562691b23488bbdca5aa6066e4, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 81a7ac562691b23488bbdca5aa6066e4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7678485040200533319}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 81a7ac562691b23488bbdca5aa6066e4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7406945399407620374}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 81a7ac562691b23488bbdca5aa6066e4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7033375628852484131}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 81a7ac562691b23488bbdca5aa6066e4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8265356348347734543}
   m_SourcePrefab: {fileID: 100100000, guid: 81a7ac562691b23488bbdca5aa6066e4, type: 3}
+--- !u!1 &1987587387510510031 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 81a7ac562691b23488bbdca5aa6066e4, type: 3}
+  m_PrefabInstance: {fileID: 1681036606696418462}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7678485040200533319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987587387510510031}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 3
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!64 &-7406945399407620374
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987587387510510031}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2562719210547629881, guid: 81a7ac562691b23488bbdca5aa6066e4, type: 3}
+--- !u!114 &7033375628852484131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987587387510510031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: def26e9487ee5434f8c99d3f6c84138a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Interactable.Item.CollectableItem
+  _outline: {fileID: 7678485040200533319}
+  _name: "\u041A\u043E\u043D\u0441\u0435\u0440\u0432\u043D\u044B\u0439 \u043D\u043E\u0436"
+--- !u!54 &-8265356348347734543
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987587387510510031}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

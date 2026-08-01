@@ -56,8 +56,109 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ball
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3e2f2f1ef3b644f42a95c18dfb4d56ff, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3e2f2f1ef3b644f42a95c18dfb4d56ff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4010715533999365688}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3e2f2f1ef3b644f42a95c18dfb4d56ff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7414088584785068267}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3e2f2f1ef3b644f42a95c18dfb4d56ff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3317035753525075448}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3e2f2f1ef3b644f42a95c18dfb4d56ff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -525387245043915176}
   m_SourcePrefab: {fileID: 100100000, guid: 3e2f2f1ef3b644f42a95c18dfb4d56ff, type: 3}
+--- !u!1 &4286714236634779735 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3e2f2f1ef3b644f42a95c18dfb4d56ff, type: 3}
+  m_PrefabInstance: {fileID: 4016118172170382598}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-4010715533999365688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4286714236634779735}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 3
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!135 &7414088584785068267
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4286714236634779735}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.0013058949
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3317035753525075448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4286714236634779735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: def26e9487ee5434f8c99d3f6c84138a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Interactable.Item.CollectableItem
+  _outline: {fileID: -4010715533999365688}
+  _name: "\u041C\u044F\u0447"
+--- !u!54 &-525387245043915176
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4286714236634779735}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

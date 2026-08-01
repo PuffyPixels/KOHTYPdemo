@@ -6,8 +6,6 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Item
     public class CollectableItem : Selectable
     {
         [SerializeField]
-        private Outline _outline;
-        [SerializeField]
         private string _name;
 
         private Inventory _inventory;

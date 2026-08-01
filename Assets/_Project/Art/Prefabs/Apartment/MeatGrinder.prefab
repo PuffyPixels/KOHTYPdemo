@@ -56,8 +56,110 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeatGrinder
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1db378c9af07cb944959b848eecc048f, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1db378c9af07cb944959b848eecc048f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4697284489495553746}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1db378c9af07cb944959b848eecc048f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6235087744998341770}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1db378c9af07cb944959b848eecc048f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3487320959708228043}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1db378c9af07cb944959b848eecc048f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8248612136538356959}
   m_SourcePrefab: {fileID: 100100000, guid: 1db378c9af07cb944959b848eecc048f, type: 3}
+--- !u!1 &6358199509552703400 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1db378c9af07cb944959b848eecc048f, type: 3}
+  m_PrefabInstance: {fileID: 6124250173011827449}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4697284489495553746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6358199509552703400}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 3
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!64 &6235087744998341770
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6358199509552703400}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6218795163378847358, guid: 1db378c9af07cb944959b848eecc048f, type: 3}
+--- !u!114 &-3487320959708228043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6358199509552703400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: def26e9487ee5434f8c99d3f6c84138a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Interactable.Item.CollectableItem
+  _outline: {fileID: 4697284489495553746}
+  _name: "\u041C\u044F\u0441\u043E\u0440\u0443\u0431\u043A\u0430"
+--- !u!54 &8248612136538356959
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6358199509552703400}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
