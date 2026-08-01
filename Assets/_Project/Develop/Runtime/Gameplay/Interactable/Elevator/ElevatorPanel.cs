@@ -18,6 +18,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator
         private DIContainer _gameContainer;
         private Transform _hero;
 
+        public override float InteractionDistance => Settings.Settings.ELEVATOR_PANEL_INTERACTION_DISTANCE;
+
         public void Init(SceneLoaderService sceneLoaderService, SceneSwitcherService sceneSwitcherService,
             ICoroutinesPerformer coroutinesPerformer, DIContainer gameContainer, Transform hero)
         {

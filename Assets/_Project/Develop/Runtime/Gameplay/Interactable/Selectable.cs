@@ -19,6 +19,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable
                 _outline.enabled = false;
         }
 
+        public virtual float InteractionDistance => Settings.Settings.BASE_INTERACTION_DISTANCE;
+
         public abstract void Interact();
     }
 }

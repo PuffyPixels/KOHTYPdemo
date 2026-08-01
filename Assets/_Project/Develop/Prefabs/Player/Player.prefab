@@ -417,7 +417,7 @@ MonoBehaviour:
   strideLength: 4.5
   crouchDelta: 0.5
   stickToGroundForceMagnitude: 5
-  minViewAngle: -60
+  minViewAngle: -80
   maxViewAngle: 60
 --- !u!114 &886113709261315353
 MonoBehaviour:
