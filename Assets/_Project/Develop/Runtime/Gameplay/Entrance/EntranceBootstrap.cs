@@ -1,4 +1,5 @@
 using Assets._Project.Develop.Runtime.Gameplay.Elevator;
+using Assets._Project.Develop.Runtime.Gameplay.Player.Inventory;
 using Assets._Project.Develop.Runtime.Infrastructure;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
@@ -14,6 +15,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Entrance
     public class EntranceBootstrap : SceneBootstrap
     {
         [SerializeField] Transform _playerSpawnPoint;
+        [SerializeField] InventoryItemsDatabase _itemsDatabase;
 
         private DIContainer _container;
         private SceneSwitcherService _sceneSwitcherService;
@@ -51,7 +53,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Entrance
             yield return _sceneSwitcherService.ProcessSwitchTo(
                 Scenes.Elevator,
                 loadSceneMode: LoadSceneMode.Additive,
-                sceneArgs: new ElevatorInputArgs(_playerSpawnPoint),
+                sceneArgs: new ElevatorInputArgs(_playerSpawnPoint, _itemsDatabase),
                 callback: () => isElevatorSceneReady = true);
 
             yield return new WaitWhile(() => isElevatorSceneReady == false);

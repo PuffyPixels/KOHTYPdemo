@@ -25,6 +25,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
             container.RegisterAsSingle(CreateGameplayUIRoot);//.NonLazy();
             container.RegisterAsSingle(CreateGameplayScreenPresenter);//.NonLazy();
             container.RegisterAsSingle(CreateInventory);
+            container.RegisterAsSingle(CreateInventoryItemsDatabase);
             container.RegisterAsSingle(CreateItemCollectPopupPresenter);//.NonLazy();
             container.RegisterAsSingle(CreateInventoryWidgetPresenter);//.NonLazy();
             container.RegisterAsSingle(_ => new AdditionalInputController()).NonLazy();
@@ -37,6 +38,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
 
         private static Inventory CreateInventory(DIContainer _) 
             => new(Settings.Settings.INVENTORY_CAPACITY);
+
+        private static InventoryItemsDatabase CreateInventoryItemsDatabase(DIContainer _) =>
+            _inputArgs.ItemsDatabase;
 
         private static UIRoot CreateGameplayUIRoot(DIContainer c)
         {

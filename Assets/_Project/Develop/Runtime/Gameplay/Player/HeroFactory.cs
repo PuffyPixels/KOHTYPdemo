@@ -1,15 +1,17 @@
 ﻿using Assets._Project.Develop.Runtime.Gameplay.Elevator;
+using Assets._Project.Develop.Runtime.Gameplay.Player.Inventory;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
 using Assets._Project.Develop.Runtime.Utilities.Sound;
 using Assets._Project.Develop.Runtime.Utilities.StressSystem;
 using Assets._Project.Develop.Runtime.Utilities.Timers;
+using System;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace Assets._Project.Develop.Runtime.Gameplay.Player
 {
-    public class HeroFactory
+    public class HeroFactory : IDisposable
     {
         private const float SECOND = 1f;
         private const float PULSE_BPM_MIN = 70f;
@@ -20,6 +22,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
 
         private readonly DIContainer _container;
         private readonly SceneSoundInstaller _sceneSoundInstaller;
+        private ItemThrower _itemThrower;
 
         public HeroFactory(
             DIContainer container, 
@@ -42,6 +45,13 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
             Hero hero = Object.Instantiate(heroPrefab, _heroPosition, _heroRotation);
             hero.Init(stress, pulse);
             _sceneSoundInstaller.InitFootsteps(hero.transform);
+            _itemThrower = new(_container.Resolve<Inventory.Inventory>(),
+                _container.Resolve<InventoryItemsDatabase>(), hero.transform);
+        }
+
+        public void Dispose()
+        {
+            _itemThrower?.Dispose();
         }
     }
 }
