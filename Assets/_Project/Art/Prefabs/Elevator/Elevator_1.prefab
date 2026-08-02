@@ -906,9 +906,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Elevator_1
       objectReference: {fileID: 0}
+    - target: {fileID: 953888479676261813, guid: 8cc101cd6e77a1f4c9da1870791ac244, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.265272
+      objectReference: {fileID: 0}
     - target: {fileID: 3166799232886824355, guid: 8cc101cd6e77a1f4c9da1870791ac244, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5689783118701016317, guid: 8cc101cd6e77a1f4c9da1870791ac244, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.256
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1036,7 +1044,7 @@ MonoBehaviour:
   _rightDoor: {fileID: 2123511468042608501}
   _closeOffset: -0.78106
   _exitBlock: {fileID: 8278176939130886511}
-  _isOpened: 1
+  _isOpened: 0
   _targetPositionY: 15
   _doorsImage: {fileID: 4342154264087106492}
   _wall: {fileID: 985836817367632929}

@@ -26,10 +26,20 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator
 
         private void Awake()
         {
-            _openLeftX = _leftDoor.localPosition.x;
-            _openRightX = _rightDoor.localPosition.x;
-            _closeLeftX = _openLeftX - _closeOffset;
-            _closeRightX = _openRightX + _closeOffset;
+            if (_isOpened)
+            {
+                _openLeftX = _leftDoor.localPosition.x;
+                _openRightX = _rightDoor.localPosition.x;
+                _closeLeftX = _openLeftX - _closeOffset;
+                _closeRightX = _openRightX + _closeOffset;
+            }
+            else
+            {
+                _closeLeftX = _leftDoor.localPosition.x;
+                _closeRightX = _rightDoor.localPosition.x;
+                _openLeftX = _closeLeftX + _closeOffset;
+                _openRightX = _closeRightX - _closeOffset;
+            }
         }
 
         public IEnumerator OpenDoors()
@@ -71,6 +81,17 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator
             yield return new WaitUntil(() => !_isPlayerInside && !renderer.isVisible);
             renderer.material = _doorsImageMaterial;
             _wall.SetActive(true);
+        }
+
+        public void Call()
+        {
+            StartCoroutine(CallRoutine());
+        }
+
+        private IEnumerator CallRoutine()
+        {
+            yield return new WaitForSeconds(Settings.Settings.ELEVATOR_CALLING_TIME);
+            yield return OpenDoors();
         }
 
         private void OnTriggerEnter(Collider other)

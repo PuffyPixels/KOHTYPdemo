@@ -10,6 +10,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Settings
         public const float DROP_PRESS_DURATION = 1f;
         public const float ELEVATOR_DOORS_OPENING_TIME = 2f;
         public const float ELEVATOR_DOORS_CLOSING_TIME = 2f;
+        public const float ELEVATOR_CALLING_TIME = 1f;
         public const float ELEVATOR_MOVING_TIME = 2f;
         public const float ELEVATOR_PANEL_INTERACTION_DISTANCE = 1f;
         public const float THROW_ITEM_VECTOR_FACTOR = 0.7f;

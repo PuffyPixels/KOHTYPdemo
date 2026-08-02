@@ -92,6 +92,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
             Assert.IsNotNull(hero, "Hero is null. Make sure it's was created before elevator initialization.");
             BaseSceneEntitiesInitializer.InitElevatorPanel(_sceneLoaderService, _sceneSwitcherService,
                 _coroutinesPerformer, _container, hero.transform);
+            BaseSceneEntitiesInitializer.InitElevatorCallButton();
         }
 
         private IEnumerator UnloadShopAndLoadMainMenu()

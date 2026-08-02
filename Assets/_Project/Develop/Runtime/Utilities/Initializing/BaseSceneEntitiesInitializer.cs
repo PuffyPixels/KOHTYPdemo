@@ -32,6 +32,17 @@ namespace Project.Develop.Runtime.Utilities.Initializing
             }
         }
 
+        public static void InitElevatorCallButton()
+        {
+            ElevatorHandler handler = GameObject.FindFirstObjectByType<ElevatorHandler>();
+            ElevatorCallButton button = GameObject.FindFirstObjectByType<ElevatorCallButton>();
+
+            if (handler != null && button != null)
+            {
+                button.Init(handler);
+            }
+        }
+
         public static void InitNotes(NotePopupPresenter presenter)
         {
             GameObject.FindObjectsByType<NoteHandler>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList().
