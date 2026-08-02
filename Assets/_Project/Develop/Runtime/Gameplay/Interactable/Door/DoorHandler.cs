@@ -12,7 +12,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Door
         [SerializeField]
         private float _openDeltaAngle = 90f;
 
-        private bool _isOpen;
+        public bool IsOpen { get; private set; }
+
         private DoorSideHandler _currentPush;
         private Vector3 _closedAngles;
         private Vector3 _openFrontAngles, _openBackAngles;
@@ -32,7 +33,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Door
                 if (_isMoving)
                     return string.Empty;
 
-                return _isOpen ? Settings.Settings.DOOR_CLOSE_INTERACTION_DESCRIPTION : 
+                return IsOpen ? Settings.Settings.DOOR_CLOSE_INTERACTION_DESCRIPTION : 
                     Settings.Settings.DOOR_OPEN_INTERACTION_DESCRIPTION;
             }
         }
@@ -47,7 +48,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Door
             if (_isMoving)
                 return;
 
-            if (_isOpen)
+            if (IsOpen)
                 Move(_closedAngles, false);
             else
                 Move(_currentPush == _frontSideHandler ? _openFrontAngles : _openBackAngles, true);
@@ -61,7 +62,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Door
 
             transform.DOLocalRotate(target, Settings.Settings.DOOR_MOVING_TIME).OnComplete(() =>
                 {
-                    _isOpen = isOpening;
+                    IsOpen = isOpening;
                     _isMoving = false;
                     _frontSideHandler.SetDoorReady(true);
                     _backSideHandler.SetDoorReady(true);
