@@ -1,4 +1,5 @@
 using Assets._Project.Develop.Runtime.Gameplay.Interactable;
+using Assets._Project.Develop.Runtime.Gameplay.Interactable.Door;
 using Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator;
 using Assets._Project.Develop.Runtime.Gameplay.Interactable.Item;
 using Assets._Project.Develop.Runtime.Gameplay.Interactable.Note;
@@ -35,6 +36,12 @@ namespace Project.Develop.Runtime.Utilities.Initializing
         {
             GameObject.FindObjectsByType<NoteHandler>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList().
                 ForEach(x => x.Init(presenter));
+        }
+
+        public static void InitLockedDoors(Inventory inventory)
+        {
+            GameObject.FindObjectsByType<LockedDoorHandler>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList().
+                ForEach(x => x.Init(inventory));
         }
     }
 }

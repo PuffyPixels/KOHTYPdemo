@@ -19,6 +19,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Settings
         public const string COLLECTABLE_INTERACTION_DESCRIPTION = "Взять";
         public const string DOOR_OPEN_INTERACTION_DESCRIPTION = "Открыть";
         public const string DOOR_CLOSE_INTERACTION_DESCRIPTION = "Закрыть";
+        public const string DOOR_LOCKED_INTERACTION_DESCRIPTION = "Нужен ключ";
         public const string NOTE_INTERACTION_DESCRIPTION = "Читать";
     }
 }
