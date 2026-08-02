@@ -1,3 +1,4 @@
+using Assets._Project.Develop.Runtime.Gameplay.Player.Inventory;
 using Assets._Project.Develop.Runtime.UI.Core;
 using Assets._Project.Develop.Runtime.UI.Gameplay.NotePopup;
 using UnityEngine;
@@ -7,16 +8,23 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Note
     public class NoteHandler : Selectable
     {
         [SerializeField]
-        private Sprite _noteImage;
-        [SerializeField]
-        private string _noteText;
+        private string _noteName;
 
         private NotePopupPresenter _presenter;
+        private InventoryItem _noteItem;
 
         public override string InteractionDescription => Settings.Settings.NOTE_INTERACTION_DESCRIPTION;
 
-        public void Init(NotePopupPresenter presenter)
+        public void Init(InventoryItemsDatabase itemsDatabase, NotePopupPresenter presenter)
         {
+            _noteItem = itemsDatabase.GetItem(_noteName);
+
+            if (_noteItem == null)
+            {
+                Debug.LogWarning($"{gameObject.name} note has no inventory item.");
+                Destroy(this);
+            }
+
             _presenter = presenter;
             _presenter.CloseRequest += OnClosed;
         }
@@ -24,7 +32,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Note
         public override void Interact()
         {
             Deselect();
-            _presenter.ShowNote(_noteImage, _noteText);
+            _presenter.ShowNote(_noteItem);
         }
 
         private void OnDestroy()

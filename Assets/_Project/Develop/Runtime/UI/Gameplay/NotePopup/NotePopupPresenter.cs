@@ -1,3 +1,4 @@
+using Assets._Project.Develop.Runtime.Gameplay.Player.Inventory;
 using Assets._Project.Develop.Runtime.UI.Core;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
 using System;
@@ -18,9 +19,9 @@ namespace Assets._Project.Develop.Runtime.UI.Gameplay.NotePopup
 
         protected override PopupViewBase PopupView => _view;
 
-        public void ShowNote(Sprite image, string text)
+        public void ShowNote(InventoryItem item)
         {
-            _view.SetNote(image, text);
+            _view.SetNote(item.Icon, item.Description);
             CloseRequest += OnClosed;
             Show();
         }

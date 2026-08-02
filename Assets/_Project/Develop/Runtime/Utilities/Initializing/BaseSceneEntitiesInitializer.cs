@@ -43,10 +43,10 @@ namespace Project.Develop.Runtime.Utilities.Initializing
             }
         }
 
-        public static void InitNotes(NotePopupPresenter presenter)
+        public static void InitNotes(InventoryItemsDatabase itemsDatabase, NotePopupPresenter presenter)
         {
             GameObject.FindObjectsByType<NoteHandler>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList().
-                ForEach(x => x.Init(presenter));
+                ForEach(x => x.Init(itemsDatabase, presenter));
         }
 
         public static void InitLockedDoors(Inventory inventory)

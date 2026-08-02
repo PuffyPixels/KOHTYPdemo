@@ -14,6 +14,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player.Inventory
 
         public InventoryItem GetItem(string name) => _items.FirstOrDefault(x => x.Name.Equals(name));
 
+        public IReadOnlyList<InventoryItem> Items => _items;
+
         public IEnumerator<InventoryItem> GetEnumerator()
         {
             foreach (var item in _items)
