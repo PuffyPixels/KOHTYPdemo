@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Loading
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a3a0aebdef32f7647b60c65e5183a0fb, type: 2}
+  m_sharedMaterial: {fileID: 7635799793342371345, guid: a3a0aebdef32f7647b60c65e5183a0fb, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 144
-  m_fontStyle: 17
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -190,6 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6adc4a47b27ab694089a1265b66dabd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Utilities.LoadingScreen.StandardLoadingScreen
+  _startGameSound: {fileID: 8300000, guid: 573707d075e77914a93f9bb43587b5c1, type: 3}
 --- !u!223 &4260404959392203695
 Canvas:
   m_ObjectHideFlags: 0
@@ -211,7 +212,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1000
+  m_SortingOrder: 32000
   m_TargetDisplay: 0
 --- !u!114 &3846984944157327768
 MonoBehaviour:

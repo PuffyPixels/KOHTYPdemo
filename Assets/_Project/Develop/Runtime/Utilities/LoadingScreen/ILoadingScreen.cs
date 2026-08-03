@@ -5,5 +5,7 @@
         bool IsShown { get; }
         void Show();
         void Hide();
+        void PlayLoadingSound();
+        float GetSoundDuration();
     }
 }

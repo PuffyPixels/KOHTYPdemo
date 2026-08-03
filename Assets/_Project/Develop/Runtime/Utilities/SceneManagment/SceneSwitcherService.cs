@@ -50,13 +50,24 @@ namespace Assets._Project.Develop.Runtime.Utilities.SceneManagment
 
             _isLoading = true;
 
+            float waitUntilSoundEnd = 0;
+            float startLoadTime = Time.time;
+
             if (loadSceneMode == LoadSceneMode.Single && !isSkipFade)
             {
+                if (sceneName == Scenes.Entrance)
+                {
+                    _loadingScreen.PlayLoadingSound();
+                    waitUntilSoundEnd = _loadingScreen.GetSoundDuration();
+                }
+
                 bool fadeCompleted = false;
                 _fader.StopFade();
                 _fader.FadeIn(fadeDuration, () => fadeCompleted = true);
 
                 yield return new WaitWhile(() => fadeCompleted == false);
+
+                _loadingScreen.Show();
 
                 _currentSceneContainer?.Dispose();
             }
@@ -74,6 +85,11 @@ namespace Assets._Project.Develop.Runtime.Utilities.SceneManagment
 
             if (loadSceneMode == LoadSceneMode.Single)
             {
+                if (sceneName == Scenes.Entrance)
+                    yield return new WaitForSeconds(waitUntilSoundEnd - (Time.time - startLoadTime));
+
+                _loadingScreen.Hide();
+
                 _fader.FadeOut(fadeDuration);
             }
 
