@@ -1,5 +1,4 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant;
-using Assets._Project.Develop.Runtime.Utilities.Sound;
+﻿using Assets._Project.Develop.Runtime.Utilities.Sound;
 using Assets._Project.Develop.Runtime.Utilities.StressSystem;
 using DG.Tweening;
 using UnityEngine;
@@ -22,6 +21,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
         
         private Stress _stress;
         private Pulse _pulse;
+        private StressState _currentStress;
 
         private Tween _vignetteTween;
         private float _vignetteBeatAlpha = 0.2f;
@@ -33,7 +33,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
         {
             Assert.IsNotNull(_stressVignette);
             Assert.IsNotNull(_firstHeartBeat);
-            Assert.IsNotNull(_secondHeartBeat);
+            //Assert.IsNotNull(_secondHeartBeat);
             Assert.IsNotNull(_breath);
             Assert.IsNotNull(Aura);
         }
@@ -46,7 +46,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
 
             _pulse = pulse;
             _pulse.FirstBpm += OnFirstBpm;
-            _pulse.SecondBpm += OnSecondBpm;
+            //_pulse.SecondBpm += OnSecondBpm;
         }
 
         private void Update()
@@ -73,11 +73,14 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
 
         private void OnStressStateChanged(StressState stressState)
         {
-            SetBreathVolume(stressState);
+            _currentStress = stressState;
 
-            InPanic = stressState == StressState.Panic;
+            InPanic = _currentStress == StressState.Panic;
 
-            _vignetteAlpha = GetAlpha(stressState);
+            float volume = GetVolumeByStress(_currentStress);
+            _breath.FadeVolume(volume);
+
+            _vignetteAlpha = GetAlpha(_currentStress);
             _stressVignette.color = new(_stressVignette.color.r, _stressVignette.color.g, _stressVignette.color.b, _vignetteAlpha);
         }
 
@@ -115,21 +118,19 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
 
         private void HeartBeat(EnvironmentSound heartBeat)
         {
-            heartBeat.PlaySound();
+            float volume = GetVolumeByStress(_currentStress);
+            heartBeat.PlaySound(volume);
         }
 
-        private void SetBreathVolume(StressState stressState)
+        private float GetVolumeByStress(StressState stressState)
         {
-            float volume = stressState switch
+            return stressState switch
             {
                 StressState.Troubled => 0.2f,
                 StressState.Scared => 0.5f,
                 StressState.Panic => 1f,
                 _ => 0f
             };
-
-            _breath.FadeVolume(volume);
-
         }
 
         private float GetAlpha(StressState stressState)
@@ -153,7 +154,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
             _stress = null;
 
             _pulse.FirstBpm -= OnFirstBpm;
-            _pulse.SecondBpm -= OnSecondBpm;
+            //_pulse.SecondBpm -= OnSecondBpm;
             _pulse.Dispose();
             _pulse = null;
         }

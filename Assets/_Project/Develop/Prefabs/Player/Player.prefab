@@ -132,10 +132,10 @@ MonoBehaviour:
   _shouldPlayLooped: 1
   _isOwned: 1
   _is2D: 1
-  _audioClip: {fileID: 0}
+  _audioClip: {fileID: 8300000, guid: 149c7f9f9f5cdac4199c24b1ad29711b, type: 3}
   _soundInterval: -1
   _playSoundChance: 0
-  _volume: 1
+  _volume: 0
   _maxDistance: 17
 --- !u!1 &4522292239039190261
 GameObject:
@@ -315,7 +315,7 @@ MonoBehaviour:
   _audioClip: {fileID: 0}
   _soundInterval: -1
   _playSoundChance: 0
-  _volume: 1
+  _volume: 0
   _maxDistance: 17
 --- !u!1 &6009456359492663396
 GameObject:
@@ -518,10 +518,10 @@ MonoBehaviour:
   _shouldPlayLooped: 0
   _isOwned: 1
   _is2D: 1
-  _audioClip: {fileID: 8300000, guid: a73c656c1401a2a42bb0ba0b1aea7040, type: 3}
+  _audioClip: {fileID: 8300000, guid: d646703dc19871b4b95086fe76503f38, type: 3}
   _soundInterval: -1
   _playSoundChance: 0
-  _volume: 1
+  _volume: 0
   _maxDistance: 17
 --- !u!1 &8333495331287752187
 GameObject:

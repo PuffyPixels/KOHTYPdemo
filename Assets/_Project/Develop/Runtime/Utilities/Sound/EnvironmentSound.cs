@@ -76,11 +76,16 @@ namespace Assets._Project.Develop.Runtime.Utilities.Sound
         /// </summary>
         public void PlaySound()
         {
+            PlaySound(_volume);
+        }
+
+        public void PlaySound(float newVolume)
+        {
             Assert.IsNotNull(_soundsManager);
 
             _soundsManager.PlaySound(
                 _audioClip,
-                volume: _volume,
+                volume: newVolume,
                 maxDistance: _maxDistance,
                 spawnPosition: transform,
                 isLooped: _shouldPlayLooped,
