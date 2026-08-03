@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Assertions;
 using Random = UnityEngine.Random;
 
 namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
@@ -17,7 +18,7 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
 
         protected readonly int WalkBool = Animator.StringToHash("isWalk");
 
-        [SerializeField] private RouteService _routeService;
+        private RouteService _routeService;
 
         [field: SerializeField] public NavMeshAgent Agent {  get; private set; }
         [SerializeField] private NavMeshObstacle _obstacle;
@@ -40,21 +41,20 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
 
         private bool _isInited;
 
-        private void Start()
-        {
-            Init();
-            StartWalk();
-        }
-
-        private void Init()
+        public void Init(RouteService routeService)
         {
             if (_isInited)
                 return;
+
+            Assert.IsNotNull(routeService);
+            _routeService = routeService;
 
             DefaultAgentSpeed = Agent.speed;
 
             _cachedArrivedCondition = new WaitUntil(() => !Agent.pathPending && Agent.remainingDistance <= Agent.stoppingDistance);
             _isInited = true;
+
+            StartWalk();
         }
 
         public void SetSpeed(float speed)
@@ -65,8 +65,6 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
 
         public void StartWalk()
         {
-            Init();
-
             if (_nextPoi == null || _currentRoute == null)
             {
                 GoToNearestPoi();
@@ -79,7 +77,8 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
 
         public void StopWalk()
         {
-            _animator.SetBool(WalkBool, false);
+            if (_animator != null)
+                _animator.SetBool(WalkBool, false);
 
             ClearCoroutine(ref _walkCoroutine);
             ClearCoroutine(ref _lookCoroutine);
@@ -102,11 +101,14 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
         private IEnumerator GoToRoutine(Vector3 target, Action onComplete)
         {
             Agent.SetDestination(target);
-            _animator.SetBool(WalkBool, true);
+
+            if (_animator != null)
+                _animator.SetBool(WalkBool, true);
 
             yield return _cachedArrivedCondition;
 
-            _animator.SetBool(WalkBool, false);
+            if (_animator != null)
+                _animator.SetBool(WalkBool, false);
 
             onComplete?.Invoke();
         }
@@ -179,7 +181,9 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
         private IEnumerator GoToNearestPoiRoutine()
         {
             Agent.SetDestination(_nextPoi.Position);
-            _animator.SetBool(WalkBool, true);
+
+            if (_animator != null)
+                _animator.SetBool(WalkBool, true);
 
             yield return _cachedArrivedCondition;
 
@@ -212,7 +216,9 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
                 nextPoint = _currentRoute.Dequeue();
 
                 Agent.SetDestination(nextPoint.Position);
-                _animator.SetBool(WalkBool, true);
+
+                if (_animator != null)
+                    _animator.SetBool(WalkBool, true);
 
                 yield return _cachedArrivedCondition;
             }
@@ -225,13 +231,15 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
 
         private IEnumerator OnPoiReachedRoutine()
         {
-            _animator.SetBool(WalkBool, false);
+            if (_animator != null)
+                _animator.SetBool(WalkBool, false);
 
             ObstacleOn();
 
             if (_lastPoi != null)
             {
-                _animator.SetTrigger(_lastPoi.OnPoiAnimation.ToString());
+                if (_animator != null)
+                    _animator.SetTrigger(_lastPoi.OnPoiAnimation.ToString());
 
                 yield return new WaitForSeconds(Random.Range(_minDelayTimeInPoint, _maxDelayTimeInPoint) * _lastPoi.TimeModificator);
 

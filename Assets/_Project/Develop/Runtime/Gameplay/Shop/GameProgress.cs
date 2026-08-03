@@ -8,7 +8,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Shop
     public class GameProgress : IDisposable
     {
         private Inventory _inventory;
-        private List<ConsultantFacade> _consultants;
+        private List<ConsultantFacade> _consultants = new();
 
         public GameProgress(Inventory inventory)
         {
@@ -30,6 +30,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Shop
         private void OnPlayerCaptured()
         {
             _inventory.RemoveAll();
+            // респавн предметов
         }
     }
 }

@@ -10,7 +10,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant
 
         public void Kick()
         {
-            _animator.SetTrigger(KICK_TRIGGER);
+            if (_animator != null)
+                _animator.SetTrigger(KICK_TRIGGER);
         }
     }
 }

@@ -18,6 +18,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
@@ -76,8 +77,6 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
         {
             Assert.IsNotNull(elevatorController, "ElevatorController is null. Make sure it's assigned in the inspector or injected correctly.");
 
-            
-
             _elevatorSwitchManager.AddElevator(elevatorController);
             
             _sceneSoundInstaller.InitEnvironmentSound();
@@ -103,23 +102,35 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
             yield return _sceneSwitcherService.ProcessSwitchTo(Scenes.MainMenu);
         }
 
+        private IEnumerator UnloadEntranceAndLoadShopTest()
+        {
+            if (SceneManager.GetSceneByName(Scenes.Entrance).isLoaded)
+                yield return _sceneLoaderService.UnloadAsync(Scenes.Entrance);
+
+            if (!SceneManager.GetSceneByName(Scenes.Shop).isLoaded)
+                yield return _sceneSwitcherService.ProcessSwitchTo(Scenes.Shop, loadSceneMode: LoadSceneMode.Additive,
+                    sceneArgs: new ShopInputArgs(_container));
+        }
+
+
+
         private void OnDestroy()
         {
             _elevatorSwitchManager.RemoveElevator();
         }
 
         // FOR TEST = need to delete
-        //private void Update()
-        //{
-        //    if (Keyboard.current.aKey.wasPressedThisFrame)
-        //    {
-        //        _coroutinesPerformer.StartPerform(UnloadEntranceAndLoadShop());
-        //    }
+        private void Update()
+        {
+            if (Keyboard.current.iKey.wasPressedThisFrame)
+            {
+                _coroutinesPerformer.StartPerform(UnloadEntranceAndLoadShopTest());
+            }
 
-        //    if (Keyboard.current.sKey.wasPressedThisFrame)
-        //    {
-        //        _coroutinesPerformer.StartPerform(UnloadShopAndLoadMainMenu());
-        //    }
-        //}
+            if (Keyboard.current.oKey.wasPressedThisFrame)
+            {
+                _coroutinesPerformer.StartPerform(UnloadShopAndLoadMainMenu());
+            }
+        }
     }
 }

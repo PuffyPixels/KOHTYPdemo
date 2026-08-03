@@ -29,6 +29,11 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.ItemsSpawner
             Respawn(_itemsDatabase.Items);
         }
 
+        public void Respawn()
+        {
+            Respawn(_itemsDatabase.Items);
+        }
+
         public void Respawn(IReadOnlyList<InventoryItem> items)
         {
             List<SpawnPoint> freeSpawnPoints = _spawnPoints.Where(x => !x.IsBusy).ToList();

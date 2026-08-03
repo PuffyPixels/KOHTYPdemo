@@ -10,7 +10,6 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Shop
     {
         [field: SerializeField] public ConsultantFacade Prefab {  get; private set; }
         [field: SerializeField] public List<Transform> SpawnPoints { get; private set; }
-        [field: SerializeField] public Transform Parent { get; private set; }
 
         [Header("Sounds")]
         [field: SerializeField] public List<AudioClip> AnabiosisSounds { get; private set; }

@@ -2,6 +2,7 @@
 using Assets._Project.Develop.Runtime.Gameplay.Features.AI;
 using Assets._Project.Develop.Runtime.Gameplay.Shop;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
+using Assets._Project.Develop.Runtime.Utilities.NavRoute.Navigation;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -25,7 +26,6 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy
             ConsultantSettings settingsCached = settings;
 
             Assert.IsNotNull(settingsCached.Prefab);
-            Assert.IsNotNull(settingsCached.Parent);
 
             if (settingsCached.SpawnPoints.Count > 0)
             {
@@ -34,9 +34,14 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy
                     if (spawnPoint == null)
                         continue;
 
-                    ConsultantFacade newConsultant = Object.Instantiate(settingsCached.Prefab, spawnPoint.position, spawnPoint.rotation, settingsCached.Parent);
+                    ConsultantFacade newConsultant = Object.Instantiate(settingsCached.Prefab, spawnPoint.position, spawnPoint.rotation, spawnPoint);
+
+                    RouteService newRouteService = spawnPoint.GetComponentInParent<RouteService>();
+                    newConsultant.Walker.Init(newRouteService);
+
                     StateMachineBrain newConsultantBrain = _brainsFactory.CreateConsultantBrain(settingsCached, newConsultant);
                     newConsultant.Init(newConsultantBrain);
+
                     _gameProgress.AddConsultant(newConsultant);
                 }
             }

@@ -31,8 +31,6 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant.States
             _consultant.Walker.StopWalk();
             _consultant.Animator.Kick();
             _consultant.Stun();
-
-            _consultant.PlayerCaptured?.Invoke();
             
             IsCaptureComplete = true;
         }

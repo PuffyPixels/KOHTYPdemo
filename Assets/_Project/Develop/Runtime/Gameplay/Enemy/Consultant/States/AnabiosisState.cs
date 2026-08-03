@@ -31,6 +31,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant.States
 
             _consultant.Walker.Agent.isStopped = true;
             _consultant.Walker.Agent.ResetPath();
+            _consultant.Walker.StopWalk();
         }
 
         public override void Exit()
