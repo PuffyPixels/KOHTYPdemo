@@ -1,4 +1,5 @@
 ﻿using Assets._Project.Develop.Runtime.Infrastructure.DI;
+using Assets._Project.Develop.Runtime.Utilities.AudioListenerService;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
 using Assets._Project.Develop.Runtime.Utilities.LoadingScreen;
 using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
@@ -30,6 +31,9 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
 
         private IEnumerator Initialize(DIContainer container)
         {
+            ListenerService listenerService = container.Resolve<ListenerService>();
+            listenerService.Enable();
+
             ILoadingScreen loadingScreen = container.Resolve<ILoadingScreen>();
             SceneSwitcherService sceneSwitcherService = container.Resolve<SceneSwitcherService>();
 

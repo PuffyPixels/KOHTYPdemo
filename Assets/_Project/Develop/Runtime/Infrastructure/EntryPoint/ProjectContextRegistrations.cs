@@ -2,6 +2,7 @@
 using Assets._Project.Develop.Runtime.UI;
 using Assets._Project.Develop.Runtime.UI.Core;
 using Assets._Project.Develop.Runtime.Utilities.AssetsManagment;
+using Assets._Project.Develop.Runtime.Utilities.AudioListenerService;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
 using Assets._Project.Develop.Runtime.Utilities.ElevatorManagment;
 using Assets._Project.Develop.Runtime.Utilities.LoadingScreen;
@@ -34,6 +35,8 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
             container.RegisterAsSingle(CreateProjectPresentersFactory);
 
             container.RegisterAsSingle(CreateSoundsManager).NonLazy();
+
+            container.RegisterAsSingle(CreateGlobalListener).NonLazy();
 
             container.RegisterAsSingle(CreateSceneSoundInstaller);
 
@@ -86,7 +89,10 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
             StandardLoadingScreen standardLoadingScreenPrefab = resourcesAssetsLoader
                 .Load<StandardLoadingScreen>("Utilities/StandardLoadingScreen");
 
-            return Object.Instantiate(standardLoadingScreenPrefab);
+            StandardLoadingScreen standardLoadingScreen = Object.Instantiate(standardLoadingScreenPrefab);
+            standardLoadingScreen.Init(c.Resolve<SoundsManager>());
+
+            return standardLoadingScreen;
         }
         
         private static SoundsManager CreateSoundsManager(DIContainer c)
@@ -97,6 +103,16 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
                 .Load<SoundsManager>("Utilities/SoundsManager");
 
             return Object.Instantiate(soundsManagerPrefab);
+        }
+
+        private static ListenerService CreateGlobalListener(DIContainer c)
+        {
+            ResourcesAssetsLoader resourcesAssetsLoader = c.Resolve<ResourcesAssetsLoader>();
+
+            ListenerService ListenerServicePrefab = resourcesAssetsLoader
+                .Load<ListenerService>("Utilities/GlobalListener");
+
+            return Object.Instantiate(ListenerServicePrefab);
         }
 
         private static SceneSoundInstaller CreateSceneSoundInstaller(DIContainer c)

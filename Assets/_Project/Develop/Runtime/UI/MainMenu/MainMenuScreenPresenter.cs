@@ -1,6 +1,7 @@
 ﻿using Assets._Project.Develop.Runtime.UI.Core;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
 using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
+using Assets._Project.Develop.Runtime.Utilities.Sound;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ namespace Assets._Project.Develop.Runtime.UI.MainMenu
 
         private SceneSwitcherService _sceneSwitcherService;
         private ICoroutinesPerformer _coroutinesPerformer;
+        private SoundsManager _soundManager;
 
         private readonly List<IPresenter> _childPresenters = new();
 
@@ -26,11 +28,13 @@ namespace Assets._Project.Develop.Runtime.UI.MainMenu
         public MainMenuScreenPresenter(
             MainMenuScreenView screen,
             SceneSwitcherService sceneSwitcherService,
-            ICoroutinesPerformer coroutinesPerformer)
+            ICoroutinesPerformer coroutinesPerformer,
+            SoundsManager soundManager)
         {
             _screen = screen;
             _sceneSwitcherService = sceneSwitcherService;
             _coroutinesPerformer = coroutinesPerformer;
+            _soundManager = soundManager;
         }
 
         public void Initialize()
@@ -39,6 +43,11 @@ namespace Assets._Project.Develop.Runtime.UI.MainMenu
             _screen.StartNewGameButtonView.Click += OnStartNewGameButtonClicked;
             _screen.OptionsButtonView.Click += OnOptionsButtonClicked;
             _screen.CloseGameButtonView.Click += OnCloseGameButtonClicked;
+
+            _screen.ContinueGameButtonView.Selected += OnSelected;
+            _screen.StartNewGameButtonView.Selected += OnSelected;
+            _screen.OptionsButtonView.Selected += OnSelected;
+            _screen.CloseGameButtonView.Selected += OnSelected;
 
             _normal = _screen.Normal;
             _faded = _screen.Faded;
@@ -56,6 +65,11 @@ namespace Assets._Project.Develop.Runtime.UI.MainMenu
             _screen.StartNewGameButtonView.Click -= OnStartNewGameButtonClicked;
             _screen.OptionsButtonView.Click -= OnOptionsButtonClicked;
             _screen.CloseGameButtonView.Click -= OnCloseGameButtonClicked;
+
+            _screen.ContinueGameButtonView.Selected -= OnSelected;
+            _screen.StartNewGameButtonView.Selected -= OnSelected;
+            _screen.OptionsButtonView.Selected -= OnSelected;
+            _screen.CloseGameButtonView.Selected -= OnSelected;
 
             foreach (IPresenter presenter in _childPresenters)
                 presenter.Dispose();
@@ -94,8 +108,15 @@ namespace Assets._Project.Develop.Runtime.UI.MainMenu
             Application.Quit();
         }
 
+        private void OnSelected()
+        {
+            _soundManager.PlaySound(_screen.Selected, is2D: true);
+        }
+
         private void ButtonClickHandler()
         {
+            _soundManager.PlaySound(_screen.Clicked, is2D: true);
+
             _screen.ContinueGameButtonView.SetActive(false);
             _screen.StartNewGameButtonView.SetActive(false);
             _screen.OptionsButtonView.SetActive(false);

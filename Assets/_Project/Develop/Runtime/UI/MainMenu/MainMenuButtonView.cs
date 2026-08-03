@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Assets._Project.Develop.Runtime.UI.Core
+namespace Assets._Project.Develop.Runtime.UI.MainMenu
 {
     public class MainMenuButtonView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler
     {
         public event Action Click;
+        public event Action Selected;
 
         [SerializeField] private Button _button;
         [SerializeField] private TextMeshProUGUI _text;
@@ -59,6 +60,7 @@ namespace Assets._Project.Develop.Runtime.UI.Core
                 _background.sprite = _selectedBackground;
                 _text.faceColor = _selectedColor;
                 _isSelected = true;
+                Selected?.Invoke();
             }
         }
 
