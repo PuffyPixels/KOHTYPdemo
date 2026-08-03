@@ -1,7 +1,9 @@
 ﻿using Assets._Project.Develop.Runtime.Gameplay.Enemy;
 using Assets._Project.Develop.Runtime.Gameplay.Features.AI;
+using Assets._Project.Develop.Runtime.Gameplay.Interactable.ItemsSpawner;
 using Assets._Project.Develop.Runtime.Gameplay.Player.Inventory;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
+using UnityEngine;
 
 namespace Assets._Project.Develop.Runtime.Gameplay.Shop
 {
@@ -18,6 +20,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Shop
             container.RegisterAsSingle(CreateBrainsFactory);
 
             container.RegisterAsSingle(CreateGameProgress);
+
+            container.RegisterAsSingle(CreateItemsSpawner);
         }
 
         private static EnemiesFactory CreateEmeniesFactory(DIContainer c)
@@ -36,5 +40,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Shop
 
             return new(inventory);
         }
+
+        private static ItemsSpawner CreateItemsSpawner(DIContainer _) => GameObject.FindFirstObjectByType<ItemsSpawner>();
     }
 }

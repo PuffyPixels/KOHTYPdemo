@@ -1,6 +1,7 @@
 using Assets._Project.Develop.Runtime.Gameplay.Player.Inventory;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Door
 {
@@ -8,6 +9,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Door
     {
         [SerializeField]
         private string _keyName;
+
+        [SerializeField]
+        private NavMeshObstacle _obstacle;
 
         private Inventory _inventory;
         private bool _isLocked = true;
@@ -34,6 +38,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Door
                 // play opened sound
                 _inventory.Remove(item);
                 _isLocked = false;
+
+                if (_obstacle != null)
+                    Destroy(_obstacle);
             }
 
             base.Interact();

@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 2382580805514448188}
   - component: {fileID: 1788595039114001292}
   - component: {fileID: 2998178731118720933}
+  - component: {fileID: 414676774844562285}
   m_Layer: 0
   m_Name: Cube.013
   m_TagString: Untagged
@@ -126,6 +127,27 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &414676774844562285
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314792862213939560}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.015083704, y: 0.007583388, z: 0.010892959}
+  m_Center: {x: 0.00016720862, y: -0.00044163366, z: -0.00028228873}
 --- !u!1 &3145615856680863211
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,6 +879,7 @@ GameObject:
   - component: {fileID: 5899777113683361167}
   - component: {fileID: 7372361337895940650}
   - component: {fileID: 4731898761747138272}
+  - component: {fileID: 1205267301907605378}
   m_Layer: 0
   m_Name: Table 1 (1)
   m_TagString: Untagged
@@ -936,6 +959,27 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1205267301907605378
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6533571502642767669}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.014076467, y: 0.017637486, z: 0.009095401}
+  m_Center: {x: 0.0000000037467207, y: 0.000000014857203, z: 0.0006945168}
 --- !u!1 &8014062250785604067
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,6 +991,7 @@ GameObject:
   - component: {fileID: 6636087666596179383}
   - component: {fileID: 7339428932667628295}
   - component: {fileID: 6094238529946965806}
+  - component: {fileID: 8453966547376729384}
   m_Layer: 0
   m_Name: Cube.013
   m_TagString: Untagged
@@ -1026,6 +1071,27 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8453966547376729384
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8014062250785604067}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.015083704, y: 0.007680928, z: 0.010892959}
+  m_Center: {x: 0.00016721948, y: -0.0004904176, z: -0.00028228102}
 --- !u!1 &8097454769465744519
 GameObject:
   m_ObjectHideFlags: 0
@@ -1037,6 +1103,7 @@ GameObject:
   - component: {fileID: 8868749409655719485}
   - component: {fileID: 5529288997331995032}
   - component: {fileID: 7736916178968509778}
+  - component: {fileID: 6917584786987025880}
   m_Layer: 0
   m_Name: Kettle
   m_TagString: Untagged
@@ -1116,6 +1183,27 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6917584786987025880
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8097454769465744519}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.024352696, y: 0.019999998, z: 0.023925878}
+  m_Center: {x: -0.002176342, y: -0.00000012430722, z: 0.0040864823}
 --- !u!1 &8177411977835263258
 GameObject:
   m_ObjectHideFlags: 0

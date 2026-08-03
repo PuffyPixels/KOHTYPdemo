@@ -56,8 +56,109 @@ PrefabInstance:
       propertyPath: m_Name
       value: Key1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2f4e7dffd6c383c4587e22dccb56fe76, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2f4e7dffd6c383c4587e22dccb56fe76, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3332429579973821891}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2f4e7dffd6c383c4587e22dccb56fe76, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8015359476554774999}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2f4e7dffd6c383c4587e22dccb56fe76, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2194585435590962978}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2f4e7dffd6c383c4587e22dccb56fe76, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1675867571935557989}
   m_SourcePrefab: {fileID: 100100000, guid: 2f4e7dffd6c383c4587e22dccb56fe76, type: 3}
+--- !u!1 &2042901394342252448 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2f4e7dffd6c383c4587e22dccb56fe76, type: 3}
+  m_PrefabInstance: {fileID: 1195914812100883185}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3332429579973821891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042901394342252448}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 3
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &8015359476554774999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042901394342252448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: def26e9487ee5434f8c99d3f6c84138a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Interactable.Item.CollectableItem
+  _outline: {fileID: 3332429579973821891}
+  _name: "\u041A\u043B\u044E\u0447 \u043E\u0442 \u0432\u044B\u0445\u043E\u0434\u0430"
+--- !u!54 &-2194585435590962978
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042901394342252448}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1675867571935557989
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042901394342252448}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.02, y: 0.04482422, z: 0.0024160794}
+  m_Center: {x: 2.4019388e-13, y: 0.017246226, z: 2.0586734e-14}

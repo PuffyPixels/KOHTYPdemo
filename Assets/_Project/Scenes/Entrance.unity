@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Entrance.EntranceBootstrap
   _playerSpawnPoint: {fileID: 2106240703}
-  _itemsDatabase: {fileID: 0}
+  _itemsDatabase: {fileID: 11400000, guid: 5580adb3928bbd24dbea61640e2005ed, type: 2}
 --- !u!1 &687994700
 GameObject:
   m_ObjectHideFlags: 0
