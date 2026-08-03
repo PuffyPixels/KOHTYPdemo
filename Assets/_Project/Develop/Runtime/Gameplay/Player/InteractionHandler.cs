@@ -16,6 +16,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
         private FirstPersonController _controller;
         [SerializeField]
         private LayerMask _interactionLayer;
+        [SerializeField]
+        private Camera _camera;
 
         private IInteractable _currentInteractable;
         private readonly Vector3 _rayStart = new(0.5f, 0.5f, 0f);
@@ -25,6 +27,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
         private void Start()
         {
             _controller.Used.Subscribe(_ => { OnUsed(); }).AddTo(this);
+            _camera = _camera != null ? _camera : Camera.main;
         }
 
         private void OnUsed()
@@ -66,7 +69,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
 
         private bool FindInteractable(out IInteractable interactable)
         {
-            Ray ray = Camera.main.ViewportPointToRay(_rayStart);
+            Ray ray = _camera.ViewportPointToRay(_rayStart);
             interactable = null;
 
             return Physics.Raycast(ray, out var hit, Settings.Settings.MAX_INTERACTION_DISTANCE, _interactionLayer) &&
