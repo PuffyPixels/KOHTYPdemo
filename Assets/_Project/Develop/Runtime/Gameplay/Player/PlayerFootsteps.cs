@@ -36,21 +36,36 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
         private void PlayFootstep()
         {
             Vector3 origin = _characterController.bounds.min + Vector3.up * 0.05f;
+
             int hitCount = Physics.RaycastNonAlloc(
-                origin,Vector3.down, _hits, _rayDistance, _groundMask, QueryTriggerInteraction.Ignore);
+                origin,
+                Vector3.down,
+                _hits,
+                _rayDistance,
+                _groundMask,
+                QueryTriggerInteraction.Ignore);
 
             if (hitCount > 0 && _hits[0].collider.TryGetComponent(out GroundSounds groundSounds))
             {
                 StepSoundData sound = groundSounds.GetStepSound();
-                _soundsManager.PlaySound(sound.Clip, lowestPitch: sound.PitchRange.x,
-                    highestPitch: sound.PitchRange.y, spawnPosition: transform,
+
+                _soundsManager.PlaySound(
+                    sound.Clip, 
+                    lowestPitch: sound.PitchRange.x,
+                    highestPitch: sound.PitchRange.y,
+                    spawnPosition: transform,
                     volume: sound.Volume);
+
                 return;
             }
 
-            _soundsManager.PlaySound(_defaultSoundData.Clip, lowestPitch: _defaultSoundData.PitchRange.x,
-                highestPitch: _defaultSoundData.PitchRange.y, spawnPosition: transform,
-                volume: _defaultSoundData.Volume);
+            if (_defaultSoundData.Clip != null)
+                _soundsManager.PlaySound(
+                    _defaultSoundData.Clip,
+                    lowestPitch: _defaultSoundData.PitchRange.x,
+                    highestPitch: _defaultSoundData.PitchRange.y,
+                    spawnPosition: transform,
+                    volume: _defaultSoundData.Volume);
         }
     }
 }
