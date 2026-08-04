@@ -30,7 +30,6 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant
         [field: SerializeField] public List<AudioClip> ChaseSounds { get; private set; }
         [field: SerializeField] public AudioClip CaptureSound { get; private set; }
 
-
         private StateMachineBrain _brain;
 
         public Hero Target { get; private set; } = null;
@@ -44,10 +43,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant
             Assert.IsNotNull(_head);
             Assert.IsNotNull(_walker);
             Assert.IsNotNull(_animatorController);
-        }
 
-        private void Start()
-        {
             _head.Blind += OnBlind;
             _agentWalkSpeed = _walker.Agent.speed;
         }

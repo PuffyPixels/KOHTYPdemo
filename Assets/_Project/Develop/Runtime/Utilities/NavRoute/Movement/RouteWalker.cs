@@ -43,8 +43,6 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
 
         private bool _isInited;
 
-        public float DefaultAgentSpeed { get; private set; }
-
         public void Init(RouteService routeService)
         {
             if (_isInited)
@@ -52,8 +50,6 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
 
             Assert.IsNotNull(routeService);
             _routeService = routeService;
-
-            DefaultAgentSpeed = Agent.speed;
 
             _cachedArrivedCondition = new WaitUntil(() => !Agent.pathPending && Agent.remainingDistance <= Agent.stoppingDistance);
             _isInited = true;
