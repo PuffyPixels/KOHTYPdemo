@@ -53,7 +53,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.AI
             stateMachine.AddState(capture);
 
 
-            ICondition anabiosis_patrol = new FuncCondition(() => !_inventory.IsEmpty); // найден первый предмет
+            ICondition anabiosis_patrol = new FuncCondition(() => _inventory.IsQuestItemFinded); // найден первый предмет
             stateMachine.AddTransition(anabiosis, patrol, anabiosis_patrol);
 
             ICondition patrol_attention = new FuncCondition(() => consultant.Target != null); // частичное обнаружение началось

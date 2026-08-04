@@ -10,6 +10,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player.Inventory
         public event System.Action<Inventory, InventoryItem> ItemDropped;
 
         public bool IsEmpty { get; private set; } = true;
+        public bool IsQuestItemFinded { get; private set; } = false;
 
         private readonly List<InventoryItem> _items = new();
         public int Capacity { get; }
@@ -31,6 +32,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player.Inventory
             ItemAdded?.Invoke(this, item);
             IsEmpty = false;
 
+            if (!IsQuestItemFinded && item.Type == ItemType.Item)
+                IsQuestItemFinded = true;
+
             return true;
         }
 
@@ -41,6 +45,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player.Inventory
             _items.Clear();
 
             IsEmpty = true;
+            IsQuestItemFinded = false;
         }
 
         public void Drop(InventoryItem item) => Remove(item, ItemDropped);
