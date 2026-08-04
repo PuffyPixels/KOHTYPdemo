@@ -1,7 +1,9 @@
 using Assets._Project.Develop.Runtime.Gameplay.Enemy.Perekozhnik;
+using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
 using Assets._Project.Develop.Runtime.Utilities.ElevatorManagment;
 using Assets._Project.Develop.Runtime.Utilities.Sound;
 using DG.Tweening;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -27,7 +29,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator
         [SerializeField]
         private PerekozhnikFacade _perekozhnik;
 
-        
+        public event Action PlayerEntered, PlayerExited, DoorsOpened, DoorsClosed;
 
         private float _openLeftX, _openRightX, _closeLeftX, _closeRightX;
         private bool _isPlayerInside;
@@ -50,11 +52,11 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator
             }
         }
 
-        public void Init(SoundsManager soundManager)
+        public void Init(SoundsManager soundManager, ICoroutinesPerformer coroutinesPerformer)
         {
             Assert.IsNotNull(soundManager);
 
-            _perekozhnik.Init(soundManager);
+            _perekozhnik.Init(soundManager, coroutinesPerformer);
         }
 
         public IEnumerator OpenDoors()
@@ -65,6 +67,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator
                 _rightDoor.DOLocalMoveX(_openRightX, Settings.Settings.ELEVATOR_DOORS_OPENING_TIME);
                 _isOpened = true;
                 _exitBlock.SetActive(false);
+                DoorsOpened?.Invoke();
                 yield return new WaitForSeconds(Settings.Settings.ELEVATOR_DOORS_OPENING_TIME);
             }
         }
@@ -77,6 +80,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator
                 _rightDoor.DOLocalMoveX(_closeRightX, Settings.Settings.ELEVATOR_DOORS_CLOSING_TIME);
                 _isOpened = false;
                 _exitBlock.SetActive(true);
+                DoorsClosed?.Invoke();
                 yield return new WaitForSeconds(Settings.Settings.ELEVATOR_DOORS_CLOSING_TIME);
             }
         }
@@ -94,8 +98,11 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator
         {
             Renderer renderer = _doorsImage.GetComponent<Renderer>();
             yield return new WaitUntil(() => !_isPlayerInside && !renderer.isVisible);
+            _doorsImage.transform.parent = transform.parent;
             renderer.material = _doorsImageMaterial;
+            _wall.transform.parent = transform.parent;
             _wall.SetActive(true);
+            Destroy(gameObject);
         }
 
         public void Call()
@@ -114,6 +121,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator
             if (other.gameObject.tag == "Player")
             {
                 _isPlayerInside = true;
+                PlayerEntered?.Invoke();
             }
         }
 
@@ -122,6 +130,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator
             if (other.gameObject.tag == "Player")
             {
                 _isPlayerInside = false;
+                PlayerExited?.Invoke();
             }
         }
     }

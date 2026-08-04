@@ -72,7 +72,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
             _container.Resolve<InteractCluePresenter>().Initialize();
             _container.Resolve<NotePopupPresenter>().Initialize();
 
-            elevatorController.Init(_container.Resolve<SoundsManager>());
+            elevatorController.Init(_container.Resolve<SoundsManager>(), _container.Resolve<ICoroutinesPerformer>());
 
             yield break;
         }

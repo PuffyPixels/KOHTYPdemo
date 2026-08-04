@@ -22,5 +22,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Settings
         public const string DOOR_CLOSE_INTERACTION_DESCRIPTION = "Закрыть";
         public const string DOOR_LOCKED_INTERACTION_DESCRIPTION = "Нужен ключ";
         public const string NOTE_INTERACTION_DESCRIPTION = "Читать";
+        public const float PEREKOZHNIK_TAKE_ATTENTION_TIME = 1f;
+        public const float PEREKOZHNIK_ROTATION_TIME = 0.5f;
+        public const float PEREKOZHNIK_MOVE_TIME = 1f;
+        public const float PEREKOZHNIK_STOPPING_DISTANCE = 1f;
     }
 }
