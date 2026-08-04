@@ -34,22 +34,22 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.AI
         {
             AIStateMachine stateMachine = new();
 
-            AnabiosisState anabiosis = new(consultant, settings.AnabiosisSounds, _soundsManager); // анабиос (не двигается)
+            AnabiosisState anabiosis = new(consultant, consultant.AnabiosisSounds, _soundsManager); // анабиос (не двигается)
             stateMachine.AddState(anabiosis);
 
-            PatrolState patrol = new(consultant, settings.PatrolSounds, _soundsManager); // патрулирование (патрулирует по точкам)
+            PatrolState patrol = new(consultant, consultant.PatrolSounds, _soundsManager); // патрулирование (патрулирует по точкам)
             stateMachine.AddState(patrol);
 
-            AttentionState attention = new(consultant, settings.AttentionSounds, _soundsManager); // внимание (затаился и всматривается)
+            AttentionState attention = new(consultant, consultant.AttentionSounds, _soundsManager); // внимание (затаился и всматривается)
             stateMachine.AddState(attention);
 
-            InvestigateState investigate = new(consultant, settings.InvestigateSounds, _soundsManager); // чутье (идёт в сторону игрока)
+            InvestigateState investigate = new(consultant, consultant.InvestigateSounds, _soundsManager); // чутье (идёт в сторону игрока)
             stateMachine.AddState(investigate);
 
-            ChaseState chase = new(consultant, settings.ChaseSounds, _soundsManager); // обнаружение (идёт к игроку с увеличенной скоростью)
+            ChaseState chase = new(consultant, consultant.ChaseSounds, _soundsManager); // обнаружение (идёт к игроку с увеличенной скоростью)
             stateMachine.AddState(chase);
 
-            CaptureState capture = new(consultant, settings.AnabiosisSounds, _soundsManager); // поимка (дошёл до игрока, отбирает все предметы)
+            CaptureState capture = new(consultant, consultant.AnabiosisSounds, _soundsManager); // поимка (дошёл до игрока, отбирает все предметы)
             stateMachine.AddState(capture);
 
 

@@ -37,10 +37,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy
                     ConsultantFacade newConsultant = Object.Instantiate(settingsCached.Prefab, spawnPoint.position, spawnPoint.rotation, spawnPoint);
 
                     RouteService newRouteService = spawnPoint.GetComponentInParent<RouteService>();
-                    newConsultant.Walker.Init(newRouteService);
-
                     StateMachineBrain newConsultantBrain = _brainsFactory.CreateConsultantBrain(settingsCached, newConsultant);
-                    newConsultant.Init(newConsultantBrain);
+                    newConsultant.Init(newConsultantBrain, newRouteService);
 
                     _gameProgress.AddConsultant(newConsultant);
                 }

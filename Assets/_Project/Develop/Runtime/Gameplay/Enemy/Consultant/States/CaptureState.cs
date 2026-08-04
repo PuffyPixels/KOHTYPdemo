@@ -28,8 +28,6 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant.States
 
             PlayCaptureSound(_audioClipList[0]);
 
-            _consultant.Walker.StopWalk();
-            _consultant.Animator.Kick();
             _consultant.Stun();
             
             IsCaptureComplete = true;

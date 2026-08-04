@@ -28,13 +28,13 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant.States
         public override void Enter()
         {
             base.Enter();
-            _consultant.Walker.StartWalk();
+            _consultant.Walk();
         }
 
         public override void Exit()
         {
             base.Exit();
-            _consultant.Walker.StopWalk();
+            _consultant.StopWalk();
         }
     }
 }

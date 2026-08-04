@@ -30,7 +30,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant.States
         public override void Enter()
         {
             base.Enter();
-            _consultant.Walker.StopWalk();
+            _consultant.StopWalk();
         }
 
         protected override void UpdateLogic(float deltaTime)

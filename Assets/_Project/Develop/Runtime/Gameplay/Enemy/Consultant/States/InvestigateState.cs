@@ -47,7 +47,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant.States
             if (_consultant.LastKnownPlayerPosition != Vector3.zero)
             {
                 _investigationPoint = _consultant.LastKnownPlayerPosition;
-                _consultant.Walker.GoTo(_investigationPoint, () => _hasReachedPoint = true);
+                _consultant.GoTo(_investigationPoint, () => _hasReachedPoint = true);
             }
         }
 
@@ -60,7 +60,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant.States
             {
                 _hasReachedPoint = false;
                 _investigationPoint = _consultant.LastKnownPlayerPosition;
-                _consultant.Walker.GoTo(_investigationPoint, () => _hasReachedPoint = true);
+                _consultant.GoTo(_investigationPoint, () => _hasReachedPoint = true);
                 _investigationTimer = _investigationDuration;
             }
 

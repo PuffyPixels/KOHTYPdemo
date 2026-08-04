@@ -1,4 +1,5 @@
-﻿using Assets._Project.Develop.Runtime.Utilities.NavRoute.Core;
+﻿using Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant;
+using Assets._Project.Develop.Runtime.Utilities.NavRoute.Core;
 using Assets._Project.Develop.Runtime.Utilities.NavRoute.Navigation;
 using System;
 using System.Collections;
@@ -11,22 +12,25 @@ using Random = UnityEngine.Random;
 
 namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
 {
+    public class WalkerSpeed
+    {
+        public const float CONSULTANT_RUN = 4f;
+        public const float CONSULTANT_BLINDED = 1f;
+    }
+
     public class RouteWalker : MonoBehaviour
     {
         private const float MAX_DISTANCE_TO_NAVMESH = 3f;
         private const float NAVMESH_OBSTACLE_WAIT_TIME = 0.1f;
 
-        protected readonly int WalkBool = Animator.StringToHash("isWalk");
-
-        private RouteService _routeService;
-
         [field: SerializeField] public NavMeshAgent Agent {  get; private set; }
         [SerializeField] private NavMeshObstacle _obstacle;
-        [SerializeField] private Animator _animator;
+        [SerializeField] private ConsultantAnimator _animator;
 
         [SerializeField] private float _minDelayTimeInPoint = 1f;
         [SerializeField] private float _maxDelayTimeInPoint = 5f;
 
+        private RouteService _routeService;
         private Queue<Waypoint> _currentRoute;
         private Poi _lastPoi;
         private Poi _nextPoi;
@@ -37,9 +41,9 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
         private readonly WaitWhile _cachedWaitWhilePause = new(() => Time.timeScale == 0);
         private WaitUntil _cachedArrivedCondition;
 
-        public float DefaultAgentSpeed { get; private set; }
-
         private bool _isInited;
+
+        public float DefaultAgentSpeed { get; private set; }
 
         public void Init(RouteService routeService)
         {
@@ -53,13 +57,11 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
 
             _cachedArrivedCondition = new WaitUntil(() => !Agent.pathPending && Agent.remainingDistance <= Agent.stoppingDistance);
             _isInited = true;
-
-            StartWalk();
         }
 
         public void SetSpeed(float speed)
         {
-            float newSpeed = Mathf.Clamp(speed, 0, 10);
+            float newSpeed = Mathf.Clamp(speed, 0f, 10f);
             Agent.speed = newSpeed;
         }
 
@@ -77,8 +79,7 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
 
         public void StopWalk()
         {
-            if (_animator != null)
-                _animator.SetBool(WalkBool, false);
+            _animator.StopWalk();
 
             ClearCoroutine(ref _walkCoroutine);
             ClearCoroutine(ref _lookCoroutine);
@@ -102,13 +103,11 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
         {
             Agent.SetDestination(target);
 
-            if (_animator != null)
-                _animator.SetBool(WalkBool, true);
+            _animator.Walk();
 
             yield return _cachedArrivedCondition;
 
-            if (_animator != null)
-                _animator.SetBool(WalkBool, false);
+            _animator.StopWalk();
 
             onComplete?.Invoke();
         }
@@ -182,8 +181,7 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
         {
             Agent.SetDestination(_nextPoi.Position);
 
-            if (_animator != null)
-                _animator.SetBool(WalkBool, true);
+            _animator.Walk();
 
             yield return _cachedArrivedCondition;
 
@@ -217,8 +215,7 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
 
                 Agent.SetDestination(nextPoint.Position);
 
-                if (_animator != null)
-                    _animator.SetBool(WalkBool, true);
+                _animator.Walk();
 
                 yield return _cachedArrivedCondition;
             }
@@ -231,16 +228,12 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
 
         private IEnumerator OnPoiReachedRoutine()
         {
-            if (_animator != null)
-                _animator.SetBool(WalkBool, false);
+            _animator.StopWalk();
 
             ObstacleOn();
 
             if (_lastPoi != null)
             {
-                if (_animator != null)
-                    _animator.SetTrigger(_lastPoi.OnPoiAnimation.ToString());
-
                 yield return new WaitForSeconds(Random.Range(_minDelayTimeInPoint, _maxDelayTimeInPoint) * _lastPoi.TimeModificator);
 
                 _currentRoute = _routeService.GetRandomRouteFrom(_lastPoi);

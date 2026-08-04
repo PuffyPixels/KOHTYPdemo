@@ -10,8 +10,6 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant.States
         private const float DEFAULT_SOUND_INTERVAL_MIN = 10f;
         private const float DEFAULT_SOUND_INTERVAL_MAX = 20f;
 
-        private const float CHASE_WALK_SPEED = 4f;
-
         public bool IsPlayerCaptured { get; private set; }
 
         private readonly float _detectionProgressStep = 0.2f;
@@ -37,21 +35,21 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant.States
 
             IsPlayerCaptured = false;
 
-            _consultant.Walker.SetSpeed(CHASE_WALK_SPEED);
+            _consultant.Run();
         }
 
         protected override void UpdateLogic(float deltaTime)
         {
             UpdateDetectionLevel(_detectionProgressStep, deltaTime);
 
-            _consultant.Walker.GoTo(_consultant.LastKnownPlayerPosition, () => IsPlayerCaptured = true);
+            _consultant.GoTo(_consultant.LastKnownPlayerPosition, () => IsPlayerCaptured = true);
         }
 
         public override void Exit()
         {
             base.Exit();
 
-            _consultant.Walker.SetSpeed(_consultant.Walker.DefaultAgentSpeed);
+            _consultant.StopRun();
         }
     }
 }

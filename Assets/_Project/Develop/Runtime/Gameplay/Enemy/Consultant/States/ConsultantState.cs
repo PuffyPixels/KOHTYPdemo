@@ -24,10 +24,10 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant.States
         {
             _consultant = consultant;
 
-            if (_audioClipList != null)
+            if (audioClipList != null)
                 _audioClipList = audioClipList;
 
-            if (_soundsManager != null)
+            if (soundsManager != null)
                 _soundsManager = soundsManager;
 
             if (soundsIntervalMin < 0f)
