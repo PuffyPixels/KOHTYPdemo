@@ -221,7 +221,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6093937493867026496}
-  - component: {fileID: 6369969952684943244}
   m_Layer: 0
   m_Name: Stress
   m_TagString: Untagged
@@ -248,23 +247,6 @@ Transform:
   - {fileID: 7669563938897324026}
   m_Father: {fileID: 5058823692987969025}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6369969952684943244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4624496956513998640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b458b30a784c054d832649ac1ef6038, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Player.HeroStress
-  _stressVignette: {fileID: 3166743023101939628}
-  _firstHeartBeat: {fileID: 6748796532549941645}
-  _secondHeartBeat: {fileID: 2630661161850440131}
-  _breath: {fileID: 1500546553349140751}
-  <Aura>k__BackingField: {fileID: 1022804440164398598}
 --- !u!1 &5222297483761260871
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,6 +310,7 @@ GameObject:
   - component: {fileID: 5058823692987969025}
   - component: {fileID: 7889458434731896822}
   - component: {fileID: 4876432876843404634}
+  - component: {fileID: 7284481271530246221}
   - component: {fileID: 1322777288640513539}
   - component: {fileID: 886113709261315353}
   - component: {fileID: -3098789609577436256}
@@ -394,10 +377,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8618205e8dc68284c867f76de0fadedb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Player.Hero
-  _heroStress: {fileID: 6369969952684943244}
+  _heroStress: {fileID: 7284481271530246221}
+--- !u!114 &7284481271530246221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6009456359492663396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b458b30a784c054d832649ac1ef6038, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Player.HeroStress
+  _runStressValue: 0.3
+  _crouchStressValue: 0.3
+  _stressVignette: {fileID: 3166743023101939628}
+  _firstHeartBeat: {fileID: 6748796532549941645}
+  _secondHeartBeat: {fileID: 2630661161850440131}
+  _breath: {fileID: 1500546553349140751}
+  _input: {fileID: 886113709261315353}
   _enemyMask:
     serializedVersion: 2
     m_Bits: 128
+  <Aura>k__BackingField: {fileID: 1022804440164398598}
 --- !u!114 &1322777288640513539
 MonoBehaviour:
   m_ObjectHideFlags: 0

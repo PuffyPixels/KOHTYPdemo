@@ -41,5 +41,11 @@ namespace DyrdaDev.FirstPersonController
         ///     Interaction type: continuous axes.
         /// </summary>
         public abstract IObservable<Vector2> Look { get; }
+
+        /// <summary>
+        ///     Crouch state (true = pressed, false = released).
+        ///     Interaction type: State (not event).
+        /// </summary>
+        public abstract IObservable<bool> CrouchState { get; }
     }
 }

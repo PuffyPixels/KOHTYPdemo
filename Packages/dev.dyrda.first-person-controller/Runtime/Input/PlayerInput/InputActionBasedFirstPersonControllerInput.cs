@@ -24,6 +24,9 @@ namespace DyrdaDev.FirstPersonController
         public override ReadOnlyReactiveProperty<bool> Run => _run;
         private ReadOnlyReactiveProperty<bool> _run;
 
+        public override IObservable<bool> CrouchState => _crouchState;
+        private BehaviorSubject<bool> _crouchState;
+
         public override IObservable<Vector2> Look => _look;
         private IObservable<Vector2> _look;
 
@@ -68,6 +71,11 @@ namespace DyrdaDev.FirstPersonController
             _crouch = new Subject<Unit>().AddTo(this);
             _controls.Character.Crouch.performed += context => _crouch.OnNext(Unit.Default);
             _controls.Character.Crouch.canceled += context => _crouch.OnNext(Unit.Default);
+
+            // CrouchState:
+            _crouchState = new BehaviorSubject<bool>(false);
+            _controls.Character.Crouch.performed += context => _crouchState.OnNext(true);
+            _controls.Character.Crouch.canceled += context => _crouchState.OnNext(false);
 
             // Use:
             _use = new Subject<Unit>().AddTo(this);

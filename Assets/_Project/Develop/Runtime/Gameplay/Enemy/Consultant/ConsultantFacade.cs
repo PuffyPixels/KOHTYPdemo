@@ -32,7 +32,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant
 
         private StateMachineBrain _brain;
 
-        public Hero Target { get; private set; } = null;
+        public HeroStress Target { get; private set; } = null;
 
         private Coroutine _blindCoroutine;
 
@@ -130,7 +130,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant
             _walker.Agent.speed = _agentWalkSpeed;
         }
 
-        public void DetectPlayer(Hero player)
+        public void DetectPlayer(HeroStress player)
             => Target = player;
 
         public void LostTarget()

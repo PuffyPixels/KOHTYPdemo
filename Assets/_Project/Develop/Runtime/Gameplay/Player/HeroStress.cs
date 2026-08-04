@@ -1,6 +1,9 @@
-﻿using Assets._Project.Develop.Runtime.Utilities.Sound;
+﻿using Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant;
+using Assets._Project.Develop.Runtime.Utilities.Sound;
 using Assets._Project.Develop.Runtime.Utilities.StressSystem;
 using DG.Tweening;
+using DyrdaDev.FirstPersonController;
+using UniRx;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
@@ -12,16 +15,22 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
         private const float PANIC_DETECT_RADIUS = 2.0f;
         private const float PANIC_DETECT_MULTIPLIER = 0.4f;
 
+        [SerializeField] private float _runStressValue = 0.3f;
+        [SerializeField] private float _crouchStressValue = 0.3f;
+
         [SerializeField] private Image _stressVignette;
         [SerializeField] private EnvironmentSound _firstHeartBeat;
         [SerializeField] private EnvironmentSound _secondHeartBeat;
         [SerializeField] private EnvironmentSound _breath;
+        [SerializeField] private InputActionBasedFirstPersonControllerInput _input;
+        [SerializeField] private LayerMask _enemyMask;
 
         [field: SerializeField] public SphereCollider Aura {  get; private set; }
         
         private Stress _stress;
         private Pulse _pulse;
         private StressState _currentStress;
+        private CompositeDisposable _disposables = new();
 
         private Tween _vignetteTween;
         private float _vignetteBeatAlpha = 0.2f;
@@ -36,6 +45,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
             //Assert.IsNotNull(_secondHeartBeat);
             Assert.IsNotNull(_breath);
             Assert.IsNotNull(Aura);
+            Assert.IsNotNull(_input);
         }
 
         public void Init(Stress stress, Pulse pulse)
@@ -49,9 +59,15 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
             //_pulse.SecondBpm += OnSecondBpm;
         }
 
+        private void Start()
+        {
+            SubscribeToInput();
+        }
+
         private void Update()
         {
             _pulse.Tick(Time.deltaTime);
+            GetAngryEnemyByStressAura();
         }
 
         private void OnFirstBpm()
@@ -69,6 +85,22 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
         private void OnStressChanged(float stress)
         {
             DetectAuraRadius(stress);
+        }
+
+        private void GetAngryEnemyByStressAura()
+        {
+            if (InPanic)
+            {
+                Collider[] targetsInStressRadius = Physics.OverlapSphere(transform.position, Aura.radius, _enemyMask);
+
+                foreach (Collider targetCollider in targetsInStressRadius)
+                {
+                    if (!targetCollider.TryGetComponent(out ConsultantFacade consultant))
+                        continue;
+
+                    consultant.DetectPlayer(this);
+                }
+            }
         }
 
         private void OnStressStateChanged(StressState stressState)
@@ -148,6 +180,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
 
         private void OnDestroy()
         {
+            _disposables.Dispose();
+
             _stress.StressChanged -= OnStressChanged;
             _stress.StressStateChanged -= OnStressStateChanged;
             _stress.Dispose();
@@ -157,6 +191,42 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
             //_pulse.SecondBpm -= OnSecondBpm;
             _pulse.Dispose();
             _pulse = null;
+        }
+
+        private void SubscribeToInput()
+        {
+            if (_input == null || _stress == null)
+                return;
+
+            _input.Move
+                .CombineLatest(_input.Run, _input.CrouchState,
+                    (move, isRunning, isCrouching) => new { Move = move, IsRunning = isRunning, IsCrouching = isCrouching })
+                .Subscribe(data =>
+                {
+                    bool isMoving = data.Move.sqrMagnitude > 0.01f;
+
+                    bool isRunning = isMoving && data.IsRunning && !data.IsCrouching;
+
+                    if (isRunning)
+                        _stress.AddStressSource(StressSourceName.Running, _runStressValue);
+                    else
+                        _stress.RemoveStressSource(StressSourceName.Running);
+                })
+                .AddTo(_disposables);
+
+            _input.Move
+                .CombineLatest(_input.CrouchState, (move, isCrouching) => new { Move = move, IsCrouching = isCrouching })
+                .Subscribe(data =>
+                {
+                    bool isMoving = data.Move.sqrMagnitude > 0.01f;
+                    bool isCrouching = isMoving && data.IsCrouching;
+
+                    if (isCrouching)
+                        _stress.AddStressSource(StressSourceName.Crouching, _crouchStressValue);
+                    else
+                        _stress.RemoveStressSource(StressSourceName.Crouching);
+                })
+                .AddTo(_disposables);
         }
     }
 }

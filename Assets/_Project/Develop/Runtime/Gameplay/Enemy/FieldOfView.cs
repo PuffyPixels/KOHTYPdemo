@@ -42,13 +42,13 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy
             }
         }
 
-        private Hero CheckForTarget()
+        private HeroStress CheckForTarget()
         {
             Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, _viewRadius, _targetMask);
 
             foreach (Collider targetCollider in targetsInViewRadius)
             {
-                if (!targetCollider.TryGetComponent(out Hero hero))
+                if (!targetCollider.TryGetComponent(out HeroStress hero))
                     continue;
 
                 Transform potentialTarget = hero.transform;
