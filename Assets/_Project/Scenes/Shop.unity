@@ -5012,12 +5012,6 @@ MonoBehaviour:
     - {fileID: 1585259110}
     - {fileID: 2015092840}
     - {fileID: 110603629}
-    <AnabiosisSounds>k__BackingField: []
-    <PatrolSounds>k__BackingField: []
-    <AttentionSounds>k__BackingField: []
-    <InvestigateSounds>k__BackingField: []
-    <ChaseSounds>k__BackingField: []
-    <CaptureSound>k__BackingField: {fileID: 0}
 --- !u!1001 &462047444
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6842,6 +6836,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KonturGuy_Lies (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2685325672709203624, guid: 82fb95c2035be73449cb3dcaa25c8d3a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6777350034547683432, guid: 82fb95c2035be73449cb3dcaa25c8d3a, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -7787,6 +7785,10 @@ PrefabInstance:
     - target: {fileID: 2273579253385356015, guid: e33ff2018afe43441a25361283d9382b, type: 3}
       propertyPath: m_Name
       value: KubikRubika (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2273579253385356015, guid: e33ff2018afe43441a25361283d9382b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9500,6 +9502,10 @@ PrefabInstance:
     - target: {fileID: 2273579253385356015, guid: e33ff2018afe43441a25361283d9382b, type: 3}
       propertyPath: m_Name
       value: KubikRubika (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2273579253385356015, guid: e33ff2018afe43441a25361283d9382b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14882,6 +14888,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KubikRubika (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 2273579253385356015, guid: e33ff2018afe43441a25361283d9382b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15373,6 +15383,10 @@ PrefabInstance:
     - target: {fileID: 2273579253385356015, guid: e33ff2018afe43441a25361283d9382b, type: 3}
       propertyPath: m_Name
       value: KubikRubika (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2273579253385356015, guid: e33ff2018afe43441a25361283d9382b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16960,6 +16974,10 @@ PrefabInstance:
     - target: {fileID: 2273579253385356015, guid: e33ff2018afe43441a25361283d9382b, type: 3}
       propertyPath: m_Name
       value: KubikRubika (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2273579253385356015, guid: e33ff2018afe43441a25361283d9382b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21863,6 +21881,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KubikRubika (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2273579253385356015, guid: e33ff2018afe43441a25361283d9382b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26698,6 +26720,10 @@ PrefabInstance:
     - target: {fileID: 5383843070408934871, guid: 1d1a496ca6f6c474f8c78cbedc65b898, type: 3}
       propertyPath: m_Name
       value: Plane (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5383843070408934871, guid: 1d1a496ca6f6c474f8c78cbedc65b898, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
