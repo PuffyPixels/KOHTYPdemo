@@ -48,17 +48,10 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Entrance
 
         private IEnumerator LoadElevator()
         {
-            bool isElevatorSceneReady = false;
-
             yield return _sceneSwitcherService.ProcessSwitchTo(
                 Scenes.Elevator,
                 loadSceneMode: LoadSceneMode.Additive,
-                sceneArgs: new ElevatorInputArgs(_playerSpawnPoint, _itemsDatabase),
-                callback: () => isElevatorSceneReady = true);
-
-            yield return new WaitWhile(() => isElevatorSceneReady == false);
-
-            _elevatorSwitchManager.SetElevator(0);
+                sceneArgs: new ElevatorInputArgs(_playerSpawnPoint, _itemsDatabase));
         }
     }
 }

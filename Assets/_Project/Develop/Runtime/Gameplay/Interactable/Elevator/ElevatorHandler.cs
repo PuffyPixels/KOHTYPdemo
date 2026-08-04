@@ -1,6 +1,10 @@
+using Assets._Project.Develop.Runtime.Gameplay.Enemy.Perekozhnik;
+using Assets._Project.Develop.Runtime.Utilities.ElevatorManagment;
+using Assets._Project.Develop.Runtime.Utilities.Sound;
 using DG.Tweening;
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator
 {
@@ -20,6 +24,10 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator
         private GameObject _doorsImage, _wall;
         [SerializeField]
         private Material _doorsImageMaterial;
+        [SerializeField]
+        private PerekozhnikFacade _perekozhnik;
+
+        
 
         private float _openLeftX, _openRightX, _closeLeftX, _closeRightX;
         private bool _isPlayerInside;
@@ -40,6 +48,13 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator
                 _openLeftX = _closeLeftX + _closeOffset;
                 _openRightX = _closeRightX - _closeOffset;
             }
+        }
+
+        public void Init(SoundsManager soundManager)
+        {
+            Assert.IsNotNull(soundManager);
+
+            _perekozhnik.Init(soundManager);
         }
 
         public IEnumerator OpenDoors()

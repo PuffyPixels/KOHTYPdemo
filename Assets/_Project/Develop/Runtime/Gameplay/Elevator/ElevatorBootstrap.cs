@@ -35,6 +35,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
         private ElevatorSwitchManager _elevatorSwitchManager;
         private ElevatorInputArgs _inputArgs;
         private SceneSoundInstaller _sceneSoundInstaller;
+        private Hero _hero;
 
         public override void ProcessRegistrations(DIContainer container, IInputSceneArgs sceneArgs = null)
         {
@@ -63,13 +64,16 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
                 SceneManager.SetActiveScene(elevatorScene);
             }
 
-            _container.Resolve<HeroFactory>().CreateHero(_playerPrefab);
+            _hero = _container.Resolve<HeroFactory>().CreateHero(_playerPrefab);
             _container.Resolve<UIRoot>();
             _container.Resolve<GameplayScreenPresenter>().Initialize();
             _container.Resolve<ItemCollectPupupPresenter>().Initialize();
             _container.Resolve<InventoryWidgetPresenter>().Initialize();
             _container.Resolve<InteractCluePresenter>().Initialize();
             _container.Resolve<NotePopupPresenter>().Initialize();
+
+            elevatorController.Init(_container.Resolve<SoundsManager>());
+
             yield break;
         }
 
@@ -77,20 +81,17 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
         {
             Assert.IsNotNull(elevatorController, "ElevatorController is null. Make sure it's assigned in the inspector or injected correctly.");
 
-            _elevatorSwitchManager.AddElevator(elevatorController);
-            
+            _elevatorSwitchManager.AddElevatorController(elevatorController);
+            _elevatorSwitchManager.SetElevator(0);
+
             _sceneSoundInstaller.InitEnvironmentSound();
-            _coroutinesPerformer.StartPerform(InitElevator());
+            InitElevator();
         }
 
-        private IEnumerator InitElevator()
+        private void InitElevator()
         {
-            yield return new WaitForSeconds(0.5f);
-
-            Hero hero = GameObject.FindFirstObjectByType<Hero>();
-            Assert.IsNotNull(hero, "Hero is null. Make sure it's was created before elevator initialization.");
             BaseSceneEntitiesInitializer.InitElevatorPanel(_sceneLoaderService, _sceneSwitcherService,
-                _coroutinesPerformer, _container, hero.transform);
+                _coroutinesPerformer, _container, _hero.transform, _elevatorSwitchManager);
             BaseSceneEntitiesInitializer.InitElevatorCallButton();
         }
 
@@ -116,7 +117,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
 
         private void OnDestroy()
         {
-            _elevatorSwitchManager.RemoveElevator();
+            _elevatorSwitchManager.ReleaseElevatorController();
         }
 
         // FOR TEST = need to delete

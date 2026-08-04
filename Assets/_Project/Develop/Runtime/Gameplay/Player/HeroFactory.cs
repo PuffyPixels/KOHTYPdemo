@@ -38,7 +38,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
             _heroRotation = inputArgs.PlayerSpawnPointRotation;
         }
 
-        public void CreateHero(Hero heroPrefab)
+        public Hero CreateHero(Hero heroPrefab)
         {
             LoopTimer loopTimer = new(SECOND, _container.Resolve<ICoroutinesPerformer>());
             Stress stress = new(loopTimer);
@@ -56,6 +56,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
             _itemThrower = new(
                 _container.Resolve<Inventory.Inventory>(),
                 _container.Resolve<InventoryItemsDatabase>(), hero.transform);
+
+            return hero;
         }
 
         public void Dispose()

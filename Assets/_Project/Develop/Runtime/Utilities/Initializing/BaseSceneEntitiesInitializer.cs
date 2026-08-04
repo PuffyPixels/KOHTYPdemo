@@ -3,10 +3,12 @@ using Assets._Project.Develop.Runtime.Gameplay.Interactable.Door;
 using Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator;
 using Assets._Project.Develop.Runtime.Gameplay.Interactable.Item;
 using Assets._Project.Develop.Runtime.Gameplay.Interactable.Note;
+using Assets._Project.Develop.Runtime.Gameplay.Player;
 using Assets._Project.Develop.Runtime.Gameplay.Player.Inventory;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
 using Assets._Project.Develop.Runtime.UI.Gameplay.NotePopup;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
+using Assets._Project.Develop.Runtime.Utilities.ElevatorManagment;
 using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
 using System.Linq;
 using UnityEngine;
@@ -22,13 +24,13 @@ namespace Project.Develop.Runtime.Utilities.Initializing
         }
 
         public static void InitElevatorPanel(SceneLoaderService sceneLoaderService, SceneSwitcherService sceneSwitcherService,
-            ICoroutinesPerformer coroutinesPerformer, DIContainer gameContainer, Transform hero)
+            ICoroutinesPerformer coroutinesPerformer, DIContainer gameContainer, Transform hero, ElevatorSwitchManager elevatorSwitchManager)
         {
             ElevatorPanel panel = GameObject.FindFirstObjectByType<ElevatorPanel>();
 
             if (panel != null)
             {
-                panel.Init(sceneLoaderService, sceneSwitcherService, coroutinesPerformer, gameContainer, hero);
+                panel.Init(sceneLoaderService, sceneSwitcherService, coroutinesPerformer, gameContainer, hero, elevatorSwitchManager);
             }
         }
 

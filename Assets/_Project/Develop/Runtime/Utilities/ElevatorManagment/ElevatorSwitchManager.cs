@@ -7,12 +7,12 @@ namespace Assets._Project.Develop.Runtime.Utilities.ElevatorManagment
     {
         private ElevatorController _elevator;
 
-        public void AddElevator(ElevatorController elevator)
+        public void AddElevatorController(ElevatorController elevator)
         {
             _elevator = elevator;
         }
 
-        public void RemoveElevator()
+        public void ReleaseElevatorController()
         {
             _elevator = null;
         }

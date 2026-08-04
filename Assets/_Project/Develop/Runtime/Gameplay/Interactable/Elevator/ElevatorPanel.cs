@@ -1,6 +1,8 @@
+using Assets._Project.Develop.Runtime.Gameplay.Player;
 using Assets._Project.Develop.Runtime.Gameplay.Shop;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
+using Assets._Project.Develop.Runtime.Utilities.ElevatorManagment;
 using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
 using System.Collections;
 using UnityEngine;
@@ -15,19 +17,21 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator
         private SceneLoaderService _sceneLoaderService;
         private SceneSwitcherService _sceneSwitcherService;
         private ICoroutinesPerformer _coroutinesPerformer;
+        private ElevatorSwitchManager _elevatorSwitchManager;
         private DIContainer _gameContainer;
         private Transform _hero;
 
         public override float InteractionDistance => Settings.Settings.ELEVATOR_PANEL_INTERACTION_DISTANCE;
 
         public void Init(SceneLoaderService sceneLoaderService, SceneSwitcherService sceneSwitcherService,
-            ICoroutinesPerformer coroutinesPerformer, DIContainer gameContainer, Transform hero)
+            ICoroutinesPerformer coroutinesPerformer, DIContainer gameContainer, Transform hero, ElevatorSwitchManager elevatorSwitchManager)
         {
             _sceneLoaderService = sceneLoaderService;
             _sceneSwitcherService = sceneSwitcherService;
             _coroutinesPerformer = coroutinesPerformer;
             _gameContainer = gameContainer;
             _hero = hero;
+            _elevatorSwitchManager = elevatorSwitchManager;
         }
 
         public override void Interact()
@@ -40,7 +44,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator
         {
             Transform elevatorParent = transform;
             yield return _elevatorHandler.CloseDoors();
-            Transform heroParnet = _hero.parent;
+            Transform heroParent = _hero.parent;
             _hero.parent = elevatorParent;
 
             if (SceneManager.GetSceneByName(Scenes.Entrance).isLoaded)
@@ -51,9 +55,11 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator
                     sceneArgs: new ShopInputArgs(_gameContainer));
 
             yield return _elevatorHandler.Move();
-            _hero.parent = heroParnet;
+            _hero.parent = heroParent;
             yield return _elevatorHandler.OpenDoors();
             yield return _elevatorHandler.ShowDoorsImageRoutine();
+
+            _elevatorSwitchManager.SetElevator(1);
         }
     }
 }

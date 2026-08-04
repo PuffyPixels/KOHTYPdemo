@@ -47,7 +47,6 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Shop
         public override void Run()
         {
             _enemiesFactory.CreateConsultant(_consultantSettings);
-            _elevatorSwitchManager.SetElevator(1);
         }
     }
 }

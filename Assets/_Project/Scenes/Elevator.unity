@@ -420,8 +420,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Elevator.ElevatorController
   _elevatorPrefabs:
-  - {fileID: 6054149106809998435, guid: 3259f763641372f43b0414d898cb5388, type: 3}
-  - {fileID: 322577288612272393, guid: 8a68c2b591cf33f4badca552228e9ea2, type: 3}
+  - {fileID: 6401325910721090704, guid: 3259f763641372f43b0414d898cb5388, type: 3}
+  - {fileID: 623954006287811066, guid: 8a68c2b591cf33f4badca552228e9ea2, type: 3}
 --- !u!114 &460239712
 MonoBehaviour:
   m_ObjectHideFlags: 0
