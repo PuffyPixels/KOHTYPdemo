@@ -25,8 +25,13 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
 
         private void SetupAppSettings()
         {
-            QualitySettings.vSyncCount = 0;
-            Application.targetFrameRate = 60;
+            // Without vSync
+            //QualitySettings.vSyncCount = 0;
+            //Application.targetFrameRate = 60;
+
+            // With vSync & buffer
+            QualitySettings.vSyncCount = 1;
+            QualitySettings.maxQueuedFrames = 2;
         }
 
         private IEnumerator Initialize(DIContainer container)
