@@ -3687,7 +3687,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: e0a1fd6e1f9e40c4e8e961747646c060, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5512422
+      value: 0.418
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e0a1fd6e1f9e40c4e8e961747646c060, type: 3}
       propertyPath: m_LocalScale.y
@@ -3805,7 +3805,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 340839720}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
@@ -7741,7 +7741,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: e0a1fd6e1f9e40c4e8e961747646c060, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5512422
+      value: 0.418
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e0a1fd6e1f9e40c4e8e961747646c060, type: 3}
       propertyPath: m_LocalScale.y
@@ -7859,7 +7859,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 631438505}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
@@ -7882,7 +7882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a9323fb2bbf7c6428482f6191842baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Interactable.Note.NoteHandler
-  _outline: {fileID: 340839722}
+  _outline: {fileID: 631438507}
   _noteName: "\u0412\u0442\u043E\u0440\u0430\u044F \u0437\u0430\u043F\u0438\u0441\u043A\u0430"
 --- !u!1 &643201083
 GameObject:
@@ -9509,7 +9509,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: e0a1fd6e1f9e40c4e8e961747646c060, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5512422
+      value: 0.418
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e0a1fd6e1f9e40c4e8e961747646c060, type: 3}
       propertyPath: m_LocalScale.y
@@ -9627,7 +9627,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 777180401}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
@@ -9650,7 +9650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a9323fb2bbf7c6428482f6191842baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Interactable.Note.NoteHandler
-  _outline: {fileID: 340839722}
+  _outline: {fileID: 777180403}
   _noteName: "\u0427\u0435\u0442\u0432\u0435\u0440\u0442\u0430\u044F \u0437\u0430\u043F\u0438\u0441\u043A\u0430"
 --- !u!1001 &777641932
 PrefabInstance:
@@ -10131,7 +10131,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: e0a1fd6e1f9e40c4e8e961747646c060, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5512422
+      value: 0.418
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e0a1fd6e1f9e40c4e8e961747646c060, type: 3}
       propertyPath: m_LocalScale.y
@@ -10249,7 +10249,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 836538658}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
@@ -10272,7 +10272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a9323fb2bbf7c6428482f6191842baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Interactable.Note.NoteHandler
-  _outline: {fileID: 340839722}
+  _outline: {fileID: 836538660}
   _noteName: "\u0428\u0435\u0441\u0442\u0430\u044F \u0437\u0430\u043F\u0438\u0441\u043A\u0430"
 --- !u!1001 &838995878
 PrefabInstance:
@@ -11631,7 +11631,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: e0a1fd6e1f9e40c4e8e961747646c060, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5512422
+      value: 0.418
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e0a1fd6e1f9e40c4e8e961747646c060, type: 3}
       propertyPath: m_LocalScale.y
@@ -11749,7 +11749,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1014564797}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
@@ -11772,7 +11772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a9323fb2bbf7c6428482f6191842baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Interactable.Note.NoteHandler
-  _outline: {fileID: 340839722}
+  _outline: {fileID: 1014564799}
   _noteName: "\u041F\u044F\u0442\u0430\u044F \u0437\u0430\u043F\u0438\u0441\u043A\u0430"
 --- !u!1001 &1025477172
 PrefabInstance:
@@ -13111,7 +13111,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: e0a1fd6e1f9e40c4e8e961747646c060, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5512422
+      value: 0.418
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e0a1fd6e1f9e40c4e8e961747646c060, type: 3}
       propertyPath: m_LocalScale.y
@@ -13220,8 +13220,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.020000005, y: 0.020000005, z: 0.00092502264}
-  m_Center: {x: -2.4263416e-11, y: 0.00000017833457, z: -0.00013859512}
+  m_Size: {x: 0.020147828, y: 0.020000005, z: 0.00092502264}
+  m_Center: {x: 0.00007391292, y: 0.00000017833507, z: -0.00013859513}
 --- !u!114 &1132702989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13229,14 +13229,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1132702987}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Outline
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 3
+  outlineWidth: 4
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -13252,7 +13252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a9323fb2bbf7c6428482f6191842baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Interactable.Note.NoteHandler
-  _outline: {fileID: 340839722}
+  _outline: {fileID: 1132702989}
   _noteName: "\u041F\u0435\u0440\u0432\u0430\u044F \u0437\u0430\u043F\u0438\u0441\u043A\u0430"
 --- !u!1 &1135780795
 GameObject:
@@ -21788,7 +21788,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: e0a1fd6e1f9e40c4e8e961747646c060, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5512422
+      value: 0.418
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e0a1fd6e1f9e40c4e8e961747646c060, type: 3}
       propertyPath: m_LocalScale.y
@@ -21906,7 +21906,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1889674756}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
@@ -21929,7 +21929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a9323fb2bbf7c6428482f6191842baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Interactable.Note.NoteHandler
-  _outline: {fileID: 340839722}
+  _outline: {fileID: 1889674758}
   _noteName: "\u0422\u0440\u0435\u0442\u044C\u044F \u0437\u0430\u043F\u0438\u0441\u043A\u0430"
 --- !u!1001 &1889866016
 PrefabInstance:
@@ -23263,7 +23263,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: e0a1fd6e1f9e40c4e8e961747646c060, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5512422
+      value: 0.418
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e0a1fd6e1f9e40c4e8e961747646c060, type: 3}
       propertyPath: m_LocalScale.y
@@ -23381,7 +23381,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2003122544}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
@@ -23404,7 +23404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a9323fb2bbf7c6428482f6191842baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Interactable.Note.NoteHandler
-  _outline: {fileID: 340839722}
+  _outline: {fileID: 2003122546}
   _noteName: "\u0421\u0435\u0434\u044C\u043C\u0430\u044F \u0437\u0430\u043F\u0438\u0441\u043A\u0430"
 --- !u!1 &2003502270 stripped
 GameObject:
