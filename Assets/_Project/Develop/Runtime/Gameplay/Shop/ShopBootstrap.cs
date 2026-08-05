@@ -2,6 +2,7 @@ using Assets._Project.Develop.Runtime.Gameplay.Enemy;
 using Assets._Project.Develop.Runtime.Gameplay.Player.Inventory;
 using Assets._Project.Develop.Runtime.Infrastructure;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
+using Assets._Project.Develop.Runtime.UI.Gameplay.NotePopup;
 using Assets._Project.Develop.Runtime.Utilities.ElevatorManagment;
 using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
 using Project.Develop.Runtime.Utilities.Initializing;
@@ -38,9 +39,10 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Shop
             _enemiesFactory = _container.Resolve<EnemiesFactory>();
 
             Inventory inventory = _inputArgs.GameLogicContainer.Resolve<Inventory>();
-            BaseSceneEntitiesInitializer.InitCollectableObjects(inventory, _inputArgs.GameLogicContainer.Resolve<InventoryItemsDatabase>());
+            InventoryItemsDatabase itemsDatabase = _inputArgs.GameLogicContainer.Resolve<InventoryItemsDatabase>();
+            BaseSceneEntitiesInitializer.InitCollectableObjects(inventory, itemsDatabase);
             BaseSceneEntitiesInitializer.InitLockedDoors(inventory);
-
+            BaseSceneEntitiesInitializer.InitNotes(itemsDatabase, _inputArgs.GameLogicContainer.Resolve<NotePopupPresenter>());
             yield break;
         }
 

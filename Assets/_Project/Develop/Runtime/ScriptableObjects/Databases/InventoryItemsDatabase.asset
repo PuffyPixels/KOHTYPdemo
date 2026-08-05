@@ -65,3 +65,44 @@ MonoBehaviour:
       \u0434\u043E\u0440\u043E\u0433\u0443 \u043A \u0432\u044B\u0445\u043E\u0434\u0443"
     <Icon>k__BackingField: {fileID: 21300000, guid: 894f6dcbd2623e94e8d66955ee3ae898, type: 3}
     <CollectableItem>k__BackingField: {fileID: 8015359476554774999, guid: 17ffdbe33d619ff418230708d6ede301, type: 3}
+  - <Name>k__BackingField: "\u041F\u0435\u0440\u0432\u0430\u044F \u0437\u0430\u043F\u0438\u0441\u043A\u0430"
+    <Type>k__BackingField: 2
+    <Description>k__BackingField: 
+    <Icon>k__BackingField: {fileID: 21300000, guid: 15738c5dd40131549911f970b0fc7efd, type: 3}
+    <CollectableItem>k__BackingField: {fileID: 0}
+  - <Name>k__BackingField: "\u0412\u0442\u043E\u0440\u0430\u044F \u0437\u0430\u043F\u0438\u0441\u043A\u0430"
+    <Type>k__BackingField: 2
+    <Description>k__BackingField: 
+    <Icon>k__BackingField: {fileID: 21300000, guid: 4b05756491667124baeba45543be9523, type: 3}
+    <CollectableItem>k__BackingField: {fileID: 0}
+  - <Name>k__BackingField: "\u0422\u0440\u0435\u0442\u044C\u044F \u0437\u0430\u043F\u0438\u0441\u043A\u0430"
+    <Type>k__BackingField: 2
+    <Description>k__BackingField: 
+    <Icon>k__BackingField: {fileID: 21300000, guid: 58f28072de9d2cd4881d2cf94d173d0d, type: 3}
+    <CollectableItem>k__BackingField: {fileID: 0}
+  - <Name>k__BackingField: "\u0427\u0435\u0442\u0432\u0435\u0440\u0442\u0430\u044F
+      \u0437\u0430\u043F\u0438\u0441\u043A\u0430"
+    <Type>k__BackingField: 2
+    <Description>k__BackingField: 
+    <Icon>k__BackingField: {fileID: 21300000, guid: f11fe5cd9eeedfb4eb679ce7bfb4c8dd, type: 3}
+    <CollectableItem>k__BackingField: {fileID: 0}
+  - <Name>k__BackingField: "\u041F\u044F\u0442\u0430\u044F \u0437\u0430\u043F\u0438\u0441\u043A\u0430"
+    <Type>k__BackingField: 2
+    <Description>k__BackingField: 
+    <Icon>k__BackingField: {fileID: 21300000, guid: 91cb77f740d0fd944aca88070eaf5744, type: 3}
+    <CollectableItem>k__BackingField: {fileID: 0}
+  - <Name>k__BackingField: "\u0428\u0435\u0441\u0442\u0430\u044F \u0437\u0430\u043F\u0438\u0441\u043A\u0430"
+    <Type>k__BackingField: 2
+    <Description>k__BackingField: 
+    <Icon>k__BackingField: {fileID: 21300000, guid: c34cce7c811025e47b4a5eca5f01559f, type: 3}
+    <CollectableItem>k__BackingField: {fileID: 0}
+  - <Name>k__BackingField: "\u0421\u0435\u0434\u044C\u043C\u0430\u044F \u0437\u0430\u043F\u0438\u0441\u043A\u0430"
+    <Type>k__BackingField: 2
+    <Description>k__BackingField: 
+    <Icon>k__BackingField: {fileID: 21300000, guid: 161b9bc8d46f1c64e82cb57f6409986d, type: 3}
+    <CollectableItem>k__BackingField: {fileID: 0}
+  - <Name>k__BackingField: "\u0412\u043E\u0441\u044C\u043C\u0430\u044F \u0437\u0430\u043F\u0438\u0441\u043A\u0430"
+    <Type>k__BackingField: 2
+    <Description>k__BackingField: 
+    <Icon>k__BackingField: {fileID: 21300000, guid: edaea7a5fa4841147963cd056f79d134, type: 3}
+    <CollectableItem>k__BackingField: {fileID: 0}
