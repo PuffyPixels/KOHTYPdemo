@@ -15,6 +15,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant
         public event Action PlayerCaptured;
 
         [SerializeField] private BlindablePart _head;
+        [SerializeField] private EnemyVisibility _boundingBox;
 
         private const float AGENT_STOP_SPEED = 0f;
         private float _agentWalkSpeed;
@@ -62,12 +63,14 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant
 
         public Vector3 LastKnownPlayerPosition { get; set; }
 
-        public void Init(StateMachineBrain brain, RouteService routeService)
+        public void Init(StateMachineBrain brain, RouteService routeService, Camera camera)
         {
             _brain = brain;
             _brain.Enable();
 
             _walker.Init(routeService);
+
+            _boundingBox.Init(camera);
         }
 
         public void Walk()

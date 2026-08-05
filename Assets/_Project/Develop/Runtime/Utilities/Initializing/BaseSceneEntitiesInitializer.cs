@@ -24,7 +24,7 @@ namespace Project.Develop.Runtime.Utilities.Initializing
         }
 
         public static void InitElevatorPanel(SceneLoaderService sceneLoaderService, SceneSwitcherService sceneSwitcherService,
-            ICoroutinesPerformer coroutinesPerformer, DIContainer gameContainer, Transform hero, ElevatorSwitchManager elevatorSwitchManager)
+            ICoroutinesPerformer coroutinesPerformer, DIContainer gameContainer, Hero hero, ElevatorSwitchManager elevatorSwitchManager)
         {
             ElevatorPanel panel = GameObject.FindFirstObjectByType<ElevatorPanel>();
 

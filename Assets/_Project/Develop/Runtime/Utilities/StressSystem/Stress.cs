@@ -13,12 +13,6 @@ namespace Assets._Project.Develop.Runtime.Utilities.StressSystem
         Panic = 80,
     }
 
-    public enum StressSourceName
-    {
-        Running,
-        Crouching
-    }
-
     public class Stress : IDisposable
     {
         public event Action<float> StressChanged;
@@ -31,11 +25,11 @@ namespace Assets._Project.Develop.Runtime.Utilities.StressSystem
         private const float STRESS_PANIC_MULTIPLIER = 0.006f;
         private const float STRESS_PANIC_MULTIPLIER_LEVEL = 15f;
 
-        private const float STRESS_RECOVERY_BASE = 2.2f;
+        private const float STRESS_RECOVERY_BASE = 3.0f;
         private const float STRESS_RECOVERY_MODIFY = 1f;
         private const float STRESS_RECOVERY_MAX = 120f;
 
-        private Dictionary<StressSourceName, float> _stressSources = new();
+        private Dictionary<string, float> _stressSources = new();
 
         private LoopTimer _stressTimer;
         private float _currentStress = STRESS_LEVEL_MIN;
@@ -54,14 +48,14 @@ namespace Assets._Project.Develop.Runtime.Utilities.StressSystem
             RecalculateStress();
         }
 
-        public void AddStressSource(StressSourceName sourceId, float value)
+        public void AddStressSource(string sourceName, float value)
         {
-            _stressSources[sourceId] = value;
+            _stressSources[sourceName] = value;
         }
 
-        public void RemoveStressSource(StressSourceName sourceId)
+        public void RemoveStressSource(string sourceName)
         {
-            _stressSources.Remove(sourceId);
+            _stressSources.Remove(sourceName);
         }
 
         private void RecalculateStress()
@@ -107,7 +101,6 @@ namespace Assets._Project.Develop.Runtime.Utilities.StressSystem
         private void SetStress(float stress) 
         {
             float newStress = Mathf.Clamp(stress, STRESS_LEVEL_MIN, STRESS_LEVEL_MAX);
-
             if (_currentStress == newStress)
                 return;
 

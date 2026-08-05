@@ -15,8 +15,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
     public class HeroFactory : IDisposable
     {
         private const float SECOND = 1f;
-        private const float PULSE_BPM_MIN = 70f;
-        private const float PULSE_BPM_MAX = 200f;
+        private const float PULSE_BPM_MIN = 30f;
+        private const float PULSE_BPM_MAX = 110f;
 
         private Vector3 _heroPosition;
         private Quaternion _heroRotation;

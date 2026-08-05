@@ -3,6 +3,7 @@ using Assets._Project.Develop.Runtime.Utilities.Sound;
 using Assets._Project.Develop.Runtime.Utilities.StressSystem;
 using DG.Tweening;
 using DyrdaDev.FirstPersonController;
+using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -15,8 +16,11 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
         private const float PANIC_DETECT_RADIUS = 2.0f;
         private const float PANIC_DETECT_MULTIPLIER = 0.4f;
 
-        [SerializeField] private float _runStressValue = 0.3f;
-        [SerializeField] private float _crouchStressValue = 0.3f;
+        private const string RUN_SOURCE_NAME = "Running";
+        private const string CROUCH_SOURCE_NAME = "Crouching";
+
+        [SerializeField] private float _runStressValue = 1.0f;
+        [SerializeField] private float _crouchStressValue = 1.0f;
 
         [SerializeField] private Image _stressVignette;
         [SerializeField] private EnvironmentSound _firstHeartBeat;
@@ -29,8 +33,11 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
         
         private Stress _stress;
         private Pulse _pulse;
-        private StressState _currentStress;
+        private StressState _currentStressState;
         private CompositeDisposable _disposables = new();
+
+        private HashSet<string> _cachedEnemies = new();
+        private List<string> _enemiesToRemove = new();
 
         private Tween _vignetteTween;
         private float _vignetteBeatAlpha = 0.2f;
@@ -87,6 +94,16 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
             DetectAuraRadius(stress);
         }
 
+        public void AddStressSource(string stressName, float value)
+        {
+            _stress.AddStressSource(stressName, value);
+        }
+
+        public void RemoveStressSource(string stressName)
+        {
+            _stress.RemoveStressSource(stressName);
+        }
+
         private void GetAngryEnemyByStressAura()
         {
             if (InPanic)
@@ -105,15 +122,12 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
 
         private void OnStressStateChanged(StressState stressState)
         {
-            _currentStress = stressState;
+            _currentStressState = stressState;
 
-            InPanic = _currentStress == StressState.Panic;
+            InPanic = _currentStressState == StressState.Panic;
 
-            float volume = GetVolumeByStress(_currentStress);
+            float volume = GetVolumeByStress();
             _breath.FadeVolume(volume);
-
-            _vignetteAlpha = GetAlpha(_currentStress);
-            _stressVignette.color = new(_stressVignette.color.r, _stressVignette.color.g, _stressVignette.color.b, _vignetteAlpha);
         }
 
         private void DetectAuraRadius(float stress)
@@ -131,6 +145,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
 
         private void VignetteBeat()
         {
+            _vignetteAlpha = _stress.NormalizedStress;
+            _stressVignette.color = new(_stressVignette.color.r, _stressVignette.color.g, _stressVignette.color.b, _vignetteAlpha);
+
             _vignetteTween?.Kill();
             _vignetteTween = null;
 
@@ -150,32 +167,19 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
 
         private void HeartBeat(EnvironmentSound heartBeat)
         {
-            float volume = GetVolumeByStress(_currentStress);
+            float volume = GetVolumeByStress();
             heartBeat.PlaySound(volume);
         }
 
-        private float GetVolumeByStress(StressState stressState)
+        private float GetVolumeByStress()
         {
-            return stressState switch
+            return _currentStressState switch
             {
                 StressState.Troubled => 0.2f,
                 StressState.Scared => 0.5f,
                 StressState.Panic => 1f,
-                _ => 0f
+                _ => 0.0f
             };
-        }
-
-        private float GetAlpha(StressState stressState)
-        {
-            float volume = stressState switch
-            {
-                StressState.Troubled => 0.2f,
-                StressState.Scared => 0.5f,
-                StressState.Panic => 0.7f,
-                _ => 0f
-            };
-
-            return volume;
         }
 
         private void OnDestroy()
@@ -208,9 +212,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
                     bool isRunning = isMoving && data.IsRunning && !data.IsCrouching;
 
                     if (isRunning)
-                        _stress.AddStressSource(StressSourceName.Running, _runStressValue);
+                        AddStressSource(RUN_SOURCE_NAME, _runStressValue);
                     else
-                        _stress.RemoveStressSource(StressSourceName.Running);
+                        RemoveStressSource(RUN_SOURCE_NAME);
                 })
                 .AddTo(_disposables);
 
@@ -222,9 +226,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
                     bool isCrouching = isMoving && data.IsCrouching;
 
                     if (isCrouching)
-                        _stress.AddStressSource(StressSourceName.Crouching, _crouchStressValue);
+                        AddStressSource(CROUCH_SOURCE_NAME, _crouchStressValue);
                     else
-                        _stress.RemoveStressSource(StressSourceName.Crouching);
+                        RemoveStressSource(CROUCH_SOURCE_NAME);
                 })
                 .AddTo(_disposables);
         }

@@ -5,7 +5,7 @@ using UnityEngine.Assertions;
 
 namespace Assets._Project.Develop.Runtime.Gameplay.Enemy
 {
-    public class FieldOfView : MonoBehaviour
+    public class ConsultantFOV : MonoBehaviour
     {
         [SerializeField] private ConsultantFacade _consultantFacade;
 

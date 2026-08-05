@@ -91,7 +91,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
         private void InitElevator()
         {
             BaseSceneEntitiesInitializer.InitElevatorPanel(_sceneLoaderService, _sceneSwitcherService,
-                _coroutinesPerformer, _container, _hero.transform, _elevatorSwitchManager);
+                _coroutinesPerformer, _container, _hero, _elevatorSwitchManager);
             BaseSceneEntitiesInitializer.InitElevatorCallButton();
         }
 
@@ -110,7 +110,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
 
             if (!SceneManager.GetSceneByName(Scenes.Shop).isLoaded)
                 yield return _sceneSwitcherService.ProcessSwitchTo(Scenes.Shop, loadSceneMode: LoadSceneMode.Additive,
-                    sceneArgs: new ShopInputArgs(_container));
+                    sceneArgs: new ShopInputArgs(_container, _hero));
         }
 
 

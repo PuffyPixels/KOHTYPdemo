@@ -19,12 +19,12 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator
         private ICoroutinesPerformer _coroutinesPerformer;
         private ElevatorSwitchManager _elevatorSwitchManager;
         private DIContainer _gameContainer;
-        private Transform _hero;
+        private Hero _hero;
 
         public override float InteractionDistance => Settings.Settings.ELEVATOR_PANEL_INTERACTION_DISTANCE;
 
         public void Init(SceneLoaderService sceneLoaderService, SceneSwitcherService sceneSwitcherService,
-            ICoroutinesPerformer coroutinesPerformer, DIContainer gameContainer, Transform hero, ElevatorSwitchManager elevatorSwitchManager)
+            ICoroutinesPerformer coroutinesPerformer, DIContainer gameContainer, Hero hero, ElevatorSwitchManager elevatorSwitchManager)
         {
             _sceneLoaderService = sceneLoaderService;
             _sceneSwitcherService = sceneSwitcherService;
@@ -44,18 +44,18 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator
         {
             Transform elevatorParent = transform;
             yield return _elevatorHandler.CloseDoors();
-            Transform heroParent = _hero.parent;
-            _hero.parent = elevatorParent;
+            Transform heroParent = _hero.transform.parent;
+            _hero.transform.parent = elevatorParent;
 
             if (SceneManager.GetSceneByName(Scenes.Entrance).isLoaded)
                 yield return _sceneLoaderService.UnloadAsync(Scenes.Entrance);
 
             if (!SceneManager.GetSceneByName(Scenes.Shop).isLoaded)
                 yield return _sceneSwitcherService.ProcessSwitchTo(Scenes.Shop, loadSceneMode: LoadSceneMode.Additive,
-                    sceneArgs: new ShopInputArgs(_gameContainer));
+                    sceneArgs: new ShopInputArgs(_gameContainer, _hero));
 
             yield return _elevatorHandler.Move();
-            _hero.parent = heroParent;
+            _hero.transform.parent = heroParent;
             yield return _elevatorHandler.OpenDoors();
             yield return _elevatorHandler.ShowDoorsImageRoutine();
 

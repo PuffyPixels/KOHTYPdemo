@@ -13,12 +13,14 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy
         private readonly DIContainer _container;
         private readonly BrainsFactory _brainsFactory;
         private readonly GameProgress _gameProgress;
+        private readonly Camera _heroCamera;
 
-        public EnemiesFactory(DIContainer container)
+        public EnemiesFactory(DIContainer container, Camera heroCamera)
         {
             _container = container;
             _brainsFactory = _container.Resolve<BrainsFactory>();
             _gameProgress = _container.Resolve<GameProgress>();
+            _heroCamera = heroCamera;
         }
 
         public void CreateConsultant(ConsultantSettings settings)
@@ -38,7 +40,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy
 
                     RouteService newRouteService = spawnPoint.GetComponentInParent<RouteService>();
                     StateMachineBrain newConsultantBrain = _brainsFactory.CreateConsultantBrain(settingsCached, newConsultant);
-                    newConsultant.Init(newConsultantBrain, newRouteService);
+                    newConsultant.Init(newConsultantBrain, newRouteService, _heroCamera);
 
                     _gameProgress.AddConsultant(newConsultant);
                 }

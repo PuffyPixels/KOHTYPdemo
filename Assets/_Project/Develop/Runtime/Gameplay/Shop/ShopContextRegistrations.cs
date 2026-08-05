@@ -25,7 +25,12 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Shop
         }
 
         private static EnemiesFactory CreateEmeniesFactory(DIContainer c)
-            => new(c);
+        {
+            Camera heroCamera = _inputArgs.Hero.GetComponentInChildren<Camera>();
+
+            return new(c, heroCamera);
+        }
+            
 
         private static BrainsFactory CreateBrainsFactory(DIContainer c)
         {
