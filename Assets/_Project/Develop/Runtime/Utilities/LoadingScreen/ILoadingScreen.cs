@@ -1,4 +1,6 @@
-﻿namespace Assets._Project.Develop.Runtime.Utilities.LoadingScreen
+﻿using System;
+
+namespace Assets._Project.Develop.Runtime.Utilities.LoadingScreen
 {
     public interface ILoadingScreen
     {
@@ -7,5 +9,8 @@
         void Hide();
         void PlayLoadingSound();
         float GetSoundDuration();
+
+        void FadeIn(float fadeDuration, Action fadedCallback = null);
+        void FadeOut(float fadeDuration, Action fadedCallback = null);
     }
 }

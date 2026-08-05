@@ -82,14 +82,14 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
             return Object.Instantiate(coroutinesPerformerPrefab);
         }
 
-        private static StandardLoadingScreen CreateLoadingScreen(DIContainer c)
+        private static NewGameLoadingScreen CreateLoadingScreen(DIContainer c)
         {
             ResourcesAssetsLoader resourcesAssetsLoader = c.Resolve<ResourcesAssetsLoader>();
 
-            StandardLoadingScreen standardLoadingScreenPrefab = resourcesAssetsLoader
-                .Load<StandardLoadingScreen>("Utilities/StandardLoadingScreen");
+            NewGameLoadingScreen standardLoadingScreenPrefab = resourcesAssetsLoader
+                .Load<NewGameLoadingScreen>("Utilities/StandardLoadingScreen");
 
-            StandardLoadingScreen standardLoadingScreen = Object.Instantiate(standardLoadingScreenPrefab);
+            NewGameLoadingScreen standardLoadingScreen = Object.Instantiate(standardLoadingScreenPrefab);
             standardLoadingScreen.Init(c.Resolve<SoundsManager>());
 
             return standardLoadingScreen;
