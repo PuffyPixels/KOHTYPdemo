@@ -119,19 +119,5 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
         {
             _elevatorSwitchManager.ReleaseElevatorController();
         }
-
-        // FOR TEST = need to delete
-        private void Update()
-        {
-            if (Keyboard.current.iKey.wasPressedThisFrame)
-            {
-                _coroutinesPerformer.StartPerform(UnloadEntranceAndLoadShopTest());
-            }
-
-            if (Keyboard.current.oKey.wasPressedThisFrame)
-            {
-                _coroutinesPerformer.StartPerform(UnloadShopAndLoadMainMenu());
-            }
-        }
     }
 }
