@@ -47,5 +47,11 @@ namespace DyrdaDev.FirstPersonController
         ///     Interaction type: State (not event).
         /// </summary>
         public abstract IObservable<bool> CrouchState { get; }
+
+        /// <summary>
+        ///     Watch button.
+        ///     Interaction type: Toggle.
+        /// </summary>
+        public abstract ReadOnlyReactiveProperty<bool> Watch { get; }
     }
 }

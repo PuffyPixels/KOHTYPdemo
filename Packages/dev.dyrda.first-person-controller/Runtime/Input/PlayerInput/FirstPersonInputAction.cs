@@ -147,6 +147,15 @@ namespace DyrdaDev.FirstPersonController
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Watch"",
+                    ""type"": ""Button"",
+                    ""id"": ""f1faa4fc-a28a-49b4-b25b-cd6f6991ecd1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -358,6 +367,17 @@ namespace DyrdaDev.FirstPersonController
                     ""action"": ""Use"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fb712b9c-40f8-40e9-9c71-21de5acf89f1"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Watch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -400,6 +420,7 @@ namespace DyrdaDev.FirstPersonController
             m_Character_Run = m_Character.FindAction("Run", throwIfNotFound: true);
             m_Character_Crouch = m_Character.FindAction("Crouch", throwIfNotFound: true);
             m_Character_Use = m_Character.FindAction("Use", throwIfNotFound: true);
+            m_Character_Watch = m_Character.FindAction("Watch", throwIfNotFound: true);
         }
 
         ~@FirstPersonInputAction()
@@ -486,6 +507,7 @@ namespace DyrdaDev.FirstPersonController
         private readonly InputAction m_Character_Run;
         private readonly InputAction m_Character_Crouch;
         private readonly InputAction m_Character_Use;
+        private readonly InputAction m_Character_Watch;
         /// <summary>
         /// Provides access to input actions defined in input action map "Character".
         /// </summary>
@@ -521,6 +543,10 @@ namespace DyrdaDev.FirstPersonController
             /// Provides access to the underlying input action "Character/Use".
             /// </summary>
             public InputAction @Use => m_Wrapper.m_Character_Use;
+            /// <summary>
+            /// Provides access to the underlying input action "Character/Watch".
+            /// </summary>
+            public InputAction @Watch => m_Wrapper.m_Character_Watch;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -565,6 +591,9 @@ namespace DyrdaDev.FirstPersonController
                 @Use.started += instance.OnUse;
                 @Use.performed += instance.OnUse;
                 @Use.canceled += instance.OnUse;
+                @Watch.started += instance.OnWatch;
+                @Watch.performed += instance.OnWatch;
+                @Watch.canceled += instance.OnWatch;
             }
 
             /// <summary>
@@ -594,6 +623,9 @@ namespace DyrdaDev.FirstPersonController
                 @Use.started -= instance.OnUse;
                 @Use.performed -= instance.OnUse;
                 @Use.canceled -= instance.OnUse;
+                @Watch.started -= instance.OnWatch;
+                @Watch.performed -= instance.OnWatch;
+                @Watch.canceled -= instance.OnWatch;
             }
 
             /// <summary>
@@ -702,6 +734,13 @@ namespace DyrdaDev.FirstPersonController
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnUse(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Watch" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnWatch(InputAction.CallbackContext context);
         }
     }
 }
