@@ -16,10 +16,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant.States
 
         private float _investigationTimer;
         private float _investigationDuration = 5f;
-        private Vector3 _investigationPoint;
+        private Vector3 _investigationPoint = Vector3.zero;
         private bool _hasReachedPoint;
-
-        private readonly float _detectionProgressStep = 0.1f;
 
         public InvestigateState(
             ConsultantFacade consultant,
@@ -32,29 +30,20 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant.States
             Assert.IsNotNull(consultant);
             Assert.IsNotNull(audioClipList);
             Assert.IsNotNull(soundsManager);
-
-            _isRandomSoundsActive = true;
         }
 
         public override void Enter()
         {
             base.Enter();
 
+            _isRandomSoundsActive = true;
             IsInvestigationComplete = false;
-            _hasReachedPoint = false;
-            _investigationTimer = _investigationDuration;
 
-            if (_consultant.LastKnownPlayerPosition != Vector3.zero)
-            {
-                _investigationPoint = _consultant.LastKnownPlayerPosition;
-                _consultant.GoTo(_investigationPoint, () => _hasReachedPoint = true);
-            }
+            _consultant.SetWalk();
         }
 
         protected override void UpdateLogic(float deltaTime)
         {
-            UpdateDetectionLevel(_detectionProgressStep, deltaTime);
-
             if (_consultant.LastKnownPlayerPosition != Vector3.zero 
                 && _consultant.LastKnownPlayerPosition != _investigationPoint)
             {

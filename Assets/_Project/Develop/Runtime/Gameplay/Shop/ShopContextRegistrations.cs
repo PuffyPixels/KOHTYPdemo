@@ -1,6 +1,7 @@
 ﻿using Assets._Project.Develop.Runtime.Gameplay.Enemy;
 using Assets._Project.Develop.Runtime.Gameplay.Features.AI;
 using Assets._Project.Develop.Runtime.Gameplay.Interactable.ItemsSpawner;
+using Assets._Project.Develop.Runtime.Gameplay.Player;
 using Assets._Project.Develop.Runtime.Gameplay.Player.Inventory;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
 using UnityEngine;
@@ -42,8 +43,10 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Shop
         private static GameProgress CreateGameProgress(DIContainer c)
         {
             Inventory inventory = _inputArgs.GameLogicContainer.Resolve<Inventory>();
+            ItemsSpawner itemsSpawner = c.Resolve<ItemsSpawner>();
+            Hero hero = _inputArgs.Hero;
 
-            return new(inventory);
+            return new(inventory, itemsSpawner, hero);
         }
 
         private static ItemsSpawner CreateItemsSpawner(DIContainer _) => GameObject.FindFirstObjectByType<ItemsSpawner>();

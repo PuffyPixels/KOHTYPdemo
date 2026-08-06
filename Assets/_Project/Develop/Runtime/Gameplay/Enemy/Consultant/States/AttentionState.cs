@@ -10,8 +10,6 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant.States
         private const float DEFAULT_SOUND_INTERVAL_MIN = 10f;
         private const float DEFAULT_SOUND_INTERVAL_MAX = 20f;
 
-        private readonly float _detectionProgressStep = 0.1f;
-
         public AttentionState(
             ConsultantFacade consultant,
             List<AudioClip> audioClipList,
@@ -23,27 +21,15 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant.States
             Assert.IsNotNull(consultant);
             Assert.IsNotNull(audioClipList);
             Assert.IsNotNull(soundsManager);
-
-            _isRandomSoundsActive = true;
         }
 
         public override void Enter()
         {
             base.Enter();
+
+            _isRandomSoundsActive = true;
+
             _consultant.StopWalk();
-        }
-
-        protected override void UpdateLogic(float deltaTime)
-        {
-            UpdateDetectionLevel(_detectionProgressStep, deltaTime);
-        }
-
-        public override void Exit()
-        {
-            base.Exit();
-            
-            if (_consultant.Target == null)
-                _consultant.DetectionProgress = 0;
         }
     }
 }

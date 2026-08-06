@@ -24,7 +24,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant.States
         {
             base.Enter();
 
+            _isRandomSoundsActive = false;
             IsCaptureComplete = false;
+            _canAttack = false;
 
             PlayCaptureSound(_audioClipList[0]);
 

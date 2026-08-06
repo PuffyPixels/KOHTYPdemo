@@ -17,7 +17,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy
 
         [Header("Настройки обнаружения")]
         [SerializeField] private float _detectionSpeed = 0.2f;
-        [SerializeField] private float _detectionDecaySpeed = 0.1f;
+        [SerializeField] private float _detectionDecaySpeed = -0.1f;
 
         [SerializeField] private bool _isGizmoVisible = true;
 
@@ -28,12 +28,17 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy
 
         private void Update()
         {
+            if (_consultantFacade.InAnabios)
+                return;
+
             _consultantFacade.DetectPlayer(CheckForTarget());
 
             if (_consultantFacade.Target != null)
             {
                 if (_consultantFacade.DetectionProgress < 1f)
                     _consultantFacade.DetectionProgress += _detectionSpeed * Time.deltaTime;
+
+                _consultantFacade.Target.SetDetect(_consultantFacade.DetectionProgress);
             }
             else
             {

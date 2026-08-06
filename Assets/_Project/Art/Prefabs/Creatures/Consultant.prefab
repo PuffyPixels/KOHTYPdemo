@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3108469200805873411}
   - component: {fileID: 6063788487757985614}
   - component: {fileID: 3247488784849551278}
-  - component: {fileID: 8774689093399766751}
   - component: {fileID: 7373703999148941416}
   - component: {fileID: 7187061125572658317}
+  - component: {fileID: 1192976059596333048}
   m_Layer: 7
   m_Name: Consultant
   m_TagString: Untagged
@@ -36,6 +36,7 @@ Transform:
   m_Children:
   - {fileID: 6400666473466489995}
   - {fileID: 4191158249951877236}
+  - {fileID: 8211358387149768297}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6063788487757985614
@@ -92,30 +93,6 @@ MonoBehaviour:
   _animator: {fileID: 6754587846836820606}
   _minDelayTimeInPoint: 1
   _maxDelayTimeInPoint: 5
---- !u!114 &8774689093399766751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 884019791806056387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3746afdf9e1ba04429d2924b8fcfb527, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Enemy.FieldOfView
-  _consultantFacade: {fileID: 6063788487757985614}
-  _viewRadius: 10
-  _viewAngle: 60
-  _obstacleMask:
-    serializedVersion: 2
-    m_Bits: 1
-  _targetMask:
-    serializedVersion: 2
-    m_Bits: 64
-  _detectionSpeed: 0.2
-  _detectionDecaySpeed: 0.1
-  _isGizmoVisible: 1
 --- !u!195 &7373703999148941416
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -126,11 +103,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 1
+  m_StoppingDistance: 1.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -154,6 +131,29 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 1.25, z: 0}
   m_TimeToStationary: 0.5
+--- !u!136 &1192976059596333048
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884019791806056387}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2.4
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.2, z: 0.2}
 --- !u!1 &2253854913219046697
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,6 +200,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant.ConsultantAnimator
   _animator: {fileID: 3780818061881207648}
+--- !u!1 &7181749171337601857
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8211358387149768297}
+  - component: {fileID: 1628346682814950978}
+  m_Layer: 7
+  m_Name: FoV
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8211358387149768297
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7181749171337601857}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3108469200805873411}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1628346682814950978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7181749171337601857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3746afdf9e1ba04429d2924b8fcfb527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Enemy.FieldOfView
+  _consultantFacade: {fileID: 6063788487757985614}
+  _viewRadius: 30
+  _viewAngle: 160
+  _obstacleMask:
+    serializedVersion: 2
+    m_Bits: 1
+  _targetMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _detectionSpeed: 0.2
+  _detectionDecaySpeed: 0.1
+  _isGizmoVisible: 1
 --- !u!1 &7680616796045101154
 GameObject:
   m_ObjectHideFlags: 0

@@ -88,6 +88,8 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
         {
             if (NavMesh.SamplePosition(target, out NavMeshHit hit, MAX_DISTANCE_TO_NAVMESH, NavMesh.AllAreas))
             {
+                TryAgentOn();
+
                 target = hit.position;
 
                 ClearCoroutine(ref _walkCoroutine);
@@ -186,7 +188,15 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
             yield return OnPoiReachedRoutine();
         }
 
-        private async void GoToNextPoi()
+        private void GoToNextPoi()
+        {
+            TryAgentOn();
+
+            ClearCoroutine(ref _walkCoroutine);
+            _walkCoroutine = StartCoroutine(GoToNextPoiRoutine());
+        }
+
+        private async void TryAgentOn()
         {
             try
             {
@@ -196,9 +206,6 @@ namespace Assets._Project.Develop.Runtime.Utilities.NavRoute.Movement
             {
                 return;
             }
-
-            ClearCoroutine(ref _walkCoroutine);
-            _walkCoroutine = StartCoroutine(GoToNextPoiRoutine());
         }
 
         private IEnumerator GoToNextPoiRoutine()

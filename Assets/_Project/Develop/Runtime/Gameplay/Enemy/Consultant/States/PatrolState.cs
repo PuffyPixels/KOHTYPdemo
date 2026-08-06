@@ -28,7 +28,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant.States
         public override void Enter()
         {
             base.Enter();
-            _consultant.Walk();
+
+            _consultant.StartPatrol();
+            _consultant.SetWalk();
         }
 
         public override void Exit()

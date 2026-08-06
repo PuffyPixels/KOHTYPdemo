@@ -4,7 +4,7 @@ using UnityEngine.Assertions;
 
 namespace Assets._Project.Develop.Runtime.Gameplay.Enemy
 {
-    public class EnemyVisibility : MonoBehaviour
+    public class EnemyVision : MonoBehaviour
     {
         [SerializeField] private MeshRenderer _boundsRenderer;
         [SerializeField] private LayerMask _obstacleMask;

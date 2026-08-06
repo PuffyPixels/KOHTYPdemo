@@ -58,21 +58,27 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.AI
 
             ICondition patrol_attention = new FuncCondition(() => consultant.Target != null); // частичное обнаружение началось
             stateMachine.AddTransition(patrol, attention, patrol_attention);
+            ICondition patrol_capture = new FuncCondition(() => patrol.IsPlayerCaptured); // поймали игрока
+            stateMachine.AddTransition(patrol, capture, patrol_capture);
+
             ICondition attention_patrol = new FuncCondition(() => consultant.DetectionProgress <= 0f); // игрок потерян
             stateMachine.AddTransition(attention, patrol, attention_patrol);
-
             ICondition attention_investigate = new FuncCondition(() => consultant.DetectionProgress >= 0.5f); // частичное обнаружение началось
             stateMachine.AddTransition(attention, investigate, attention_investigate);
+            ICondition attention_capture = new FuncCondition(() => attention.IsPlayerCaptured); // поймали игрока
+            stateMachine.AddTransition(attention, capture, attention_capture);
+
             ICompositeCondition investigate_attention = new CompositeCondition()
                 .Add(new FuncCondition(() => investigate.IsInvestigationComplete))
                 .Add(new FuncCondition(() => consultant.DetectionProgress <= 0.5f)); // игрок потерян
             stateMachine.AddTransition(investigate, attention, investigate_attention);
-
             ICondition investigate_chase = new FuncCondition(() => consultant.DetectionProgress >= 1f); // полное обнаружение во время чутья
             stateMachine.AddTransition(investigate, chase, investigate_chase);
-            ICondition chase_investigate = new FuncCondition(() => consultant.DetectionProgress <= 1f); // игрок потерян
-            stateMachine.AddTransition(chase, investigate, chase_investigate);
+            ICondition investigate_capture = new FuncCondition(() => investigate.IsPlayerCaptured); // поймали игрока
+            stateMachine.AddTransition(investigate, capture, investigate_capture);
 
+            ICondition chase_investigate = new FuncCondition(() => consultant.DetectionProgress < 1f); // игрок потерян
+            stateMachine.AddTransition(chase, investigate, chase_investigate);
             ICondition chase_capture = new FuncCondition(() => chase.IsPlayerCaptured); // поймали игрока
             stateMachine.AddTransition(chase, capture, chase_capture);
 

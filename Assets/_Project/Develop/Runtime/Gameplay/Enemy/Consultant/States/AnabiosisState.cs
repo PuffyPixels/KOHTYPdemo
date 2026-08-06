@@ -22,14 +22,24 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant.States
             Assert.IsNotNull(audioClipList);
             Assert.IsNotNull(soundsManager);
 
-            _isRandomSoundsActive = true;
+            
         }
 
         public override void Enter()
         {
             base.Enter();
 
+            _isRandomSoundsActive = true;
+            _canAttack = false;
+            _consultant.InAnabios = true;
             _consultant.StopWalk();
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+
+            _consultant.InAnabios = false;
         }
     }
 }

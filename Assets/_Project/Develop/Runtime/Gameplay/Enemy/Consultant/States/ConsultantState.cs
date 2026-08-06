@@ -11,9 +11,13 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant.States
         protected readonly SoundsManager _soundsManager;
         protected List<AudioClip> _audioClipList;
         protected bool _isRandomSoundsActive = false;
+        protected bool _canAttack = true;
         private float _soundTimer;
         private float _soundsIntervalMin;
         private float _soundsIntervalMax;
+        private float _minCaptureDistanse = 2f;
+        private float _distanceToHero;
+        public bool IsPlayerCaptured { get; private set; }
 
         protected ConsultantState(
             ConsultantFacade consultant,
@@ -48,23 +52,37 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant.States
             base.Enter();
 
             _soundTimer = Random.Range(_soundsIntervalMin, _soundsIntervalMax);
+
+            IsPlayerCaptured = false;
+            _canAttack = true;
         }
 
         public void Update(float deltaTime)
         {
             UpdateLogic(deltaTime);
 
-            if (!_isRandomSoundsActive)
-                return;
-
-            _soundTimer -= deltaTime;
-
-            if (_soundTimer <= 0f)
+            if (_isRandomSoundsActive)
             {
-                AudioClip clip = _audioClipList[Random.Range(0, _audioClipList.Count - 1)];
-                PlaySound(clip);
+                _soundTimer -= deltaTime;
 
-                _soundTimer = Random.Range(_soundsIntervalMin, _soundsIntervalMax);
+                if (_soundTimer <= 0f)
+                {
+                    AudioClip clip = _audioClipList[Random.Range(0, _audioClipList.Count - 1)];
+                    PlaySound(clip);
+
+                    _soundTimer = Random.Range(_soundsIntervalMin, _soundsIntervalMax);
+                }
+            }
+
+            if (_canAttack)
+            {
+                if (_consultant.Target != null)
+                {
+                    _distanceToHero = Vector3.Distance(_consultant.Target.transform.position, _consultant.transform.position);
+
+                    if(_distanceToHero < _minCaptureDistanse)
+                        IsPlayerCaptured = true;
+                }
             }
         }
 
@@ -81,14 +99,6 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant.States
                 lowestPitch: lowestPitch,
                 highestPitch: highestPitch
             );
-        }
-
-        protected void UpdateDetectionLevel(float progressStep, float deltaTime)
-        {
-            if (_consultant.Target != null)
-                _consultant.DetectionProgress += progressStep * deltaTime;
-            else
-                _consultant.DetectionProgress -= progressStep * deltaTime;
         }
     }
 }

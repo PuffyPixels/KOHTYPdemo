@@ -23,6 +23,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
         [SerializeField] private float _crouchStressValue = 1.0f;
 
         [SerializeField] private Image _stressVignette;
+        [SerializeField] private Image _detectVignette;
         [SerializeField] private EnvironmentSound _firstHeartBeat;
         [SerializeField] private EnvironmentSound _secondHeartBeat;
         [SerializeField] private EnvironmentSound _breath;
@@ -36,12 +37,13 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
         private StressState _currentStressState;
         private CompositeDisposable _disposables = new();
 
-        private HashSet<string> _cachedEnemies = new();
-        private List<string> _enemiesToRemove = new();
-
         private Tween _vignetteTween;
         private float _vignetteBeatAlpha = 0.2f;
         private float _vignetteAlpha;
+        private Color _detectDefault;
+        private Color _detectActual;
+        private float _detectCheckTime = 0.2f;
+        private float _detectTimer;
 
         public bool InPanic { get; private set; } = false;
 
@@ -64,6 +66,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
             _pulse = pulse;
             _pulse.FirstBpm += OnFirstBpm;
             //_pulse.SecondBpm += OnSecondBpm;
+
+            _detectDefault = _detectVignette.color;
         }
 
         private void Start()
@@ -74,6 +78,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
         private void Update()
         {
             _pulse.Tick(Time.deltaTime);
+            CheckDetect();
             GetAngryEnemyByStressAura();
         }
 
@@ -103,6 +108,28 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
         {
             _stress.RemoveStressSource(stressName);
         }
+
+        public void SetDetect(float detectLevel)
+        {
+            _detectActual = new(_detectVignette.color.r, _detectVignette.color.g, _detectVignette.color.b, detectLevel);
+            _detectVignette.color = _detectActual;
+            _detectTimer = _detectCheckTime;
+        }
+
+        private void CheckDetect()
+        {
+            if (_detectVignette.color == _detectDefault)
+                return;
+
+            _detectTimer -= Time.deltaTime;
+
+            if (_detectTimer < 0)
+            {
+                _detectVignette.color = _detectDefault;
+            }
+        }
+
+        public void Stun() => _stress.Stun();
 
         private void GetAngryEnemyByStressAura()
         {

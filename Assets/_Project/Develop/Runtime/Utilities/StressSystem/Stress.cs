@@ -98,6 +98,11 @@ namespace Assets._Project.Develop.Runtime.Utilities.StressSystem
             return recovery;
         }
 
+        public void Stun()
+        {
+            SetStress(STRESS_LEVEL_MAX);
+        }
+
         private void SetStress(float stress) 
         {
             float newStress = Mathf.Clamp(stress, STRESS_LEVEL_MIN, STRESS_LEVEL_MAX);

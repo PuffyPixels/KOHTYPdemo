@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using static UnityEditor.Progress;
 
 namespace Assets._Project.Develop.Runtime.Gameplay.Player.Inventory
 {
@@ -42,7 +43,10 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player.Inventory
 
         public void RemoveAll()
         {
-            _items.Clear();
+            while (_items.Count > 0)
+            {
+                Remove(_items[0], ItemRemoved);
+            }
 
             IsEmpty = true;
             IsQuestItemFinded = false;

@@ -15,7 +15,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant
         public event Action PlayerCaptured;
 
         [SerializeField] private BlindablePart _head;
-        [SerializeField] private EnemyVisibility _boundingBox;
+        [SerializeField] private EnemyVision _boundingBox;
 
         private const float AGENT_STOP_SPEED = 0f;
         private float _agentWalkSpeed;
@@ -38,6 +38,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant
         private Coroutine _blindCoroutine;
 
         private float _detectionProgress;
+        public bool InAnabios { get; set; } = false;
 
         private void Awake()
         {
@@ -51,17 +52,25 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant
 
         private void Update()
         {
-            if (_brain != null)
-                _brain.Update(Time.deltaTime);
+            _brain?.Update(Time.deltaTime);
         }
 
         public float DetectionProgress
         {
             get => _detectionProgress;
-            set => _detectionProgress = Mathf.Clamp(_detectionProgress + value, 0f, 1f);
+            set 
+            {
+                _detectionProgress = Mathf.Clamp(value, 0f, 1f);
+            }
         }
 
         public Vector3 LastKnownPlayerPosition { get; set; }
+
+        public void RememberPlayerPosition()
+        {
+            if (Target != null)
+                LastKnownPlayerPosition = Target.transform.position;
+        }
 
         public void Init(StateMachineBrain brain, RouteService routeService, Camera camera)
         {
@@ -73,11 +82,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant
             _boundingBox.Init(camera);
         }
 
-        public void Walk()
+        public void StartPatrol()
         {
-            _walker.SetSpeed(_agentWalkSpeed);
             _walker.StartWalk();
-            _animatorController.Walk();
         }
 
         public void StopWalk()
@@ -87,7 +94,13 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant
             _animatorController.StopWalk();
         }
 
-        public void Run()
+        public void SetWalk()
+        {
+            _walker.SetSpeed(_agentWalkSpeed);
+            _animatorController.Walk();
+        }
+
+        public void SetRun()
         {
             _walker.SetSpeed(WalkerSpeed.CONSULTANT_RUN);
             _animatorController.Run();
@@ -99,8 +112,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant
             _animatorController.StopRun();
         }
 
-        public void GoTo(Vector3 target, Action onComplete)
+        public void GoTo(Vector3 target, Action onComplete = null)
         {
+            _animatorController.Walk();
             _walker.GoTo(target, onComplete);
         }
 
@@ -134,10 +148,18 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant
         }
 
         public void DetectPlayer(HeroStress player)
-            => Target = player;
+        {
+            Target = player;
+
+            if (Target != null)
+                LastKnownPlayerPosition = Target.transform.position;
+        }
+            
 
         public void LostTarget()
-            => Target = null;
+        {
+            Target = null;
+        }
 
         private void OnDestroy()
         {
