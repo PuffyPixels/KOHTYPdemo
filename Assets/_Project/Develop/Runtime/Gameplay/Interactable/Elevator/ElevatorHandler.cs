@@ -1,6 +1,7 @@
 using Assets._Project.Develop.Runtime.Gameplay.Enemy.Perekozhnik;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
 using Assets._Project.Develop.Runtime.Utilities.ElevatorManagment;
+using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
 using Assets._Project.Develop.Runtime.Utilities.Sound;
 using DG.Tweening;
 using System;
@@ -52,11 +53,11 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator
             }
         }
 
-        public void Init(SoundsManager soundManager, ICoroutinesPerformer coroutinesPerformer)
+        public void Init(SoundsManager soundManager, ICoroutinesPerformer coroutinesPerformer, SceneSwitcherService sceneSwitcher)
         {
             Assert.IsNotNull(soundManager);
 
-            _perekozhnik.Init(soundManager, coroutinesPerformer);
+            _perekozhnik.Init(soundManager, coroutinesPerformer, sceneSwitcher);
         }
 
         public IEnumerator OpenDoors()

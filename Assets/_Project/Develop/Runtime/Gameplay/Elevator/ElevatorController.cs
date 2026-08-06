@@ -1,5 +1,6 @@
 ﻿using Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
+using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
 using Assets._Project.Develop.Runtime.Utilities.Sound;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,18 +15,20 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
         private ElevatorHandler _currentElevator;
         private SoundsManager _soundManager;
         private ICoroutinesPerformer _coroutinesPerformer;
+        private SceneSwitcherService _sceneSwitcher;
 
         private void Awake()
         {
             Assert.IsTrue(_elevatorPrefabs.Count > 0, "_elevatorPrefabs list is empty.");
         }
 
-        public void Init(SoundsManager soundManager, ICoroutinesPerformer coroutinesPerformer)
+        public void Init(SoundsManager soundManager, ICoroutinesPerformer coroutinesPerformer, SceneSwitcherService sceneSwitcher)
         {
             Assert.IsNotNull(soundManager);
 
             _soundManager = soundManager;
             _coroutinesPerformer = coroutinesPerformer;
+            _sceneSwitcher = sceneSwitcher;
         }
 
         public void SetElevator(int elevatorIndex)
@@ -40,7 +43,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
             }
 
             _currentElevator = Instantiate(_elevatorPrefabs[elevatorIndex]);
-            _currentElevator.Init(_soundManager, _coroutinesPerformer);
+            _currentElevator.Init(_soundManager, _coroutinesPerformer, _sceneSwitcher);
         }
     }
 }

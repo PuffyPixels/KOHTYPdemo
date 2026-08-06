@@ -74,7 +74,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
             _container.Resolve<NotePopupPresenter>().Initialize();
             _container.Resolve<PausePresenter>().Initialize();
 
-            elevatorController.Init(_container.Resolve<SoundsManager>(), _container.Resolve<ICoroutinesPerformer>());
+            elevatorController.Init(_container.Resolve<SoundsManager>(), _container.Resolve<ICoroutinesPerformer>(),
+                _container.Resolve<SceneSwitcherService>());
 
             yield break;
         }

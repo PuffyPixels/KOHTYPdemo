@@ -1,5 +1,6 @@
 ﻿using Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
+using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
 using Assets._Project.Develop.Runtime.Utilities.Sound;
 using System;
 using System.Collections.Generic;
@@ -25,13 +26,13 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Perekozhnik
 
         private bool _isActive = false;
 
-        public void Init(SoundsManager soundsManager, ICoroutinesPerformer coroutinesPerformer)
+        public void Init(SoundsManager soundsManager, ICoroutinesPerformer coroutinesPerformer, SceneSwitcherService sceneSwitcher)
         {
             Assert.IsNotNull(soundsManager);
 
             _soundsManager = soundsManager;
             _isActive = true;
-            _attackHandler = new(coroutinesPerformer, _elevator, _faceTrigger, _awayTrigger, _animatedBone);
+            _attackHandler = new(coroutinesPerformer, sceneSwitcher, _elevator, _faceTrigger, _awayTrigger, _animatedBone);
         }
 
         private void Update()

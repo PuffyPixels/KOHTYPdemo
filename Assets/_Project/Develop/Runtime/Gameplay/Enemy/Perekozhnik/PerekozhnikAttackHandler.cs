@@ -1,5 +1,6 @@
 using Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
+using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
 using DG.Tweening;
 using DyrdaDev.FirstPersonController;
 using Project.Develop.Runtime.Utilities.Initializing;
@@ -19,6 +20,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Perekozhnik
         private IDisposable _awaySub;
         private Transform _animatedBone;
         private ICoroutinesPerformer _coroutinesPerformer;
+        private SceneSwitcherService _sceneSwitcher;
 
         private enum Phase
         {
@@ -30,11 +32,12 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Perekozhnik
 
         private Phase _phase = Phase.Call;
 
-        public PerekozhnikAttackHandler(ICoroutinesPerformer coroutinesPerformer, ElevatorHandler elevator, Collider faceTrigger, Collider awayTrigger, Transform animatedBone)
+        public PerekozhnikAttackHandler(ICoroutinesPerformer coroutinesPerformer, SceneSwitcherService sceneSwitcher, ElevatorHandler elevator, Collider faceTrigger, Collider awayTrigger, Transform animatedBone)
         {
             _elevator = elevator;
             _animatedBone = animatedBone;
             _coroutinesPerformer = coroutinesPerformer;
+            _sceneSwitcher = sceneSwitcher;
             _elevator.PlayerEntered += OnPlayerEntered;
             _elevator.PlayerExited += OnPlayerExited;
             _elevator.DoorsOpened += OnDoorOpened;
@@ -111,7 +114,10 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Perekozhnik
             yield return _animatedBone.DOMove(targetPosition, Settings.Settings.PEREKOZHNIK_MOVE_TIME).SetEase(Ease.OutCubic).WaitForCompletion();
 
             // Temp. TODO: Common code for game over
-            BaseSceneEntitiesInitializer.ReloadGame();
+            //BaseSceneEntitiesInitializer.ReloadGame();
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            _coroutinesPerformer.StartPerform(_sceneSwitcher.ProcessSwitchTo(Scenes.MainMenu));
         }
     }
 }
