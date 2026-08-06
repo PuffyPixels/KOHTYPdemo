@@ -12,5 +12,7 @@ namespace Assets._Project.Develop.Runtime.Infrastructure
         public abstract IEnumerator Initialize();
 
         public abstract void Run();
+
+        public virtual void ClearInputArgs() { }
     }
 }

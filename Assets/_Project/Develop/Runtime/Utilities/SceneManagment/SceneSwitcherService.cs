@@ -24,6 +24,7 @@ namespace Assets._Project.Develop.Runtime.Utilities.SceneManagment
         private bool _isLoading;
 
         private DIContainer _currentSceneContainer;
+        private string _currentSceneName;
 
         public SceneSwitcherService(
             SceneLoaderService sceneLoaderService, 
@@ -77,9 +78,24 @@ namespace Assets._Project.Develop.Runtime.Utilities.SceneManagment
                 _loadingScreen.Show();
                 _loadingScreen.FadeIn(fadeDuration);
 
+                /*
+                For clear extra container
+                */
+                if (!string.IsNullOrEmpty(_currentSceneName))
+                {
+                    SceneBootstrap oldSceneBootstrap = GetSceneBootstrap(_currentSceneName);
+
+                    if (oldSceneBootstrap != null)
+                        oldSceneBootstrap.ClearInputArgs();
+                }
+                /*
+                For clear extra container
+                */
+
                 _currentSceneContainer?.Dispose();
             }
 
+            _currentSceneName = sceneName;
             yield return _sceneLoaderService.LoadAsync(sceneName, loadSceneMode, callback);
 
             SceneBootstrap sceneBootstrap = GetSceneBootstrap(sceneName);

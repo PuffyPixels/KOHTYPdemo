@@ -1,7 +1,9 @@
 using Assets._Project.Develop.Runtime.Gameplay.Interactable.FakeTv;
 using Assets._Project.Develop.Runtime.Gameplay.Player;
 using Assets._Project.Develop.Runtime.Gameplay.Player.Inventory;
+using Assets._Project.Develop.Runtime.Gameplay.Shop;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
+using Assets._Project.Develop.Runtime.Utilities.Remover;
 using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
 using DG.Tweening;
 using DyrdaDev.FirstPersonController;
@@ -46,23 +48,6 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator
             yield return _elevatorHandler.CloseDoors();
             Hero hero = GameObject.FindFirstObjectByType<Hero>();
 
-            if (hero != null && hero.TryGetComponent(out Canvas canvas))
-            {
-                GameObject textObj = new GameObject("ToBeContinued", typeof(RectTransform), typeof(TMP_Text));
-                textObj.transform.SetParent(canvas.transform, false);
-                RectTransform rectTransform = textObj.GetComponent<RectTransform>();
-                rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
-                rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
-                rectTransform.pivot = new Vector2(0.5f, 0.5f);
-                rectTransform.anchoredPosition = Vector2.zero;
-                rectTransform.sizeDelta = new Vector2(400, 100);
-
-                TMP_Text text = textObj.GetComponent<TMP_Text>();
-                text.text = "Продолжение следует...";
-                text.fontSize = 40;
-                text.alignment = TextAlignmentOptions.Center;
-                text.color = Color.white;
-            }
 
             //BaseSceneEntitiesInitializer.ReloadGame();
             Cursor.lockState = CursorLockMode.None;

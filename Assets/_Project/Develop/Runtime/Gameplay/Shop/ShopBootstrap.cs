@@ -52,5 +52,10 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Shop
         {
             _enemiesFactory.CreateConsultant(_consultantSettings);
         }
+
+        public override void ClearInputArgs()
+        {
+            _inputArgs.GameLogicContainer.Dispose();
+        }
     }
 }
