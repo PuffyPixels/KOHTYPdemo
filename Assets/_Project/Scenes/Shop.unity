@@ -20997,11 +20997,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Utilities.Sound.EnvironmentSound
   _shouldPlayLooped: 1
   _isOwned: 0
-  _is2D: 0
+  _is2D: 1
   _audioClip: {fileID: 8300000, guid: 6dbf418ab7cf373499275727c4c7865f, type: 3}
   _soundInterval: -1
   _playSoundChance: 0
-  _volume: 1
+  _volume: 0.45
   _maxDistance: 20
 --- !u!4 &1713386432
 Transform:

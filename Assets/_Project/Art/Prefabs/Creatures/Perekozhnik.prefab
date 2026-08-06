@@ -85,7 +85,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a49f95e16d9849048934b19804ddf103, type: 3}
   _soundsIntervalMin: 3
   _soundsIntervalMax: 8
-  _maxDistance: 5
+  _maxDistance: 3
+  _elevator: {fileID: 0}
+  _faceTrigger: {fileID: 0}
+  _awayTrigger: {fileID: 0}
+  _animatedBone: {fileID: 0}
 --- !u!65 &1289556740408218565
 BoxCollider:
   m_ObjectHideFlags: 0
