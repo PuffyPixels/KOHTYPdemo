@@ -227,6 +227,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9135896348263838652, guid: 7f7289de70e90e640a11a18dd71ca9e4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7674644691380770426}
+    - targetCorrespondingSourceObject: {fileID: 9135896348263838652, guid: 7f7289de70e90e640a11a18dd71ca9e4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7882695433770316171}
   m_SourcePrefab: {fileID: 100100000, guid: 7f7289de70e90e640a11a18dd71ca9e4, type: 3}
 --- !u!4 &1369136750318984179 stripped
 Transform:
@@ -294,3 +297,24 @@ MonoBehaviour:
   _backSideHandler: {fileID: 7882936233091881340}
   _rotateAxis: {x: 0, y: 1, z: 0}
   _openDeltaAngle: 90
+  _openSound: {fileID: 7882695433770316171}
+--- !u!114 &7882695433770316171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7976423740946528044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12439d3f347e68840be41cf252b33fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Utilities.Sound.EnvironmentSound
+  _shouldPlayLooped: 0
+  _isOwned: 0
+  _is2D: 0
+  _audioClip: {fileID: 8300000, guid: 08475b8e8f645574fadfd6c277bc9d14, type: 3}
+  _soundInterval: -1
+  _playSoundChance: 0
+  _volume: 1
+  _maxDistance: 17

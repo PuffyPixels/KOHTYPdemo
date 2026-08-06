@@ -6,6 +6,7 @@ using Assets._Project.Develop.Runtime.UI.Gameplay.NotePopup;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
 using Assets._Project.Develop.Runtime.Utilities.ElevatorManagment;
 using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
+using Assets._Project.Develop.Runtime.Utilities.Sound;
 using Project.Develop.Runtime.Utilities.Initializing;
 using System;
 using System.Collections;
@@ -21,6 +22,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Shop
         private ElevatorSwitchManager _elevatorSwitchManager;
         private EnemiesFactory _enemiesFactory;
         private ShopInputArgs _inputArgs;
+        private SceneSoundInstaller _sceneSoundInstaller;
 
         public override void ProcessRegistrations(DIContainer container, IInputSceneArgs sceneArgs = null)
         {
@@ -38,6 +40,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Shop
         {
             _elevatorSwitchManager = _container.Resolve<ElevatorSwitchManager>();
             _enemiesFactory = _container.Resolve<EnemiesFactory>();
+            _sceneSoundInstaller = _container.Resolve<SceneSoundInstaller>();
 
             Inventory inventory = _inputArgs.GameLogicContainer.Resolve<Inventory>();
             InventoryItemsDatabase itemsDatabase = _inputArgs.GameLogicContainer.Resolve<InventoryItemsDatabase>();
@@ -51,6 +54,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Shop
         public override void Run()
         {
             _enemiesFactory.CreateConsultant(_consultantSettings);
+            _sceneSoundInstaller.InitEnvironmentSound();
         }
 
         public override void ClearInputArgs()

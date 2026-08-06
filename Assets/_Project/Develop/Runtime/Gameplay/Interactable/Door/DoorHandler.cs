@@ -1,3 +1,4 @@
+using Assets._Project.Develop.Runtime.Utilities.Sound;
 using DG.Tweening;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Door
         private Vector3 _rotateAxis = new(0, 0, 1);
         [SerializeField]
         private float _openDeltaAngle = 90f;
+        [SerializeField]
+        private EnvironmentSound _openSound;
 
         public bool IsOpen { get; private set; }
 
@@ -56,6 +59,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Door
 
         private void Move(Vector3 target, bool isOpening)
         {
+            _openSound.PlaySound();
             _isMoving = true;
             _frontSideHandler.SetDoorReady(false);
             _backSideHandler.SetDoorReady(false);
