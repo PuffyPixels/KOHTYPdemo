@@ -11,8 +11,6 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant.States
         private const float DEFAULT_SOUND_INTERVAL_MIN = 10f;
         private const float DEFAULT_SOUND_INTERVAL_MAX = 20f;
 
-        private float _minCaptureDistanse = 0.1f;
-
         public ChaseState(
             ConsultantFacade consultant,
             List<AudioClip> audioClipList,
