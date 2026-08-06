@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f3b57640b5afe143a97e6c29d0c7ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.MainMenu.MainMenuBootstrap
+  _menuMusic: {fileID: 8300000, guid: efeaf2c541c35f341a6cd7c11c75c3fb, type: 3}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,11 @@ namespace Assets._Project.Develop.Runtime.Utilities.Sound
         private Coroutine _crossCoroutine;
         private float _maxVolume = 1f;
 
+        private void Awake()
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+
         public void SetVolume(float volume)
         {
             if (_fadeCoroutine != null)
