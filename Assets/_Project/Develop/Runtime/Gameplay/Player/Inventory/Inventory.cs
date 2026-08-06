@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using static UnityEditor.Progress;
 
 namespace Assets._Project.Develop.Runtime.Gameplay.Player.Inventory
 {
