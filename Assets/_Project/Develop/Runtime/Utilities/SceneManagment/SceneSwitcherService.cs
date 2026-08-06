@@ -17,6 +17,7 @@ namespace Assets._Project.Develop.Runtime.Utilities.SceneManagment
 
         private readonly SceneLoaderService _sceneLoaderService;
         private readonly SoundsManager _soundsManager;
+        private MusicManager _musicManager;
         private readonly ILoadingScreen _loadingScreen;
         private readonly DIContainer _projectContainer;
         private readonly Fader _fader;
@@ -35,6 +36,7 @@ namespace Assets._Project.Develop.Runtime.Utilities.SceneManagment
             _projectContainer = projectContainer;
             _fader = fader;
             _soundsManager = projectContainer.Resolve<SoundsManager>();
+            _musicManager = projectContainer.Resolve<MusicManager>();
         }
 
         public IEnumerator ProcessSwitchTo(
@@ -69,6 +71,8 @@ namespace Assets._Project.Develop.Runtime.Utilities.SceneManagment
                 _fader.FadeIn(fadeDuration, () => fadeCompleted = true);
 
                 yield return new WaitWhile(() => fadeCompleted == false);
+
+                _musicManager.StopMusic();
 
                 _loadingScreen.Show();
                 _loadingScreen.FadeIn(fadeDuration);
