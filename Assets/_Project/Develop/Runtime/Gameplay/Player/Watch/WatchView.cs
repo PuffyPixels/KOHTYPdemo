@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -14,18 +15,27 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player.Watch
         [SerializeField] private float _detectRadius = 15f;
         [SerializeField] private AnimationCurve _signalCurve;
 
+        [SerializeField]
+        private List<string> _correctItems;
+
         private WatchDetector _detector;
 
         private void Awake()
         {
             Assert.IsNotNull(_heroWatch);
             Assert.IsNotNull(_glitchPlayer);
+        }
 
+        public void Init(Inventory.Inventory inventory)
+        {
             _detector = new WatchDetector(
                 _heroWatch.transform.root,
                 _enemyMask,
                 _detectRadius,
-                _signalCurve);
+                _signalCurve,
+                inventory,
+                _correctItems);
+
 
             _detector.SignalChanged += OnSignalChanged;
         }

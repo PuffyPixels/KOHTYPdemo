@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
 using Assets._Project.Develop.Runtime.Gameplay.Enemy.Consultant;
+using Assets._Project.Develop.Runtime.Gameplay.Player.Inventory;
+using NUnit.Framework;
 using UnityEngine;
 
 namespace Assets._Project.Develop.Runtime.Gameplay.Player.Watch
@@ -10,6 +13,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player.Watch
         private readonly LayerMask _enemyMask;
         private readonly float _radius;
         private readonly AnimationCurve _signalCurve;
+        private Inventory.Inventory _inventory;
+        private float _inventoryIncorrectPercent;
+        private List<string> _correctItems;
 
         private readonly Collider[] _results = new Collider[16];
 
@@ -21,16 +27,32 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player.Watch
             Transform hero,
             LayerMask enemyMask,
             float radius,
-            AnimationCurve signalCurve)
+            AnimationCurve signalCurve, 
+            Inventory.Inventory inventory,
+            List<string> correctItems)
         {
             _hero = hero;
             _enemyMask = enemyMask;
             _radius = radius;
             _signalCurve = signalCurve;
+            _correctItems = correctItems;
+            _inventory = inventory;
+            _inventory.ItemAdded += OnItemsChanged;
+            _inventory.ItemDropped += OnItemsChanged;
+            _inventory.ItemRemoved += OnItemsChanged;
         }
 
         public void Tick()
         {
+            if (_inventoryIncorrectPercent > 0.1f)
+            {
+                SignalChanged?.Invoke(
+                    new WatchSignal(_signalCurve.Evaluate(_inventoryIncorrectPercent), WatchSignalSource.Item),
+                    true);
+
+                return;
+            }
+
             int count = Physics.OverlapSphereNonAlloc(
                 _hero.position,
                 _radius,
@@ -94,6 +116,25 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player.Watch
         public void Dispose()
         {
             SignalChanged = null;
+            _inventory.ItemAdded -= OnItemsChanged;
+            _inventory.ItemDropped -= OnItemsChanged;
+            _inventory.ItemRemoved -= OnItemsChanged;
+        }
+
+        private void OnItemsChanged(Inventory.Inventory _, InventoryItem __)
+        {
+            int incorrectNumber = 0;
+
+            if (_inventory.Items == null || _inventory.Items.Count == 0)
+                return;
+
+            foreach (var item in _inventory.Items)
+            {
+                if (!_correctItems.Contains(item.Name))
+                    incorrectNumber++;
+            }
+
+            _inventoryIncorrectPercent = (float)incorrectNumber / (float)_inventory.Items.Count;
         }
     }
 }

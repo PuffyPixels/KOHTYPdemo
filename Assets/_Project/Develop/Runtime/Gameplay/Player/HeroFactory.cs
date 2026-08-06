@@ -1,5 +1,6 @@
 ﻿using Assets._Project.Develop.Runtime.Gameplay.Elevator;
 using Assets._Project.Develop.Runtime.Gameplay.Player.Inventory;
+using Assets._Project.Develop.Runtime.Gameplay.Player.Watch;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
 using Assets._Project.Develop.Runtime.Utilities.AudioListenerService;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
@@ -59,6 +60,15 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
 
             _container.RegisterAsSingle<ItemThrower>(_ => _itemThrower);
 
+            WatchView watchView = hero.GetComponentInChildren<WatchView>();
+
+            if (watchView == null)
+            {
+                Debug.LogError("Hero doesn't have WatchView component.");
+                return hero;
+            }
+
+            watchView.Init(_container.Resolve<Inventory.Inventory>());
             return hero;
         }
 
