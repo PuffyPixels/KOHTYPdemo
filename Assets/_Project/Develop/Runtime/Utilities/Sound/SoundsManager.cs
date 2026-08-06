@@ -66,6 +66,12 @@ namespace Assets._Project.Develop.Runtime.Utilities.Sound
             return _mixerMappings[0].MixerGroup;
         }
 
+        public void ReCreate()
+        {
+            _pool3D?.ReCreate();
+            _pool2D?.ReCreate();
+        }
+
         /// <summary>
         /// Spawns a sound object.
         /// <param name = "owner"> If there is an owner, the next sounds spawned with this owner will stop the previous one </param>
@@ -129,6 +135,8 @@ namespace Assets._Project.Develop.Runtime.Utilities.Sound
                 audioSource.pitch = randomPitch;
             }
 
+            audioSource.gameObject.SetActive(true);
+            audioSource.enabled = true;
             audioSource.Play();
             _activeAudioSources.Add(audioSource);
 

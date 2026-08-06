@@ -2,6 +2,7 @@
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
 using Assets._Project.Develop.Runtime.UI.Core;
 using Assets._Project.Develop.Runtime.Utilities.LoadingScreen;
+using Assets._Project.Develop.Runtime.Utilities.Sound;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -15,6 +16,7 @@ namespace Assets._Project.Develop.Runtime.Utilities.SceneManagment
         public const float DEFAULT_FADE_DURATION = 2f;
 
         private readonly SceneLoaderService _sceneLoaderService;
+        private readonly SoundsManager _soundsManager;
         private readonly ILoadingScreen _loadingScreen;
         private readonly DIContainer _projectContainer;
         private readonly Fader _fader;
@@ -32,6 +34,7 @@ namespace Assets._Project.Develop.Runtime.Utilities.SceneManagment
             _loadingScreen = loadingScreen;
             _projectContainer = projectContainer;
             _fader = fader;
+            _soundsManager = projectContainer.Resolve<SoundsManager>();
         }
 
         public IEnumerator ProcessSwitchTo(
@@ -88,6 +91,8 @@ namespace Assets._Project.Develop.Runtime.Utilities.SceneManagment
             {
                 if (sceneName == Scenes.Entrance)
                     yield return new WaitForSeconds(waitUntilSoundEnd - (Time.time - startLoadTime));
+
+                _soundsManager.ReCreate();
 
                 bool fadeCompleted = false;
 
