@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Project.Develop.Runtime.Utilities.Remover
+namespace Assets._Project.Develop.Runtime.Utilities.Remover
 {
     public static class Remover
     {

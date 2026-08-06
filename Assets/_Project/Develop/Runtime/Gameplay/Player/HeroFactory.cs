@@ -57,6 +57,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
                 _container.Resolve<Inventory.Inventory>(),
                 _container.Resolve<InventoryItemsDatabase>(), hero.transform);
 
+            _container.RegisterAsSingle<ItemThrower>(_ => _itemThrower);
+
             return hero;
         }
 

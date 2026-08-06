@@ -4,6 +4,7 @@ using Assets._Project.Develop.Runtime.Infrastructure.DI;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
 using Assets._Project.Develop.Runtime.Utilities.ElevatorManagment;
 using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
+using Project.Develop.Runtime.Utilities.Initializing;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -60,6 +61,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator
             yield return _elevatorHandler.ShowDoorsImageRoutine();
 
             _elevatorSwitchManager.SetElevator(1);
+            BaseSceneEntitiesInitializer.InitFinalElevator();
         }
     }
 }

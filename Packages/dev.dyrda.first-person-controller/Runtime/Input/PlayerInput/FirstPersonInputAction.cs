@@ -351,7 +351,7 @@ namespace DyrdaDev.FirstPersonController
                 {
                     ""name"": """",
                     ""id"": ""2c6a6774-fb0b-4a45-8a2a-3fe90a3b423b"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard and Mouse"",

@@ -5,6 +5,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Item
 {
     public class CollectableItem : Selectable
     {
+        public string Name => _name;
+
         [SerializeField]
         private string _name;
 
@@ -24,6 +26,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Item
             if (_inventory.TryAdd(_itemsDatabase.GetItem(_name)))
             {
                 OnInteract();
+                gameObject.SetActive(false);
                 Destroy(gameObject);
             }
         }

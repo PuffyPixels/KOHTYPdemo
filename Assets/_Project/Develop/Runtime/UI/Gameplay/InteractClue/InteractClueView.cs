@@ -13,7 +13,7 @@ namespace Assets._Project.Develop.Runtime.UI.Gameplay.InteractClue
         public string Description
         {
             private get => _description.text;
-            set => _description.text = $"[E] {value}";
+            set => _description.text = value;
         }
 
         protected override void OnPreShow()

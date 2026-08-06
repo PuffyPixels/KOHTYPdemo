@@ -1,3 +1,4 @@
+using Assets._Project.Develop.Runtime.Gameplay.Interactable.Item;
 using Assets._Project.Develop.Runtime.Gameplay.Settings;
 using System;
 using UnityEngine;
@@ -6,6 +7,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player.Inventory
 {
     public class ItemThrower : IDisposable
     {
+        public event Action<CollectableItem> ItemThrown;
+
         private Inventory _inventory;
         private Transform _thrower;
         private InventoryItemsDatabase _itemsDatabase;
@@ -35,6 +38,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player.Inventory
             }
 
             droppedItem.Init(inventory, _itemsDatabase);
+            ItemThrown?.Invoke(droppedItem);
         }
     }
 }

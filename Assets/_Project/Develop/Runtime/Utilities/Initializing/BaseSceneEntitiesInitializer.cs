@@ -1,7 +1,7 @@
-using Assets._Project.Develop.Runtime.Gameplay.Interactable;
 using Assets._Project.Develop.Runtime.Gameplay.Interactable.Door;
 using Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator;
 using Assets._Project.Develop.Runtime.Gameplay.Interactable.Item;
+using Assets._Project.Develop.Runtime.Gameplay.Interactable.ItemStorage;
 using Assets._Project.Develop.Runtime.Gameplay.Interactable.Note;
 using Assets._Project.Develop.Runtime.Gameplay.Player;
 using Assets._Project.Develop.Runtime.Gameplay.Player.Inventory;
@@ -10,8 +10,11 @@ using Assets._Project.Develop.Runtime.UI.Gameplay.NotePopup;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
 using Assets._Project.Develop.Runtime.Utilities.ElevatorManagment;
 using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
+using Assets._Project.Develop.Runtime.Utilities.Remover;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Assets._Project.Develop.Runtime.Gameplay.Interactable.FakeTv;
 
 namespace Project.Develop.Runtime.Utilities.Initializing
 {
@@ -55,6 +58,29 @@ namespace Project.Develop.Runtime.Utilities.Initializing
         {
             GameObject.FindObjectsByType<LockedDoorHandler>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList().
                 ForEach(x => x.Init(inventory));
+        }
+
+        public static void InitItemsStorages(ItemThrower itemThrower)
+        {
+            GameObject.FindObjectsByType<ItemStorage>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList().
+                ForEach(x => x.Init(itemThrower));
+        }
+
+        public static void InitFinalElevator()
+        {
+            FakeTvHandler fakeTv = GameObject.FindFirstObjectByType<FakeTvHandler>(FindObjectsInactive.Include);
+            FinalElevator finalElevator = GameObject.FindFirstObjectByType<FinalElevator>(FindObjectsInactive.Include);
+
+            if (finalElevator != null)
+                finalElevator.Init(fakeTv);
+        }
+
+        public static void ReloadGame()
+        {
+            Remover.ClearDontDestroyAndLoad();
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            SceneManager.LoadScene(Scenes.GameEntryPoint);
         }
     }
 }

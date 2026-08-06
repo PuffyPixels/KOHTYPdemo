@@ -1,15 +1,13 @@
 using Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
-using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
 using DG.Tweening;
 using DyrdaDev.FirstPersonController;
-using Project.Develop.Runtime.Utilities.Remover;
+using Project.Develop.Runtime.Utilities.Initializing;
 using System;
 using System.Collections;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Perekozhnik
 {
@@ -113,10 +111,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Enemy.Perekozhnik
             yield return _animatedBone.DOMove(targetPosition, Settings.Settings.PEREKOZHNIK_MOVE_TIME).SetEase(Ease.OutCubic).WaitForCompletion();
 
             // Temp. TODO: Common code for game over
-            Remover.ClearDontDestroyAndLoad();
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            SceneManager.LoadScene(Scenes.GameEntryPoint);
+            BaseSceneEntitiesInitializer.ReloadGame();
         }
     }
 }

@@ -3,6 +3,7 @@ using Assets._Project.Develop.Runtime.Gameplay.Player.Inventory;
 using Assets._Project.Develop.Runtime.Infrastructure;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
 using Assets._Project.Develop.Runtime.UI.Gameplay.NotePopup;
+using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
 using Assets._Project.Develop.Runtime.Utilities.ElevatorManagment;
 using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
 using Project.Develop.Runtime.Utilities.Initializing;
@@ -43,6 +44,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Shop
             BaseSceneEntitiesInitializer.InitCollectableObjects(inventory, itemsDatabase);
             BaseSceneEntitiesInitializer.InitLockedDoors(inventory);
             BaseSceneEntitiesInitializer.InitNotes(itemsDatabase, _inputArgs.GameLogicContainer.Resolve<NotePopupPresenter>());
+            BaseSceneEntitiesInitializer.InitItemsStorages(_inputArgs.GameLogicContainer.Resolve<ItemThrower>());
             yield break;
         }
 
