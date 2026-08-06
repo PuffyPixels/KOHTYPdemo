@@ -13,6 +13,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.ItemsSpawner
 
         private List<SpawnPoint> _spawnPoints;
         private Dictionary<ItemType, Transform> _itemsContainers;
+        private Inventory _inventory;
 
         private void Awake()
         {
@@ -27,6 +28,14 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.ItemsSpawner
             };
 
             Respawn(_itemsDatabase.Items);
+        }
+
+        public void Init(Inventory inventory, InventoryItemsDatabase itemsDatabase)
+        {
+            if (_itemsDatabase == null)
+                _itemsDatabase = itemsDatabase;
+
+            _inventory = inventory;
         }
 
         public void Respawn()
@@ -49,7 +58,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.ItemsSpawner
                 }
 
                 SpawnPoint point = points.ElementAt(UnityEngine.Random.Range(0, points.Count()));
-                point.Spawn(item, _itemsContainers.GetValueOrDefault(item.Type));
+                point.Spawn(_inventory, _itemsDatabase, item, _itemsContainers.GetValueOrDefault(item.Type));
                 freeSpawnPoints.Remove(point);
             }
         }

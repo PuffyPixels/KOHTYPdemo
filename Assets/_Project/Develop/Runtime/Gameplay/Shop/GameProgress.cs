@@ -35,8 +35,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Shop
 
         private void OnPlayerCaptured()
         {
+            _itemsSpawner.Respawn(_inventory.Items);
             _inventory.RemoveAll();
-            _itemsSpawner.Respawn();
             _hero.Stun();
         }
     }

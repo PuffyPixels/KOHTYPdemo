@@ -16,6 +16,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Assets._Project.Develop.Runtime.Gameplay.Interactable.FakeTv;
 using Assets._Project.Develop.Runtime.Utilities.Sound;
+using Assets._Project.Develop.Runtime.Gameplay.Interactable.ItemsSpawner;
 
 namespace Project.Develop.Runtime.Utilities.Initializing
 {
@@ -74,6 +75,14 @@ namespace Project.Develop.Runtime.Utilities.Initializing
 
             if (finalElevator != null)
                 finalElevator.Init(fakeTv, coroutinesPerformer, sceneSwitcher);
+        }
+
+        public static void InitItemsSpawner(Inventory inventory, InventoryItemsDatabase itemsDatabase)
+        {
+            ItemsSpawner spawner = GameObject.FindFirstObjectByType<ItemsSpawner>();
+
+            if (spawner != null)
+                spawner.Init(inventory, itemsDatabase);
         }
 
         public static void ReloadGame()

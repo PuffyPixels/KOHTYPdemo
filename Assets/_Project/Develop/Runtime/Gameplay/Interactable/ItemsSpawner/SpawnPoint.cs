@@ -1,3 +1,4 @@
+using Assets._Project.Develop.Runtime.Gameplay.Interactable.Item;
 using Assets._Project.Develop.Runtime.Gameplay.Player.Inventory;
 using UnityEngine;
 
@@ -12,9 +13,12 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.ItemsSpawner
 
         private int _itemsCount;
 
-        public void Spawn(InventoryItem item, Transform parent = null)
+        public void Spawn(Inventory inventory, InventoryItemsDatabase itemsDatabase, InventoryItem item, Transform parent = null)
         {
-            Instantiate(item.CollectableItem, transform.position, transform.rotation, parent: parent);
+            CollectableItem collectableItem = Instantiate(item.CollectableItem, transform.position, transform.rotation, parent: parent);
+
+            if (collectableItem != null)
+                collectableItem.Init(inventory, itemsDatabase);
         }
 
         private void OnTriggerEnter(Collider other)

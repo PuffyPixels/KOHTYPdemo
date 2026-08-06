@@ -48,6 +48,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Shop
             BaseSceneEntitiesInitializer.InitLockedDoors(inventory);
             BaseSceneEntitiesInitializer.InitNotes(itemsDatabase, _inputArgs.GameLogicContainer.Resolve<NotePopupPresenter>());
             BaseSceneEntitiesInitializer.InitItemsStorages(_inputArgs.GameLogicContainer.Resolve<ItemThrower>());
+            BaseSceneEntitiesInitializer.InitItemsSpawner(inventory, itemsDatabase);
             yield break;
         }
 
