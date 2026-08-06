@@ -33,7 +33,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.MainMenu
 
         public override void Run()
         {
-            _musicManager.PlayMusic(_menuMusic);
+            _musicManager.PlayMusic(_menuMusic, maxVolume: 0.3f);
 
             _sceneSoundInstaller.InitEnvironmentSound();
         }
