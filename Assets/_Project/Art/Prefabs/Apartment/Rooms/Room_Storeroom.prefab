@@ -1123,6 +1123,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -1374161610312379201, guid: 4017cd09af81f284583a7cc62788d81f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7320784314736541095}
+    - targetCorrespondingSourceObject: {fileID: -1374161610312379201, guid: 4017cd09af81f284583a7cc62788d81f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7954496003669950717}
   m_SourcePrefab: {fileID: 100100000, guid: 4017cd09af81f284583a7cc62788d81f, type: 3}
 --- !u!1 &4041687802491289737 stripped
 GameObject:
@@ -1151,6 +1154,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7443724666282046697, guid: 4017cd09af81f284583a7cc62788d81f, type: 3}
+--- !u!114 &7954496003669950717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4041687802491289737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf32f0ea3d8b63442817ec841b49070e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Utilities.Sound.GroundSounds
+  _stepSounds:
+  - {fileID: 8300000, guid: 42678c44943666c4a9b0e79532e53121, type: 3}
+  _stepVolume: 1
+  _pitchRange: {x: 1, y: 1}
 --- !u!4 &6012784418092135389 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4017cd09af81f284583a7cc62788d81f, type: 3}

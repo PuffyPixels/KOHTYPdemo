@@ -355,6 +355,7 @@ GameObject:
   - component: {fileID: 539516528423608179}
   - component: {fileID: 3226251765944445412}
   - component: {fileID: 6417061588061154710}
+  - component: {fileID: 6394306815863840588}
   m_Layer: 0
   m_Name: Plane.015
   m_TagString: Untagged
@@ -456,6 +457,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -567259905036692206, guid: 3c530be0276d8a04e83b70650d036b7a, type: 3}
+--- !u!114 &6394306815863840588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4043566567262747218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf32f0ea3d8b63442817ec841b49070e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Utilities.Sound.GroundSounds
+  _stepSounds:
+  - {fileID: 8300000, guid: a528e727530fdfd4b8f3136b9c688266, type: 3}
+  _stepVolume: 1
+  _pitchRange: {x: 1, y: 1}
 --- !u!1 &5121830263916118434
 GameObject:
   m_ObjectHideFlags: 0
