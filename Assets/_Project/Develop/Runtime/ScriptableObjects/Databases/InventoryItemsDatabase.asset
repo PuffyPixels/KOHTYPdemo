@@ -57,13 +57,13 @@ MonoBehaviour:
     <Type>k__BackingField: 1
     <Description>k__BackingField: "\u041E\u0442\u043A\u0440\u044B\u0432\u0430\u0435\u0442
       \u0442\u043E\u0440\u0433\u043E\u0432\u044B\u0439 \u0437\u0430\u043B"
-    <Icon>k__BackingField: {fileID: 21300000, guid: 894f6dcbd2623e94e8d66955ee3ae898, type: 3}
+    <Icon>k__BackingField: {fileID: 21300000, guid: 609e2beae5a57c2429fa832706f59334, type: 3}
     <CollectableItem>k__BackingField: {fileID: 329779584282321233, guid: 89ac0a611abcb2949bd478960735db91, type: 3}
   - <Name>k__BackingField: "\u041A\u043B\u044E\u0447 \u043E\u0442 \u0432\u044B\u0445\u043E\u0434\u0430"
     <Type>k__BackingField: 1
     <Description>k__BackingField: "\u041E\u0442\u043A\u0440\u044B\u0432\u0430\u0435\u0442
       \u0434\u043E\u0440\u043E\u0433\u0443 \u043A \u0432\u044B\u0445\u043E\u0434\u0443"
-    <Icon>k__BackingField: {fileID: 21300000, guid: 894f6dcbd2623e94e8d66955ee3ae898, type: 3}
+    <Icon>k__BackingField: {fileID: 21300000, guid: f22f319ecd0151b4084c341e2ffd5a27, type: 3}
     <CollectableItem>k__BackingField: {fileID: 8015359476554774999, guid: 17ffdbe33d619ff418230708d6ede301, type: 3}
   - <Name>k__BackingField: "\u041F\u0435\u0440\u0432\u0430\u044F \u0437\u0430\u043F\u0438\u0441\u043A\u0430"
     <Type>k__BackingField: 2
