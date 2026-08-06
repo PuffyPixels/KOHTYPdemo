@@ -97,8 +97,8 @@ namespace DyrdaDev.FirstPersonController
                     var rawLookValue = _controls.Character.Look.ReadValue<Vector2>();
 
                     smoothLookValue = new Vector2(
-                        Mathf.Lerp(smoothLookValue.x, rawLookValue.x, lookSmoothingFactor * Time.deltaTime),
-                        Mathf.Lerp(smoothLookValue.y, rawLookValue.y, lookSmoothingFactor * Time.deltaTime)
+                        Mathf.Lerp(smoothLookValue.x, rawLookValue.x, lookSmoothingFactor * Time.fixedDeltaTime),
+                        Mathf.Lerp(smoothLookValue.y, rawLookValue.y, lookSmoothingFactor * Time.fixedDeltaTime)
                     );
 
                     return smoothLookValue;
