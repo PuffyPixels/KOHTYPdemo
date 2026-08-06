@@ -3,7 +3,6 @@ using Assets._Project.Develop.Runtime.Utilities.Sound;
 using Assets._Project.Develop.Runtime.Utilities.StressSystem;
 using DG.Tweening;
 using DyrdaDev.FirstPersonController;
-using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -173,6 +172,10 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Player
         private void VignetteBeat()
         {
             _vignetteAlpha = _stress.NormalizedStress;
+
+            if (_vignetteAlpha < 0.2f)
+                return;
+
             _stressVignette.color = new(_stressVignette.color.r, _stressVignette.color.g, _stressVignette.color.b, _vignetteAlpha);
 
             _vignetteTween?.Kill();
