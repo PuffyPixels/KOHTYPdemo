@@ -66,13 +66,13 @@ namespace Project.Develop.Runtime.Utilities.Initializing
                 ForEach(x => x.Init(itemThrower));
         }
 
-        public static void InitFinalElevator()
+        public static void InitFinalElevator(ICoroutinesPerformer coroutinesPerformer, SceneSwitcherService sceneSwitcher)
         {
             FakeTvHandler fakeTv = GameObject.FindFirstObjectByType<FakeTvHandler>(FindObjectsInactive.Include);
             FinalElevator finalElevator = GameObject.FindFirstObjectByType<FinalElevator>(FindObjectsInactive.Include);
 
             if (finalElevator != null)
-                finalElevator.Init(fakeTv);
+                finalElevator.Init(fakeTv, coroutinesPerformer, sceneSwitcher);
         }
 
         public static void ReloadGame()

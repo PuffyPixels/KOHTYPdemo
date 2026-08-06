@@ -61,7 +61,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator
             yield return _elevatorHandler.ShowDoorsImageRoutine();
 
             _elevatorSwitchManager.SetElevator(1);
-            BaseSceneEntitiesInitializer.InitFinalElevator();
+            BaseSceneEntitiesInitializer.InitFinalElevator(_coroutinesPerformer, _sceneSwitcherService);
         }
     }
 }
