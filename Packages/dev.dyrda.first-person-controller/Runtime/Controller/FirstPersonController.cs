@@ -44,7 +44,7 @@ namespace DyrdaDev.FirstPersonController
         [SerializeField] private float walkSpeed = 5f;
         [SerializeField] private float runSpeed = 10f;
         [SerializeField] private float jumpForceMagnitude = 10f;
-        [SerializeField] private float strideLength = 4f;
+        [SerializeField] private float strideLength = 2f;
         [SerializeField] private float crouchDelta = 0.5f;
         public float StrideLength => strideLength;
         [SerializeField] private float stickToGroundForceMagnitude = 5f;
