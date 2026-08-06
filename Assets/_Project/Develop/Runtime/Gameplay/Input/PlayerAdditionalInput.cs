@@ -120,6 +120,15 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Input
                     ""processors"": """",
                     ""interactions"": ""Tap,Hold"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""75dba5ea-663a-4706-baa1-d534d8b3aac7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -155,6 +164,17 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Input
                     ""action"": ""Prev"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4eca3563-6976-4b4f-9bab-2c6c27cde44a"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -166,6 +186,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Input
             m_AdditionalInput_Inventory = m_AdditionalInput.FindAction("Inventory", throwIfNotFound: true);
             m_AdditionalInput_Next = m_AdditionalInput.FindAction("Next", throwIfNotFound: true);
             m_AdditionalInput_Prev = m_AdditionalInput.FindAction("Prev", throwIfNotFound: true);
+            m_AdditionalInput_Pause = m_AdditionalInput.FindAction("Pause", throwIfNotFound: true);
         }
 
         ~@PlayerAdditionalInput()
@@ -249,6 +270,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Input
         private readonly InputAction m_AdditionalInput_Inventory;
         private readonly InputAction m_AdditionalInput_Next;
         private readonly InputAction m_AdditionalInput_Prev;
+        private readonly InputAction m_AdditionalInput_Pause;
         /// <summary>
         /// Provides access to input actions defined in input action map "AdditionalInput".
         /// </summary>
@@ -272,6 +294,10 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Input
             /// Provides access to the underlying input action "AdditionalInput/Prev".
             /// </summary>
             public InputAction @Prev => m_Wrapper.m_AdditionalInput_Prev;
+            /// <summary>
+            /// Provides access to the underlying input action "AdditionalInput/Pause".
+            /// </summary>
+            public InputAction @Pause => m_Wrapper.m_AdditionalInput_Pause;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -307,6 +333,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Input
                 @Prev.started += instance.OnPrev;
                 @Prev.performed += instance.OnPrev;
                 @Prev.canceled += instance.OnPrev;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
 
             /// <summary>
@@ -327,6 +356,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Input
                 @Prev.started -= instance.OnPrev;
                 @Prev.performed -= instance.OnPrev;
                 @Prev.canceled -= instance.OnPrev;
+                @Pause.started -= instance.OnPause;
+                @Pause.performed -= instance.OnPause;
+                @Pause.canceled -= instance.OnPause;
             }
 
             /// <summary>
@@ -388,6 +420,13 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Input
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnPrev(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Pause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnPause(InputAction.CallbackContext context);
         }
     }
 }

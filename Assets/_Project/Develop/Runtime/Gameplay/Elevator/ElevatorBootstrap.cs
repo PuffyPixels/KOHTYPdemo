@@ -9,6 +9,7 @@ using Assets._Project.Develop.Runtime.UI.Gameplay.InteractClue;
 using Assets._Project.Develop.Runtime.UI.Gameplay.InventoryWidget;
 using Assets._Project.Develop.Runtime.UI.Gameplay.ItemCollectPopup;
 using Assets._Project.Develop.Runtime.UI.Gameplay.NotePopup;
+using Assets._Project.Develop.Runtime.UI.Pause;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
 using Assets._Project.Develop.Runtime.Utilities.ElevatorManagment;
 using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
@@ -71,6 +72,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
             _container.Resolve<InventoryWidgetPresenter>().Initialize();
             _container.Resolve<InteractCluePresenter>().Initialize();
             _container.Resolve<NotePopupPresenter>().Initialize();
+            _container.Resolve<PausePresenter>().Initialize();
 
             elevatorController.Init(_container.Resolve<SoundsManager>(), _container.Resolve<ICoroutinesPerformer>());
 

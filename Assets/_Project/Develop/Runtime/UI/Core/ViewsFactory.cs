@@ -14,6 +14,7 @@ namespace Assets._Project.Develop.Runtime.UI.Core
         public const string ItemCollectPopupWidget = nameof(ItemCollectPopupWidget);
         public const string InteractClueWidget = nameof(InteractClueWidget);
         public const string NotePopupWidget = nameof(NotePopupWidget);
+        public const string PauseWidget = nameof(PauseWidget);
     }
 
     public class ViewsFactory
@@ -28,6 +29,7 @@ namespace Assets._Project.Develop.Runtime.UI.Core
             {ViewIDs.ItemCollectPopupWidget, "UI/Gameplay/ItemCollectPopupWidget" },
             {ViewIDs.InteractClueWidget, "UI/Gameplay/InteractClueWidget" },
             {ViewIDs.NotePopupWidget, "UI/Gameplay/NotePopupWidget" },
+            {ViewIDs.PauseWidget, "UI/Gameplay/PauseWidget" },
         };
 
         public ViewsFactory(ResourcesAssetsLoader resourcesAssetsLoader)

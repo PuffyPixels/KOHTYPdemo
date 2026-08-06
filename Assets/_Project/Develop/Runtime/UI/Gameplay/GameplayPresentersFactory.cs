@@ -7,6 +7,7 @@ using Assets._Project.Develop.Runtime.UI.Gameplay.InteractClue;
 using Assets._Project.Develop.Runtime.UI.Gameplay.InventoryWidget;
 using Assets._Project.Develop.Runtime.UI.Gameplay.ItemCollectPopup;
 using Assets._Project.Develop.Runtime.UI.Gameplay.NotePopup;
+using Assets._Project.Develop.Runtime.UI.Pause;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
 using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
 using UnityEngine;
@@ -51,6 +52,12 @@ namespace Assets._Project.Develop.Runtime.UI.Gameplay
         public NotePopupPresenter CreateNotePopupPresenter(NotePopupView view)
         {
             return new NotePopupPresenter(view, _container.Resolve<CursorManager>(), _container.Resolve<ICoroutinesPerformer>());
+        }
+
+        public PausePresenter CreatePausePresenter(PauseView view)
+        {
+            return new PausePresenter(view, _container.Resolve<AdditionalInputController>(), _container.Resolve<SceneSwitcherService>(),
+                _container.Resolve<ICoroutinesPerformer>());
         }
     }
 }

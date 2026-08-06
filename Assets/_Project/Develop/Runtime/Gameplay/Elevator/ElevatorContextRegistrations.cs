@@ -9,6 +9,7 @@ using Assets._Project.Develop.Runtime.UI.Gameplay.InteractClue;
 using Assets._Project.Develop.Runtime.UI.Gameplay.InventoryWidget;
 using Assets._Project.Develop.Runtime.UI.Gameplay.ItemCollectPopup;
 using Assets._Project.Develop.Runtime.UI.Gameplay.NotePopup;
+using Assets._Project.Develop.Runtime.UI.Pause;
 using Assets._Project.Develop.Runtime.Utilities.AssetsManagment;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
 using System;
@@ -32,6 +33,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
             container.RegisterAsSingle(CreateInventoryWidgetPresenter);//.NonLazy();
             container.RegisterAsSingle(CreateInteractCluePresenter);
             container.RegisterAsSingle(CreateNotePopupPresenter);
+            container.RegisterAsSingle(CreatePausePresenter);
             container.RegisterAsSingle(_ => new AdditionalInputController()).NonLazy();
             container.RegisterAsSingle(HeroFactory);
             container.RegisterAsSingle(CreateGameplayPresentersFactory);
@@ -80,6 +82,10 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
         private static NotePopupPresenter CreateNotePopupPresenter(DIContainer c) =>
             CreateHUDWidget<NotePopupPresenter, NotePopupView>(c, ViewIDs.NotePopupWidget,
                 v => c.Resolve<GameplayPresentersFactory>().CreateNotePopupPresenter(v));
+
+        private static PausePresenter CreatePausePresenter(DIContainer c) =>
+            CreateHUDWidget<PausePresenter, PauseView>(c, ViewIDs.PauseWidget,
+                v => c.Resolve<GameplayPresentersFactory>().CreatePausePresenter(v));
 
         private static TPresenter CreateHUDWidget<TPresenter, TView>(DIContainer c, string viewID, 
             Func<TView, TPresenter> presenterCreator) 

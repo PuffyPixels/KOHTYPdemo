@@ -9,6 +9,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Input
         public event Action<bool> InventorySwitched;
         public event Action<bool> InventorySelection;
         public event Action InventoryDrop;
+        public event Action Paused;
 
         private PlayerAdditionalInput _controls;
         private bool _isInventoryOpen;
@@ -20,6 +21,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Input
             _controls.AdditionalInput.Inventory.performed += OnInventorySwitch;
             _controls.AdditionalInput.Next.performed += OnNext;
             _controls.AdditionalInput.Prev.performed += OnPrev;
+            _controls.AdditionalInput.Pause.performed += OnPause;
         }
 
         public void Dispose()
@@ -27,6 +29,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Input
             _controls.AdditionalInput.Inventory.performed -= OnInventorySwitch;
             _controls.AdditionalInput.Next.performed -= OnNext;
             _controls.AdditionalInput.Prev.performed -= OnPrev;
+            _controls.AdditionalInput.Pause.performed -= OnPause;
             _controls.Disable();
         }
 
@@ -47,6 +50,11 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Input
                 InventoryDrop?.Invoke();
             else if (context.interaction is TapInteraction)
                 InventorySelection?.Invoke(false);
+        }
+
+        private void OnPause(InputAction.CallbackContext _)
+        {
+            Paused?.Invoke();
         }
     }
 }
