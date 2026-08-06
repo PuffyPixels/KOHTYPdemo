@@ -10,12 +10,15 @@ namespace Assets._Project.Develop.Runtime.Utilities.Sound
         private readonly Queue<AudioSource> _pool = new();
         private readonly List<AudioSource> _active = new();
 
+        private int _prewarmCount;
+
         public AudioSourcePool(AudioSource prefab, Transform parent, int prewarmCount = 3)
         {
             _prefab = prefab;
             _parent = parent;
+            _prewarmCount = prewarmCount;
 
-            CreatePool(prewarmCount);
+            CreatePool(_prewarmCount);
         }
 
         public AudioSource Get()
@@ -55,7 +58,8 @@ namespace Assets._Project.Develop.Runtime.Utilities.Sound
             List<AudioSource> activeCopy = new(_active);
 
             foreach (AudioSource source in activeCopy)
-                Return(source);
+                if (source != null)
+                    Return(source);
         }
 
         public void Clear()
@@ -71,6 +75,12 @@ namespace Assets._Project.Develop.Runtime.Utilities.Sound
             }
         }
 
+        public void ReCreate()
+        {
+            Clear();
+            CreatePool(_prewarmCount);
+        }
+
         private void CreatePool(int prewarmCount)
         {
             for (int i = 0; i < prewarmCount; i++)
@@ -84,6 +94,7 @@ namespace Assets._Project.Develop.Runtime.Utilities.Sound
         {
             AudioSource source = Object.Instantiate(_prefab, _parent);
             source.gameObject.SetActive(false);
+            source.enabled = true;
 
             return source;
         }
