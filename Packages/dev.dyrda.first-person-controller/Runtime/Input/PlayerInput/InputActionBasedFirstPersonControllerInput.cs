@@ -24,6 +24,9 @@ namespace DyrdaDev.FirstPersonController
         public override ReadOnlyReactiveProperty<bool> Run => _run;
         private ReadOnlyReactiveProperty<bool> _run;
 
+        public override ReadOnlyReactiveProperty<bool> Watch => _watch;
+        private ReadOnlyReactiveProperty<bool> _watch;
+
         public override IObservable<bool> CrouchState => _crouchState;
         private BehaviorSubject<bool> _crouchState;
 
@@ -100,6 +103,10 @@ namespace DyrdaDev.FirstPersonController
 
                     return smoothLookValue;
                 });
+
+            _watch = this.UpdateAsObservable()
+    .Select(_ => _controls.Character.Watch.ReadValueAsObject() != null)
+    .ToReadOnlyReactiveProperty();
         }
     }
 }
