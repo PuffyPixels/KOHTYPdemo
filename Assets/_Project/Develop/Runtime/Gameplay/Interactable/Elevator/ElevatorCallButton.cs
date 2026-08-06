@@ -1,18 +1,25 @@
+using Assets._Project.Develop.Runtime.Utilities.Sound;
 using UnityEngine;
 
 namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator
 {
     public class ElevatorCallButton : Selectable
     {
-        private ElevatorHandler _elevatorHandler;
+        [SerializeField]
+        private AudioClip _buttonClicked;
 
-        public void Init(ElevatorHandler elevatorHandler)
+        private ElevatorHandler _elevatorHandler;
+        private SoundsManager _soundsManager;
+
+        public void Init(ElevatorHandler elevatorHandler, SoundsManager soundsManager)
         {
             _elevatorHandler = elevatorHandler;
+            _soundsManager = soundsManager;
         }
 
         public override void Interact()
         {
+            _soundsManager.PlaySound(_buttonClicked);
             _elevatorHandler.Call();
             Destroy(this);
         }

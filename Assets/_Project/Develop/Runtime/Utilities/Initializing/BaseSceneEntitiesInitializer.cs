@@ -15,6 +15,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Assets._Project.Develop.Runtime.Gameplay.Interactable.FakeTv;
+using Assets._Project.Develop.Runtime.Utilities.Sound;
 
 namespace Project.Develop.Runtime.Utilities.Initializing
 {
@@ -37,14 +38,14 @@ namespace Project.Develop.Runtime.Utilities.Initializing
             }
         }
 
-        public static void InitElevatorCallButton()
+        public static void InitElevatorCallButton(SoundsManager soundsManager)
         {
             ElevatorHandler handler = GameObject.FindFirstObjectByType<ElevatorHandler>();
             ElevatorCallButton button = GameObject.FindFirstObjectByType<ElevatorCallButton>();
 
             if (handler != null && button != null)
             {
-                button.Init(handler);
+                button.Init(handler, soundsManager);
             }
         }
 

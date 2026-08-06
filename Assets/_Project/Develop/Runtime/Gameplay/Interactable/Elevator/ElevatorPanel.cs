@@ -4,6 +4,7 @@ using Assets._Project.Develop.Runtime.Infrastructure.DI;
 using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagment;
 using Assets._Project.Develop.Runtime.Utilities.ElevatorManagment;
 using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
+using Assets._Project.Develop.Runtime.Utilities.Sound;
 using Project.Develop.Runtime.Utilities.Initializing;
 using System.Collections;
 using UnityEngine;
@@ -15,10 +16,17 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator
     {
         [SerializeField]
         ElevatorHandler _elevatorHandler;
+        [SerializeField]
+        private AudioClip _buttonClicked;
+        [SerializeField]
+        private AudioClip _doorClose;
+        [SerializeField]
+        private AudioClip _doorOpen;
         private SceneLoaderService _sceneLoaderService;
         private SceneSwitcherService _sceneSwitcherService;
         private ICoroutinesPerformer _coroutinesPerformer;
         private ElevatorSwitchManager _elevatorSwitchManager;
+        private SoundsManager _soundsManager;
         private DIContainer _gameContainer;
         private Hero _hero;
 
@@ -31,6 +39,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator
             _sceneSwitcherService = sceneSwitcherService;
             _coroutinesPerformer = coroutinesPerformer;
             _gameContainer = gameContainer;
+            _soundsManager = gameContainer.Resolve<SoundsManager>();
             _hero = hero;
             _elevatorSwitchManager = elevatorSwitchManager;
         }
@@ -43,7 +52,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator
 
         private IEnumerator UnloadEntranceAndLoadShop()
         {
+            _soundsManager.PlaySound(_buttonClicked);
             Transform elevatorParent = transform;
+            _soundsManager.PlaySound(_doorClose);
             yield return _elevatorHandler.CloseDoors();
             Transform heroParent = _hero.transform.parent;
             _hero.transform.parent = elevatorParent;
@@ -57,6 +68,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator
 
             yield return _elevatorHandler.Move();
             _hero.transform.parent = heroParent;
+            _soundsManager.PlaySound(_doorOpen);
             yield return _elevatorHandler.OpenDoors();
             yield return _elevatorHandler.ShowDoorsImageRoutine();
 

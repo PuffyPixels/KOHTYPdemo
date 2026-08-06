@@ -95,7 +95,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Elevator
         {
             BaseSceneEntitiesInitializer.InitElevatorPanel(_sceneLoaderService, _sceneSwitcherService,
                 _coroutinesPerformer, _container, _hero, _elevatorSwitchManager);
-            BaseSceneEntitiesInitializer.InitElevatorCallButton();
+            BaseSceneEntitiesInitializer.InitElevatorCallButton(_container.Resolve<SoundsManager>());
         }
 
         private IEnumerator UnloadShopAndLoadMainMenu()

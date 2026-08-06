@@ -587,6 +587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Interactable.Elevator.ElevatorCallButton
   _outline: {fileID: 2033327772}
+  _buttonClicked: {fileID: 8300000, guid: 7f6b0b2701fca1c4c97048937eb8d126, type: 3}
 --- !u!65 &2033327771
 BoxCollider:
   m_ObjectHideFlags: 0

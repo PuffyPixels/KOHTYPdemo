@@ -1544,3 +1544,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Develop.Runtime.Gameplay.Interactable.ElevatorPanel
   _outline: {fileID: 75894141474984508}
   _elevatorHandler: {fileID: 6401325910721090704}
+  _buttonClicked: {fileID: 8300000, guid: 7f6b0b2701fca1c4c97048937eb8d126, type: 3}
+  _doorClose: {fileID: 8300000, guid: da96507790290c94ea16c1262b48e89f, type: 3}
+  _doorOpen: {fileID: 8300000, guid: 18c0d1aa76aa1ba41a64bceea8fd3023, type: 3}
