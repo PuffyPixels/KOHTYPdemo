@@ -25,7 +25,7 @@ namespace Assets._Project.Develop.Runtime.Utilities.StressSystem
         private const float STRESS_PANIC_MULTIPLIER = 0.006f;
         private const float STRESS_PANIC_MULTIPLIER_LEVEL = 15f;
 
-        private const float STRESS_RECOVERY_BASE = 3.0f;
+        private const float STRESS_RECOVERY_BASE = 5.0f;
         private const float STRESS_RECOVERY_MODIFY = 1f;
         private const float STRESS_RECOVERY_MAX = 120f;
 
